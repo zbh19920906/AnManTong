@@ -47,8 +47,9 @@
     UITapGestureRecognizer *tap = [UITapGestureRecognizer new];
     
     [self addGestureRecognizer:tap];
+    weakSelf(self);
     [[tap rac_gestureSignal] subscribeNext:^(id x) {
-        
+        [myNoti postNotificationName:goMyItemNoti object:nil userInfo:@{@"tag":@(weakSelf.tag)}];
     }];
 }
 @end

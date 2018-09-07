@@ -9,6 +9,9 @@
 #import "AMTMyVC.h"
 #import "AMTMyHeadView.h"
 #import "AMTPersonalViewController.h"
+#import "AMTFocusViewController.h"
+#import "AMTMyCollectionViewController.h"
+#import "AMTMyCommentsViewController.h"
 @interface AMTMyVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) AMTMyHeadView *headView;
 @property (nonatomic, strong) BaseTableView *tableView;
@@ -23,6 +26,37 @@
     self.headView.model = self.model;
     
     [self.view addSubview:self.tableView];
+    [self event];
+}
+
+- (void)event
+{
+    weakSelf(self);
+    [[myNoti rac_addObserverForName:goMyItemNoti object:nil]subscribeNext:^(id x) {
+        NSNotification *notifi = x;
+        NSInteger tag = [notifi.userInfo[@"tag"] integerValue];
+        switch (tag) {
+            case 1:
+                {
+                    
+                }
+                break;
+            case 2:
+            {
+                AMTFocusViewController *vc = [[AMTFocusViewController alloc]init];
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 3:
+            {
+                AMTMyCollectionViewController *vc =[[AMTMyCollectionViewController alloc]init];
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            default:
+                break;
+        }
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -60,6 +94,26 @@
     return 50;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case 0:
+            {
+                AMTMyCommentsViewController *vc = [[AMTMyCommentsViewController alloc]init];
+                
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }else{
+        
+    }
+}
+
 - (BaseTableView *)tableView
 {
     if (!_tableView) {
@@ -80,7 +134,7 @@
         weakSelf(self);
         [[_headView.changeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             AMTPersonalViewController *vc = [[AMTPersonalViewController alloc]init];
-            vc.isUser = NO;
+            vc.isUser = YES;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
     }

@@ -54,6 +54,37 @@
     return 0.01;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case 0:
+            {
+                
+            }
+                break;
+            case 2:
+            {
+                PersonalRadioView *radioView = [PersonalRadioView radioViewWithTitle:@"选择性别"];
+                radioView.cpDelegate = self;
+                radioView.dataSource = @[@"男",@"女"];
+                [self.navigationController.view addSubview:radioView];
+            }
+                break;
+            case 3:
+            {
+                
+            }
+                break;
+           
+            default:
+                break;
+        }
+    }else{
+        
+    }
+}
+
 - (BaseTableView *)tableView
 {
     if (!_tableView) {

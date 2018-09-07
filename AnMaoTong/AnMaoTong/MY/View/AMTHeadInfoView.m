@@ -31,15 +31,17 @@
     self.sendCount = [[AMTHeadItemView alloc]init];
     self.sendCount.titleLab.text = @"0";
     self.sendCount.contentLab.text = @"发布";
+    self.sendCount.tag = 1;
     
     self.focusCount = [[AMTHeadItemView alloc]init];
     self.focusCount.titleLab.text = @"0";
     self.focusCount.contentLab.text = @"关注";
+    self.focusCount.tag = 2;
     
     self.collectionCount = [[AMTHeadItemView alloc]init];
     self.collectionCount.titleLab.text = @"0";
     self.collectionCount.contentLab.text = @"收藏";
-    
+    self.collectionCount.tag = 3;
     [self sd_addSubviews:@[self.sendCount,self.focusCount,self.collectionCount]];
     
     self.sendCount.sd_layout

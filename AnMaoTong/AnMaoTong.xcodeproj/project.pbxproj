@@ -136,6 +136,15 @@
 		2FE2A6102137D2B8002AB1D8 /* AMTAddButtonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE2A60F2137D2B8002AB1D8 /* AMTAddButtonVC.m */; };
 		2FE2A6132137D2C2002AB1D8 /* AMTMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE2A6122137D2C2002AB1D8 /* AMTMessageVC.m */; };
 		2FE2A6162137D2D1002AB1D8 /* AMTMyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE2A6152137D2D1002AB1D8 /* AMTMyVC.m */; };
+		58CF922C214295EE0065EF0F /* AMTFocusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CF922B214295EE0065EF0F /* AMTFocusViewController.m */; };
+		58CF922F214297650065EF0F /* AMTFocusShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CF922E214297650065EF0F /* AMTFocusShopController.m */; };
+		58CF92322142977D0065EF0F /* AMTFocusUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CF92312142977D0065EF0F /* AMTFocusUserController.m */; };
+		58CF92362142A5430065EF0F /* AMTFocusShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CF92352142A5430065EF0F /* AMTFocusShopCell.m */; };
+		58CF92392142ABE70065EF0F /* AMTFocusUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CF92382142ABE70065EF0F /* AMTFocusUserCell.m */; };
+		58CF923D2142B29D0065EF0F /* AMTMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CF923C2142B29D0065EF0F /* AMTMyCollectionViewController.m */; };
+		58CF92412142B2C40065EF0F /* AMTMyCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CF92402142B2C40065EF0F /* AMTMyCollectionCell.m */; };
+		58CF92452142BA2F0065EF0F /* AMTMyCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CF92442142BA2F0065EF0F /* AMTMyCommentsViewController.m */; };
+		58CF92492142BAB30065EF0F /* AMTMyCommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CF92482142BAB30065EF0F /* AMTMyCommentsCell.m */; };
 		ACE82912A905B57653B67B35 /* libPods-AnMaoTong.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 660F256852C92EB05E0FFBB2 /* libPods-AnMaoTong.a */; };
 /* End PBXBuildFile section */
 
@@ -427,6 +436,24 @@
 		2FE2A6122137D2C2002AB1D8 /* AMTMessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMessageVC.m; sourceTree = "<group>"; };
 		2FE2A6142137D2D1002AB1D8 /* AMTMyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMyVC.h; sourceTree = "<group>"; };
 		2FE2A6152137D2D1002AB1D8 /* AMTMyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMyVC.m; sourceTree = "<group>"; };
+		58CF922A214295EE0065EF0F /* AMTFocusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTFocusViewController.h; sourceTree = "<group>"; };
+		58CF922B214295EE0065EF0F /* AMTFocusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTFocusViewController.m; sourceTree = "<group>"; };
+		58CF922D214297650065EF0F /* AMTFocusShopController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTFocusShopController.h; sourceTree = "<group>"; };
+		58CF922E214297650065EF0F /* AMTFocusShopController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTFocusShopController.m; sourceTree = "<group>"; };
+		58CF92302142977D0065EF0F /* AMTFocusUserController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTFocusUserController.h; sourceTree = "<group>"; };
+		58CF92312142977D0065EF0F /* AMTFocusUserController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTFocusUserController.m; sourceTree = "<group>"; };
+		58CF92342142A5430065EF0F /* AMTFocusShopCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTFocusShopCell.h; sourceTree = "<group>"; };
+		58CF92352142A5430065EF0F /* AMTFocusShopCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTFocusShopCell.m; sourceTree = "<group>"; };
+		58CF92372142ABE70065EF0F /* AMTFocusUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTFocusUserCell.h; sourceTree = "<group>"; };
+		58CF92382142ABE70065EF0F /* AMTFocusUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTFocusUserCell.m; sourceTree = "<group>"; };
+		58CF923B2142B29D0065EF0F /* AMTMyCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMyCollectionViewController.h; sourceTree = "<group>"; };
+		58CF923C2142B29D0065EF0F /* AMTMyCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMyCollectionViewController.m; sourceTree = "<group>"; };
+		58CF923F2142B2C40065EF0F /* AMTMyCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMyCollectionCell.h; sourceTree = "<group>"; };
+		58CF92402142B2C40065EF0F /* AMTMyCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMyCollectionCell.m; sourceTree = "<group>"; };
+		58CF92432142BA2F0065EF0F /* AMTMyCommentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMyCommentsViewController.h; sourceTree = "<group>"; };
+		58CF92442142BA2F0065EF0F /* AMTMyCommentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMyCommentsViewController.m; sourceTree = "<group>"; };
+		58CF92472142BAB30065EF0F /* AMTMyCommentsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMyCommentsCell.h; sourceTree = "<group>"; };
+		58CF92482142BAB30065EF0F /* AMTMyCommentsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMyCommentsCell.m; sourceTree = "<group>"; };
 		660F256852C92EB05E0FFBB2 /* libPods-AnMaoTong.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnMaoTong.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B01AAD12182170DCF9291FFF /* Pods-AnMaoTong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnMaoTong.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnMaoTong/Pods-AnMaoTong.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1167,7 +1194,6 @@
 				2FE2A5F02137D25E002AB1D8 /* Model */,
 				2FE2A5F12137D25E002AB1D8 /* SubController */,
 				2FE2A5F22137D25E002AB1D8 /* View */,
-				2FE2A5F32137D25E002AB1D8 /* ViewModel */,
 				2FE2A6142137D2D1002AB1D8 /* AMTMyVC.h */,
 				2FE2A6152137D2D1002AB1D8 /* AMTMyVC.m */,
 			);
@@ -1186,6 +1212,9 @@
 		2FE2A5F12137D25E002AB1D8 /* SubController */ = {
 			isa = PBXGroup;
 			children = (
+				58CF92422142BA060065EF0F /* MyComments */,
+				58CF923A2142B20C0065EF0F /* collection */,
+				58CF9229214295B60065EF0F /* Focus */,
 				2F597CCF21426D6F00C5B4A0 /* KKPersonalController */,
 			);
 			path = SubController;
@@ -1202,13 +1231,6 @@
 				2F597CCA2142597900C5B4A0 /* AMTHeadItemView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		2FE2A5F32137D25E002AB1D8 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		2FE2A5F42137D25E002AB1D8 /* Message */ = {
@@ -1380,6 +1402,69 @@
 			children = (
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		58CF9229214295B60065EF0F /* Focus */ = {
+			isa = PBXGroup;
+			children = (
+				58CF92332142A51A0065EF0F /* View */,
+				58CF922A214295EE0065EF0F /* AMTFocusViewController.h */,
+				58CF922B214295EE0065EF0F /* AMTFocusViewController.m */,
+				58CF922D214297650065EF0F /* AMTFocusShopController.h */,
+				58CF922E214297650065EF0F /* AMTFocusShopController.m */,
+				58CF92302142977D0065EF0F /* AMTFocusUserController.h */,
+				58CF92312142977D0065EF0F /* AMTFocusUserController.m */,
+			);
+			path = Focus;
+			sourceTree = "<group>";
+		};
+		58CF92332142A51A0065EF0F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				58CF92342142A5430065EF0F /* AMTFocusShopCell.h */,
+				58CF92352142A5430065EF0F /* AMTFocusShopCell.m */,
+				58CF92372142ABE70065EF0F /* AMTFocusUserCell.h */,
+				58CF92382142ABE70065EF0F /* AMTFocusUserCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		58CF923A2142B20C0065EF0F /* collection */ = {
+			isa = PBXGroup;
+			children = (
+				58CF923B2142B29D0065EF0F /* AMTMyCollectionViewController.h */,
+				58CF923C2142B29D0065EF0F /* AMTMyCollectionViewController.m */,
+				58CF923E2142B2AC0065EF0F /* view */,
+			);
+			path = collection;
+			sourceTree = "<group>";
+		};
+		58CF923E2142B2AC0065EF0F /* view */ = {
+			isa = PBXGroup;
+			children = (
+				58CF923F2142B2C40065EF0F /* AMTMyCollectionCell.h */,
+				58CF92402142B2C40065EF0F /* AMTMyCollectionCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		58CF92422142BA060065EF0F /* MyComments */ = {
+			isa = PBXGroup;
+			children = (
+				58CF92432142BA2F0065EF0F /* AMTMyCommentsViewController.h */,
+				58CF92442142BA2F0065EF0F /* AMTMyCommentsViewController.m */,
+				58CF92462142BA7A0065EF0F /* view */,
+			);
+			path = MyComments;
+			sourceTree = "<group>";
+		};
+		58CF92462142BA7A0065EF0F /* view */ = {
+			isa = PBXGroup;
+			children = (
+				58CF92472142BAB30065EF0F /* AMTMyCommentsCell.h */,
+				58CF92482142BAB30065EF0F /* AMTMyCommentsCell.m */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		7B302F7BAA052BC78E6D47F9 /* Frameworks */ = {
@@ -1610,6 +1695,8 @@
 				2F597CC82142577A00C5B4A0 /* AMTHeadInfoView.m in Sources */,
 				2FE2A55D2137C7FA002AB1D8 /* UIBarButtonItem+KKExtension.m in Sources */,
 				2FE2A60D2137D2A6002AB1D8 /* AMTFindVC.m in Sources */,
+				58CF92492142BAB30065EF0F /* AMTMyCommentsCell.m in Sources */,
+				58CF92452142BA2F0065EF0F /* AMTMyCommentsViewController.m in Sources */,
 				2FE2A5992137C810002AB1D8 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				2FE2A5552137C7FA002AB1D8 /* NSObject+KKTextSize.m in Sources */,
 				2F1C3BDA21412DB1008D3B66 /* AMTBaseInfoViewController.m in Sources */,
@@ -1624,6 +1711,7 @@
 				2FE2A5E92137C988002AB1D8 /* BaseModel.m in Sources */,
 				2F726A36213F79750024A73F /* AMTScreenTitleView.m in Sources */,
 				2FE2A5532137C7FA002AB1D8 /* NSMutableAttributedString+FindOutNumber.m in Sources */,
+				58CF92392142ABE70065EF0F /* AMTFocusUserCell.m in Sources */,
 				2FE2A4FE2137C7B2002AB1D8 /* BaseCollectionView.m in Sources */,
 				2FE2A5972137C810002AB1D8 /* IQTitleBarButtonItem.m in Sources */,
 				2FE2A5602137C7FA002AB1D8 /* UIImage+Extension.m in Sources */,
@@ -1642,6 +1730,7 @@
 				2FE2A5172137C7D2002AB1D8 /* BaseTextView.m in Sources */,
 				2FE2A5C72137C837002AB1D8 /* SDCollectionViewCell.m in Sources */,
 				2FE2A55C2137C7FA002AB1D8 /* NSString+KKTimesTamp.m in Sources */,
+				58CF922C214295EE0065EF0F /* AMTFocusViewController.m in Sources */,
 				2FE2A5612137C7FA002AB1D8 /* UINavigationBar+Awesome.m in Sources */,
 				2FE2A5962137C810002AB1D8 /* IQPreviousNextView.m in Sources */,
 				2FE2A5AA2137C828002AB1D8 /* KKNetWorking.m in Sources */,
@@ -1650,6 +1739,7 @@
 				2F1C3A552140C9E4008D3B66 /* RegisterOneDataModel.m in Sources */,
 				2FE2A5982137C810002AB1D8 /* IQToolbar.m in Sources */,
 				2FE2A5942137C810002AB1D8 /* IQTextView.m in Sources */,
+				58CF92362142A5430065EF0F /* AMTFocusShopCell.m in Sources */,
 				2FE2A4CB21378B06002AB1D8 /* main.m in Sources */,
 				2F1C3A712140FFA2008D3B66 /* AMTUserNameViewController.m in Sources */,
 				2FE2A5C92137C837002AB1D8 /* UIView+SDExtension.m in Sources */,
@@ -1669,9 +1759,11 @@
 				2F597CC5214254AC00C5B4A0 /* AMTMyHeadView.m in Sources */,
 				2FE2A6132137D2C2002AB1D8 /* AMTMessageVC.m in Sources */,
 				2F726A67213FAF540024A73F /* LXReorderableCollectionViewFlowLayout.m in Sources */,
+				58CF92322142977D0065EF0F /* AMTFocusUserController.m in Sources */,
 				2FE2A51D2137C7D2002AB1D8 /* XYTabBar.m in Sources */,
 				2FE2A51A2137C7D2002AB1D8 /* BaseButton.m in Sources */,
 				2FE2A5E12137C851002AB1D8 /* GTMBase64.m in Sources */,
+				58CF922F214297650065EF0F /* AMTFocusShopController.m in Sources */,
 				2F1C3A442140B8AE008D3B66 /* AMTLoginVC.m in Sources */,
 				2F726A3A213F7FAA0024A73F /* AMTScreenTitleCell.m in Sources */,
 				2FE2A5952137C810002AB1D8 /* IQBarButtonItem.m in Sources */,
@@ -1688,12 +1780,14 @@
 				2F597CCE21425F7F00C5B4A0 /* AMTMyModel.m in Sources */,
 				2FE2A5C32137C837002AB1D8 /* TAAbstractDotView.m in Sources */,
 				2F726A46213FA5E20024A73F /* AMTBrandItemCell.m in Sources */,
+				58CF923D2142B29D0065EF0F /* AMTMyCollectionViewController.m in Sources */,
 				2FE2A5502137C7FA002AB1D8 /* BHNavigationLeftBtn.m in Sources */,
 				2FE2A5512137C7FA002AB1D8 /* CALayer+KKCustomLayer.m in Sources */,
 				2FE2A55F2137C7FA002AB1D8 /* UIImage+Base64.m in Sources */,
 				2F597CED21426FD000C5B4A0 /* AMTPersonalModel.m in Sources */,
 				2FE2A5002137C7B2002AB1D8 /* BaseNavigationController.m in Sources */,
 				2FE2A51C2137C7D2002AB1D8 /* BaseView.m in Sources */,
+				58CF92412142B2C40065EF0F /* AMTMyCollectionCell.m in Sources */,
 				2FE2A5652137C7FA002AB1D8 /* UIViewController+Seting.m in Sources */,
 				2F726A70213FC7F80024A73F /* AMTGoodsImageView.m in Sources */,
 				2FE2A5E32137C851002AB1D8 /* NSString+aes.m in Sources */,

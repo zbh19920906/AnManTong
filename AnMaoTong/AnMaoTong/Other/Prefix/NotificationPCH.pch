@@ -10,5 +10,5 @@
 #define NotificationPCH_pch
 
 //通知名称
-
+#define goMyItemNoti @"goMyItemNoti"
 #endif /* NotificationPCH_pch */
