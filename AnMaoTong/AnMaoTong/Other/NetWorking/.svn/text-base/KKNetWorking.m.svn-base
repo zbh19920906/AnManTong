@@ -1,0 +1,246 @@
+//
+//  CHNetWorking.m
+//  CloudHome
+//
+//  Created by lk05 on 2017/9/13.
+//  Copyright © 2017年 zhu. All rights reserved.
+//
+
+#import "KKNetWorking.h"
+#import <AdSupport/AdSupport.h>
+#import "KKPhoneNumberView.h"
+
+@implementation KKNetWorking
+//单列属性
+static KKNetWorking * shard;
+
+//单列类的创建
++ (KKNetWorking *)getShard
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        shard = [[KKNetWorking alloc]init];
+        shard.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json",@"text/javascript",@"charset=utf-8",@"image/jpeg",@"image/png",@"application/octet-stream",@"text/plain", nil];
+        shard.requestSerializer.timeoutInterval = 20.f;
+    });
+    
+    return shard;
+    
+}
+
+//添加头部head
+- (void)getHeadInfo
+{
+    UserHelper *userInfo = [UserHelper shareInstance];
+    NSString * userid = userInfo.user.user_id == nil ? @"":userInfo.user.user_id,*token = userInfo.user.token == nil ? @"" : userInfo.user.token,*random = [self getRandomNumber:10000 to:99999],*platform = @"1",*version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [shard.requestSerializer setValue:userid forHTTPHeaderField:@"userid"];
+    [shard.requestSerializer setValue:token forHTTPHeaderField:@"token"];
+    [shard.requestSerializer setValue:random forHTTPHeaderField:@"random"];
+    [shard.requestSerializer setValue:platform forHTTPHeaderField:@"platform"];
+    [shard.requestSerializer setValue:version forHTTPHeaderField:@"version"];
+    [shard.requestSerializer setValue:@"1" forHTTPHeaderField:@"usertype"];
+    [shard.requestSerializer setValue:[[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString] forHTTPHeaderField:@"deviceid"];
+    [shard.requestSerializer setValue:[CP_AES cpStringToAes256_encrypt:[NSString stringWithFormat:@"%@%@%@%@%@",userid,random,token,platform,version] type:1] forHTTPHeaderField:@"total"];
+}
+
+/**
+ 网络请求
+ */
+- (void)request:(HTTPMothd)Mothd url:(NSString *)urlString parameters:(NSDictionary *)parameters completion:(Completion)resultConpletion
+{
+    [self getHeadInfo];
+    
+    if ([urlString rangeOfString:@"getSuggestedShopList"].location != NSNotFound) {
+       
+    }
+    KKLog(@"HTTPRequestHeaders>>>>>>>>%@,\nurlString>>>>>>>>%@,\nparameters>>>>>>>>>>>>%@",shard.requestSerializer.HTTPRequestHeaders,urlString,parameters);
+    
+    //成功回调
+    void(^successBolck)(NSURLSessionDataTask * task,id json) = ^(NSURLSessionDataTask * task,id json){
+        //        [hud hideAnimated];
+        if ([json[@"code"] integerValue] == 1) {
+            if (resultConpletion) {
+                 resultConpletion(YES,json);
+            }
+        }else if ([json[@"code"] integerValue] == 10){
+            [UserHelper savePersonalInfoToCacheWith:[NSDictionary dictionary]];
+            
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            BOOL isFirstLogintRequest = [userDefaults boolForKey:kFirstIntoApp];
+            BOOL isLogout = [userDefaults boolForKey:kIsLogout];
+            if (isLogout || isFirstLogintRequest) {
+                return ;
+            }
+            
+            if ([UserHelper shareInstance].user.user_id.length == 0) {
+                KKPhoneNumberView *loginAlert = [[KKPhoneNumberView alloc] init];
+                [loginAlert show];
+                return;
+            }
+        }else{
+            resultConpletion(NO,json);
+        }
+    };
+    
+    //失败回调
+    void(^failureBolck)(NSURLSessionDataTask * task,NSError * error) = ^(NSURLSessionDataTask * task,NSError * error){
+        KKLog(@"%@",error);
+        resultConpletion(NO,@{@"code":@"0",@"message" : kServerErrMsg});
+        //        shard.isUse==YES ? NSLog(@""):LFLog(@"请求失败%@",error);
+    };
+    
+    //文件上传
+    if ([urlString isEqualToString:UpLoadUserHeadImg]) {
+        [shard POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            UIImage *imge = [parameters objectForKey:@"headImg"];
+            NSData *imageData =UIImageJPEGRepresentation(imge,1);
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            formatter.dateFormat =@"yyyyMMddHHmmss";
+            NSString *str = [formatter stringFromDate:[NSDate date]];
+            NSString *fileName = [NSString stringWithFormat:@"%@%@.jpg", str,[UserHelper shareInstance].user.user_id];
+            
+            //上传的参数(上传图片，以文件流的格式)
+            [formData appendPartWithFileData:imageData
+                                        name:@"headImg"
+                                    fileName:fileName
+                                    mimeType:@"image/jpeg"];
+            
+        } progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:successBolck failure:failureBolck];
+        
+        return;
+    }
+    ///判断是GET还是POST
+    if (Mothd == GET)
+    {
+        [shard GET:urlString parameters:parameters progress:nil success:successBolck failure:failureBolck];
+        
+    }else {
+        [shard POST:urlString parameters:parameters progress:nil success:successBolck failure:failureBolck];
+    }
+}
+
+//上传图片(限制2M大小)
+- (void)uploadImageWithUrl:(NSString *)urlString imageName:(NSString *)imageName image:(UIImage *)image completion:(Completion)resultConpletion
+{
+    [self getHeadInfo];
+//    KKLog(@"HTTPRequestHeaders>>>>>>>>%@,urlString>>>>>>>>%@",shard.requestSerializer.HTTPRequestHeaders,urlString);
+
+    [shard POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        //压缩图片，限制大小为2M
+        NSData *imageData = [image compressQualityWithMaxLength:2*1024*1024];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat =@"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName = [NSString stringWithFormat:@"%@%@.jpg", str, [UserHelper shareInstance].user.user_id];
+        
+        //上传的参数(上传图片，以文件流的格式)
+        [formData appendPartWithFileData:imageData
+                                    name:imageName
+                                fileName:fileName
+                                mimeType:@"image/jpeg"];
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //上传成功
+        if ([responseObject[@"code"] integerValue] == 1) {
+            resultConpletion(YES, responseObject);
+        }else{
+            resultConpletion(NO, responseObject);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //上传失败
+        resultConpletion(NO, @{@"code" : @"0",
+                               @"message" : kServerErrMsg});
+    }];
+}
+
+#pragma mark - 上传图片(发布朋友圈)
+- (void)uploadSocailImageWithUrl:(NSString *)urlString imageName:(NSString *)imageName image:(UIImage *)image completion:(Completion)resultConpletion progress:(ProgressBlock)progressBlock
+{
+    [self getHeadInfo];
+    
+    KKLog(@"HTTPRequestHeaders>>>>>>>>%@,urlString>>>>>>>>%@", shard.requestSerializer.HTTPRequestHeaders, urlString);
+    
+    [shard POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        //压缩图片，限制大小为1M
+        NSData *imageData = [image compressQualityWithMaxLength:1*1024*1024];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName = [NSString stringWithFormat:@"%@%@.jpg", str, [UserHelper shareInstance].user.user_id];
+        
+        //上传的参数(上传图片，以文件流的格式)
+        [formData appendPartWithFileData:imageData
+                                    name:imageName
+                                fileName:fileName
+                                mimeType:@"image/jpeg"];
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        progressBlock(uploadProgress);
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //上传成功
+        if ([responseObject[@"code"] integerValue] == 1) {
+            resultConpletion(YES, responseObject);
+        }else{
+            resultConpletion(NO, responseObject);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //上传失败
+        resultConpletion(NO, @{@"code" : @"0",
+                               @"message" : kServerErrMsg});
+    }];
+}
+
+
+//网络监听
+- (void)networkReachability
+{
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    //设置监听
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        if (status==AFNetworkReachabilityStatusNotReachable) {
+            
+            [shard tipNetworkReachability];
+            
+            //网络不可用，发送通知
+            [myNoti postNotificationName:kNetworkNotReachableNoti object:nil];
+            [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"internetConnet"];
+        }else{
+            [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"internetConnet"];
+        }
+    }];
+    //开始监听
+    [manager startMonitoring];
+}
+
+//网络是否可用的状态
+- (void)tipNetworkReachability
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"您的网络好像不大给力，请检查网络状态" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+//    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    [getWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+    
+//    [getWindow.rootViewController.view kk_showCenterHUDWithTitle:@"您的网络好像不大给力，请稍后再试 "];
+}
+
+- (NSString *)getRandomNumber:(int)from to:(int)to
+{
+    return [NSString stringWithFormat:@"%u",(from + (arc4random() % (to - from + 1)))];
+}
+
+@end
+

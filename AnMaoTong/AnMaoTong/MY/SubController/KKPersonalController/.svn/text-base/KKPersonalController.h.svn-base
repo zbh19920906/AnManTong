@@ -1,0 +1,13 @@
+//
+//  KKPersonalController.h
+//  CloudMoto
+//
+//  Created by KKJY on 2017/10/26.
+//  Copyright © 2017年 zhu. All rights reserved.
+//
+typedef void(^ReloadUserImageBlock)(UIImage *img);
+#import "BaseViewController.h"
+
+@interface KKPersonalController : BaseViewController
+@property (nonatomic, copy) ReloadUserImageBlock imageBlock;
+@end

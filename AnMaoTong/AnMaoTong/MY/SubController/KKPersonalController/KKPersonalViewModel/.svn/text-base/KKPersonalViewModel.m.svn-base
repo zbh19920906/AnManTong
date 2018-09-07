@@ -1,0 +1,31 @@
+//
+//  KKPersonalViewModel.m
+//  CloudMoto
+//
+//  Created by KKJY on 2017/10/30.
+//  Copyright © 2017年 zhu. All rights reserved.
+//
+
+#import "KKPersonalViewModel.h"
+#import "KKGenderController.h"
+#import "KKNameAndAgeController.h"
+
+@implementation KKPersonalViewModel
+
++ (void)pushPersonalViewController:(BaseViewController *)viewController indexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+       
+    }else if (indexPath.row == 1 || indexPath.row == 3){
+        KKNameAndAgeController * vc = [[KKNameAndAgeController alloc]init];
+        vc.isHidden = indexPath.row == 1 ? NO : YES;
+        [viewController.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 2){
+        KKGenderController * vc = [[KKGenderController alloc]init];
+        [viewController.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+
+
+@end

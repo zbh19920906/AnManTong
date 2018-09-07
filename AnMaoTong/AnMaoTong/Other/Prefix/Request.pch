@@ -1,0 +1,30 @@
+//
+//  Request.pch
+//  CloudHome
+//
+//  Created by lk05 on 2017/9/13.
+//  Copyright © 2017年 zhu. All rights reserved.
+//
+
+#ifndef Request_pch
+#define Request_pch
+
+//接口地址
+//外网
+//#define AMTURL                @"http://test.kemiandan.com/"
+
+//外网测试
+#define AMTURL                @"http://test.6677app.com/"
+
+//注册
+#define Register   [NSString stringWithFormat:@"%@api/method/Register", AMTURL]
+
+//获取验证码
+#define getCode   [NSString stringWithFormat:@"%@api/method/getCode", AMTURL]
+//获取产品分类
+#define getGoodsClass   [NSString stringWithFormat:@"%@api/method/getGoodsClass", AMTURL]
+//商品类型下的所有品牌
+#define getBrand   [NSString stringWithFormat:@"%@api/method/getBrand", AMTURL]
+
+#endif /* Request_pch */
+

@@ -1,0 +1,34 @@
+//
+//  UIView+KKProgressHUD.h
+//  CloudMoto-Ride
+//
+//  Created by lk03 on 2017/11/2.
+//  Copyright © 2017年 zhu. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIView (KKProgressHUD)
+
+//弹出加载动画（activityIndicator）
+- (void)kk_showHUD;
+
+- (void)kk_showAndHideHUDAfterSecond;
+
+//弹出文字提示
+- (void)kk_showHUDWithTitle:(NSString *)text;
+
+//弹出文字提示
+- (void)kk_showCenterHUDWithTitle:(NSString *)text;
+
+//弹出问题提示框带偏移量
+- (void)kk_showOffsetHUDWithTitle:(NSString *)text;
+//弹出动画框和文字
+- (void)kk_showLoadLineHUDWithTitle:(NSString *)text andAfterHide:(BOOL)isHide;
+
+//隐藏提示
+- (void)kk_hideHUD;
+
+- (UIButton*)getEmptyView:(NSString*)image Action:(SEL)action addTarget:(id)target offsetY:(CGFloat)offsetY;
+
+@end

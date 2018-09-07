@@ -1,0 +1,179 @@
+//
+//  UIView+KKProgressHUD.m
+//  CloudMoto-Ride
+//
+//  Created by lk03 on 2017/11/2.
+//  Copyright © 2017年 zhu. All rights reserved.
+//
+
+#import "UIView+KKProgressHUD.h"
+
+@implementation UIView (KKProgressHUD)
+
+//弹出加载动画（activityIndicator）
+- (void)kk_showHUD
+{
+    weakSelf(self);
+    // 防止在非主线程中调用此方法,会报错
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // 弹出新的提示之前,先把旧的隐藏掉
+        [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+        
+        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:weakSelf animated:YES];
+        progressHUD.mode = MBProgressHUDModeIndeterminate;
+    });
+}
+
+- (void)kk_showAndHideHUDAfterSecond
+{
+    weakSelf(self);
+    // 防止在非主线程中调用此方法,会报错
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // 弹出新的提示之前,先把旧的隐藏掉
+        [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+        
+        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:weakSelf animated:YES];
+        progressHUD.mode = MBProgressHUDModeIndeterminate;
+        [progressHUD hideAnimated:YES afterDelay:2.0];
+    });
+}
+
+//弹出文字提示
+- (void)kk_showHUDWithTitle:(NSString *)text
+{
+    weakSelf(self);
+    
+    // 防止在非主线程中调用此方法,会报错
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // 弹出新的提示之前,先把旧的隐藏掉
+        [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+        
+        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:weakSelf animated:YES];
+        progressHUD.mode = MBProgressHUDModeIndeterminate;
+        progressHUD.label.text = text;
+        progressHUD.label.font = [UIFont systemFontOfSize:15];
+    });
+}
+
+//弹出文字提示
+- (void)kk_showCenterHUDWithTitle:(NSString *)text
+{
+    weakSelf(self);
+    
+    // 防止在非主线程中调用此方法,会报错
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // 弹出新的提示之前,先把旧的隐藏掉
+        [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+        
+        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:weakSelf animated:YES];
+        progressHUD.mode = MBProgressHUDModeText;
+        progressHUD.bezelView.color = [UIColor blackColor];
+        progressHUD.detailsLabel.text = text;
+        progressHUD.detailsLabel.font = [UIFont systemFontOfSize:15];
+        progressHUD.detailsLabel.textColor = [UIColor whiteColor];
+        progressHUD.margin = 10;
+        [progressHUD hideAnimated:YES afterDelay:2.0];
+    });
+}
+
+//弹出问题提示框带偏移量
+- (void)kk_showOffsetHUDWithTitle:(NSString *)text
+{
+    weakSelf(self);
+    // 防止在非主线程中调用此方法,会报错
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // 弹出新的提示之前,先把旧的隐藏掉
+        [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+        
+        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:weakSelf animated:YES];
+        progressHUD.mode = MBProgressHUDModeText;
+        progressHUD.bezelView.color = [UIColor blackColor];
+        progressHUD.detailsLabel.text = text;
+        progressHUD.detailsLabel.font = [UIFont systemFontOfSize:15];
+        progressHUD.detailsLabel.textColor = [UIColor whiteColor];
+//        progressHUD.offset = CGPointMake(0.f, MBProgressMaxOffset);
+        progressHUD.originY = HeightFitLimit(250);
+        progressHUD.margin = 11;
+        [progressHUD hideAnimated:YES afterDelay:2.0];
+    });
+}
+
+//隐藏提示
+- (void)kk_hideHUD
+{
+    weakSelf(self);
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+    }];
+}
+
+//弹出问题提示框带偏移量
+- (void)kk_showLoadLineHUDWithTitle:(NSString *)text andAfterHide:(BOOL)isHide
+{
+    weakSelf(self);
+    // 防止在非主线程中调用此方法,会报错
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // 弹出新的提示之前,先把旧的隐藏掉
+        [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+        
+        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:weakSelf animated:YES];
+        progressHUD.frame = CGRectMake(0, 0, WIDTH_SCREEN - 30, 150);
+        progressHUD.center = CGPointMake(self.center.x, HEIGHT_SCREEN / 2.0 - 64);
+        progressHUD.mode = MBProgressHUDModeIndeterminate;
+        progressHUD.label.text = text;
+        if (isHide) {
+            progressHUD.bezelView.color = [UIColor cz_ToUIColorByStr:@"e0e0e0"];
+            [progressHUD hideAnimated:YES afterDelay:2.0];
+        }else{
+            progressHUD.bezelView.color = [UIColor whiteColor];
+        }
+        
+    });
+}
+
+/**
+ 未登录图片
+ 
+ @return emptyView
+ */
+- (UIButton*)getEmptyView:(NSString*)image Action:(SEL)action addTarget:(id)target offsetY:(CGFloat)offsetY
+{
+
+        UIButton * emptyView = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    
+        [emptyView setImage:imageNamed(image) forState:normal];
+        emptyView.hidden = YES;
+        emptyView.userInteractionEnabled = YES;
+    
+        if (action!=nil && target!=nil) {
+            [emptyView addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+        }
+
+        [self addSubview:emptyView];
+    
+        if (offsetY>0) {
+            emptyView.sd_layout
+            .centerYIs(self.centerY+offsetY)
+            .centerXEqualToView(self)
+            .heightIs(109)
+            .widthIs(156);
+            
+        }else{
+            emptyView.sd_layout
+            .centerYEqualToView(self)
+            .centerXEqualToView(self)
+            .heightIs(109)
+            .widthIs(156);
+        }
+    
+       return emptyView;
+}
+
+@end

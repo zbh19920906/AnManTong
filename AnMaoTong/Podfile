@@ -1,0 +1,19 @@
+platform :ios, ‘7.0’
+#use_frameworks
+inhibit_all_warnings!
+def pods
+    pod 'MJRefresh'
+    pod 'SDAutoLayout'
+    pod 'SDWebImage'
+    pod 'AFNetworking'
+    pod 'ReactiveCocoa'
+    pod 'SVProgressHUD'
+    pod 'MJExtension'
+    pod 'AliPay'
+    pod 'FMDB'
+    pod 'JPush'
+    pod 'TZImagePickerController'
+end
+target 'AnMaoTong' do
+  pods
+end

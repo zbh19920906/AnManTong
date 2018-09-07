@@ -1,0 +1,15 @@
+//
+//  KKPersonalViewModel.h
+//  CloudMoto
+//
+//  Created by KKJY on 2017/10/30.
+//  Copyright © 2017年 zhu. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface KKPersonalViewModel : NSObject
+
++ (void)pushPersonalViewController:(BaseViewController *)viewController indexPath:(NSIndexPath *)indexPath;
+
+@end

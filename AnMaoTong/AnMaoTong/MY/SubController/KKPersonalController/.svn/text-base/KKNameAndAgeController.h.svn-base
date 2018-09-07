@@ -1,0 +1,19 @@
+//
+//  KKNameAndAgeController.h
+//  CloudMoto
+//
+//  Created by KKJY on 2017/10/27.
+//  Copyright © 2017年 zhu. All rights reserved.
+//
+
+typedef NS_ENUM(NSInteger,KKLoadType) {
+    KKNameViewControllerType = 1,
+    KKAgeViewControllerType
+};
+
+#import "BaseViewController.h"
+
+@interface KKNameAndAgeController : BaseViewController
+@property (nonatomic, assign) KKLoadType loadType;
+@property (nonatomic, assign) BOOL isHidden;
+@end

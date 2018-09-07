@@ -1,0 +1,13 @@
+//
+//  KKGenderController.h
+//  CloudMoto
+//
+//  Created by KKJY on 2017/10/27.
+//  Copyright © 2017年 zhu. All rights reserved.
+//
+
+#import "BaseViewController.h"
+
+@interface KKGenderController : BaseViewController
+
+@end

@@ -1,0 +1,26 @@
+//
+//  ConfigPCH.pch
+//  CloudMoto
+//
+//  Created by lk05 on 2017/10/23.
+//  Copyright © 2017年 zhu. All rights reserved.
+//
+
+#ifndef ConfigPCH_pch
+#define ConfigPCH_pch
+
+//第三方资源 key
+//高德
+#define MapKey          @"236a73828f511960f07f2736741e614a"
+
+//微信支付
+#define WechatPayID     @"wx77682a6f86dd1691"
+#define H5WechatPayID   @"wxbd478f693c4af72d"
+
+//极光
+#define JPushAppKey     @"4b9b81f4055b818b4a7724ea"
+
+//服务器请求失败
+#define kServerErrMsg   @"您的网络好像不大给力，请稍后再试"
+
+#endif /* ConfigPCH_pch */

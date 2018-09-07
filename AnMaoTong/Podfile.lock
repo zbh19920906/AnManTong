@@ -1,0 +1,84 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - AliPay (2.1.2)
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
+  - JCore (1.2.0)
+  - JPush (3.0.9):
+    - JCore (~> 1.2.0)
+  - MJExtension (3.0.15)
+  - MJRefresh (3.1.15.3)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
+  - SDAutoLayout (2.2.0)
+  - SDWebImage (4.4.0):
+    - SDWebImage/Core (= 4.4.0)
+  - SDWebImage/Core (4.4.0)
+  - SVProgressHUD (2.1.2)
+  - TZImagePickerController (2.1.5)
+
+DEPENDENCIES:
+  - AFNetworking
+  - AliPay
+  - FMDB
+  - JPush
+  - MJExtension
+  - MJRefresh
+  - ReactiveCocoa
+  - SDAutoLayout
+  - SDWebImage
+  - SVProgressHUD
+  - TZImagePickerController
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - AliPay
+    - FMDB
+    - JCore
+    - JPush
+    - MJExtension
+    - MJRefresh
+    - ReactiveCocoa
+    - SDAutoLayout
+    - SDWebImage
+    - SVProgressHUD
+    - TZImagePickerController
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AliPay: 2bd35a4e486d2a8c035043023cd846e886bb21d1
+  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
+  JCore: b52e3dd73625eec70afd1244bb9c41038aa06087
+  JPush: 48041e8c5ad2ef9b48709eb0888af9640b36e9b0
+  MJExtension: 3f039575db1b135a20699ad298713b26acec1528
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  SDAutoLayout: c5509e77ae75735d9a39f7bc83dba6d3f75d49d8
+  SDWebImage: b534502786e43dde36dfcaee89356fe6df30e203
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  TZImagePickerController: e60a73665cf665c18abd45cdf48e912094eefff5
+
+PODFILE CHECKSUM: c71fdb2ba5d9e574c93432699299abbb493eb55c
+
+COCOAPODS: 1.5.2
