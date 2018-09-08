@@ -38,8 +38,6 @@ XYTabBarDelegate>
     [self createChildVCWithVC:find Title:@"商品" Image:@"find" SelectedImage:@"find_pre"];
     
     AMTMessageVC *message = [[AMTMessageVC alloc] init];
-    message.view.backgroundColor = [UIColor clearColor];
-    
     [self createChildVCWithVC:message Title:@"消息" Image:@"message" SelectedImage:@"message_pre"];
     
     AMTMyVC *profile = [[AMTMyVC alloc] init];
@@ -84,7 +82,7 @@ XYTabBarDelegate>
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
     NSInteger idx = [self.childViewControllers indexOfObject:viewController];
-    if (idx == 2) {
+    if (idx == 3) {
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[AMTLoginVC new]];
         [getWindow.rootViewController presentViewController:nav animated:YES completion:nil];
     }

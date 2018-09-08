@@ -1,24 +1,26 @@
 //
-//  AMTMyCollectionViewController.m
+//  AMTMyLikeViewController.m
 //  AnMaoTong
 //
-//  Created by Jingjing Wu on 2018/9/7.
+//  Created by lk05 on 2018/9/8.
 //  Copyright © 2018年 zhu. All rights reserved.
 //
 
-#import "AMTMyCollectionViewController.h"
-#import "AMTMyCollectionCell.h"
-@interface AMTMyCollectionViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "AMTMyLikeViewController.h"
+#import "AMTMyLikeCell.h"
+@interface AMTMyLikeViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) BaseTableView *tableView;
+
 @end
 
-@implementation AMTMyCollectionViewController
+@implementation AMTMyLikeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navBar.titieLab.text = self.isHistory ?  @"浏览历史" :  @"我的收藏";
+    self.navBar.titieLab.text = @"我的评论";
     [self.view addSubview:self.tableView];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -28,14 +30,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AMTMyCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTMyCollectionCell class]) forIndexPath:indexPath];
-    cell.isHistory = self.isHistory;
+    AMTMyLikeCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTMyLikeCell class]) forIndexPath:indexPath];
+    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 136;
+    return 221;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -45,7 +47,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.01;
+    return 10;
 }
 
 - (BaseTableView *)tableView
@@ -56,11 +58,10 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         
-        [_tableView registerClass:[AMTMyCollectionCell class] forCellReuseIdentifier:NSStringFromClass([AMTMyCollectionCell class])];
+        [_tableView registerClass:[AMTMyLikeCell class] forCellReuseIdentifier:NSStringFromClass([AMTMyLikeCell class])];
         
     }
     return _tableView;
 }
-
 
 @end

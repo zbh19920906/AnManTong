@@ -21,14 +21,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navBar.titieLab.text = self.type == RegisterUser ? @"用户注册" : @"商家注册";
+    [KKNetWorking getShard].http_type = self.type == RegisterUser ? @"1" : @"2";
     self.navBar.titieLab.textColor = [UIColor cz_ToUIColorByStr:@"222222"];
     [self.navBar.backButton setImage:imageNamed(@"Register_close") forState:UIControlStateNormal];
     self.navBar.lineView.hidden = YES;
-    AMTUserNameViewController *vc = [AMTUserNameViewController new];
-    AMTRegisterModel *model = [[AMTRegisterModel alloc]init];
-    model.type = KKString(@(self.type));
-    vc.model = model;
-    [self.navigationController pushViewController:vc animated:YES];
+//    AMTUserNameViewController *vc = [AMTUserNameViewController new];
+//    AMTRegisterModel *model = [[AMTRegisterModel alloc]init];
+//    model.type = KKString(@(self.type));
+//    vc.model = model;
+//    [self.navigationController pushViewController:vc animated:YES];
     [self.registerViewModel setUpLayout];
     [self setBingDing];
 }

@@ -7,31 +7,64 @@
 //
 
 #import "AMTMessageVC.h"
-
-@interface AMTMessageVC ()
-
+#import "AMTMessageHeadView.h"
+@interface AMTMessageVC ()<UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) BaseTableView *tableView;
+@property (nonatomic, strong) AMTMessageHeadView *headView;
 @end
 
 @implementation AMTMessageVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.navBar.hidden = YES;
+    [self.view sd_addSubviews:@[self.tableView,self.headView]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return section == 0 ? 3 : 10;
 }
-*/
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (BaseTableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 120, WIDTH_SCREEN, HEIGHT_SCREEN - 120 - TabBarHFit) style:UITableViewStyleGrouped];
+        _tableView.delegate = self;
+        _tableView.dataSource =self;
+        _tableView.clipsToBounds = NO;
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    }
+    return _tableView;
+}
+
+- (AMTMessageHeadView *)headView
+{
+    if (!_headView) {
+        _headView = [[AMTMessageHeadView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 120)];
+    }
+    return _headView;
+}
 @end

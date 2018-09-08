@@ -67,7 +67,6 @@ static UserHelper *_instance = nil;
     
     [userDefault synchronize];
     _instance.user = userInfo;
-    _instance.user.mallToken = mallToken;
 }
 
 +(void)alertToInstallWeichatOrQQClicentWithTitle:(NSString *)titleStr

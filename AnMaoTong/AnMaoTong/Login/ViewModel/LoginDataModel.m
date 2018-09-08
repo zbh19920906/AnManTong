@@ -88,6 +88,7 @@ const NSInteger codeMaxTime = 60;
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber){
                 [SVProgressHUD show];
                 [[KKNetWorking getShard] request:GET url:getCode parameters:@{@"phone":KKString(input)} completion:^(BOOL isSuccess, id json, NSInteger code) {
+                    [SVProgressHUD dismiss];
                     [subscriber sendNext:RACTuplePack(@(code == 1))];
                     [subscriber sendCompleted];
                 }];
@@ -104,10 +105,10 @@ const NSInteger codeMaxTime = 60;
     {
         _loginCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input){
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber){
-                NSDictionary *dic = @{@"phone":KKString(input[0]),
-                                      @"password":KKString([input[1] md5])
-                                      };
-                [SVProgressHUD show];
+//                NSDictionary *dic = @{@"phone":KKString(input[0]),
+//                                      @"password":KKString([input[1] md5])
+//                                      };
+//                [SVProgressHUD show];
 //                [CPNetTool login:dic success:^(NSDictionary * _Nullable responseObject , NSURLSessionDataTask * _Nonnull task){
 //                    CPLog(@"%@",responseObject)
 //                    [CPUserDefaultTool setLoginPhone:CPString(input[0])];
@@ -137,10 +138,11 @@ const NSInteger codeMaxTime = 60;
                 NSDictionary *dic = @{@"phone":KKString(input[0]),
                                       @"code":KKString(input[1]),
                                       @"password":KKString([input[2] md5]),
-                                      @"channel_name" : @"" ,
+                                      @"channel_name" : @"",
                                       @"type":KKString(input[3])};
                 [SVProgressHUD show];
                 [[KKNetWorking getShard] request:POST url:Register parameters:dic completion:^(BOOL isSuccess, id json, NSInteger code) {
+                    [SVProgressHUD dismiss];
                     [subscriber sendNext:RACTuplePack(@(code == 1))];
                     [subscriber sendCompleted];
                 }];

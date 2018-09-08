@@ -32,7 +32,7 @@ static KKNetWorking * shard;
 - (void)addRequestSerializerHead:(NSString *)urlStr
 {
     
-    shard.requestSerializer = [AFJSONRequestSerializer serializer];
+//    shard.requestSerializer = [AFJSONRequestSerializer serializer];
 
     
     User *user   = [UserHelper shareInstance].user;
@@ -41,20 +41,20 @@ static KKNetWorking * shard;
     NSString *token     = [NSString stringWithFormat:@"%@",user.token ? user.token : @""];
     NSString *platform  = @"ios";
     NSString *version   = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSString *total     = [CP_AES cpStringToAes256_encrypt:[NSString stringWithFormat:@"%@%@%@%@%@",KKString(userId),random,token,platform,version]];
+    NSString *http_type = user.type ? user.type : self.http_type.length > 0 ? self.http_type : @"1";
+    NSString *total     = [CP_AES cpStringToAes256_encrypt:[NSString stringWithFormat:@"%@%@%@%@%@%@",KKString(userId),random,token,platform,version,http_type]];
     
-    KKLog(@"url:%@      token:%@    userId:%@",urlStr,token,userId)
     
-    [self.requestSerializer setValue:KKString(userId) forHTTPHeaderField:@"HTTP_USERID"];
-    [self.requestSerializer setValue:KKString(random) forHTTPHeaderField:@"HTTP_RANDOM"];
-    [self.requestSerializer setValue:KKString(token) forHTTPHeaderField:@"HTTP_TOKEN"];
-    [self.requestSerializer setValue:KKString(platform) forHTTPHeaderField:@"HTTP_PLATFORM"];
-    [self.requestSerializer setValue:KKString(version) forHTTPHeaderField:@"HTTP_VERSION"];
-    [self.requestSerializer setValue:KKString(total) forHTTPHeaderField:@"HTTP_TOTAL"];
-    
-    [shard.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-    shard.requestSerializer.timeoutInterval = 30.f;
-    [shard.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+    [self.requestSerializer setValue:userId forHTTPHeaderField:@"HTTP_USERID"];
+    [self.requestSerializer setValue:random forHTTPHeaderField:@"HTTP_RANDOM"];
+    [self.requestSerializer setValue:token forHTTPHeaderField:@"HTTP_TOKEN"];
+    [self.requestSerializer setValue:platform forHTTPHeaderField:@"HTTP_PLATFORM"];
+    [self.requestSerializer setValue:version forHTTPHeaderField:@"HTTP_VERSION"];
+    [self.requestSerializer setValue:total forHTTPHeaderField:@"HTTP_TOTAL"];
+    [self.requestSerializer setValue:http_type forHTTPHeaderField:@"HTTP_TYPE"];
+//    [shard.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+//    shard.requestSerializer.timeoutInterval = 30.f;
+//    [shard.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     
 }
 

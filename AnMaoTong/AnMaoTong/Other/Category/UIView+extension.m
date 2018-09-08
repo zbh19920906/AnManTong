@@ -9,7 +9,24 @@
 #import "UIView+extension.h"
 
 @implementation UIView (extension)
+#pragma mark - 添加阴影
+- (void)addShadow
+{
+    [self addShadowWithOffset:CGSizeMake(0, 0) color:[[UIColor blackColor] colorWithAlphaComponent:.3] radius:3 opacity:1];
+}
 
+- (void)addShadowWithOffset:(CGSize)offset
+{
+    [self addShadowWithOffset:offset color:[[UIColor blackColor] colorWithAlphaComponent:.3] radius:3 opacity:1];
+}
+
+- (void)addShadowWithOffset:(CGSize)offset color:(UIColor *)color radius:(CGFloat)radius opacity:(CGFloat)opacity
+{
+    self.layer.shadowColor = color.CGColor;
+    self.layer.shadowOffset = offset;
+    self.layer.shadowRadius = radius;
+    self.layer.shadowOpacity = opacity;
+}
 
 +(void)showTextHUD:(NSString *)text completeBlock:(void (^)(void))complete
 {

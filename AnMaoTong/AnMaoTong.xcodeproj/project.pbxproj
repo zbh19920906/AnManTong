@@ -52,6 +52,9 @@
 		2F726A69213FAF540024A73F /* WSLWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F726A65213FAF540024A73F /* WSLWaterFlowLayout.m */; };
 		2F726A6D213FBDF70024A73F /* AMTGoodsMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F726A6C213FBDF70024A73F /* AMTGoodsMessageCell.m */; };
 		2F726A70213FC7F80024A73F /* AMTGoodsImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F726A6F213FC7F80024A73F /* AMTGoodsImageView.m */; };
+		2F893C8E2143656C00D441B2 /* AMTMyLikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F893C8D2143656C00D441B2 /* AMTMyLikeViewController.m */; };
+		2F893C92214365BA00D441B2 /* AMTMyLikeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F893C91214365BA00D441B2 /* AMTMyLikeCell.m */; };
+		2F893C982143AB6A00D441B2 /* AMTMessageHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F893C972143AB6A00D441B2 /* AMTMessageHeadView.m */; };
 		2FAA0A24213E5C41004956CA /* AMTMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA0A23213E5C41004956CA /* AMTMainVC.m */; };
 		2FAA0A27213E5C4A004956CA /* AMTSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA0A26213E5C4A004956CA /* AMTSubVC.m */; };
 		2FE2A4C321378B05002AB1D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FE2A4C121378B05002AB1D8 /* Main.storyboard */; };
@@ -258,6 +261,12 @@
 		2F726A6C213FBDF70024A73F /* AMTGoodsMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTGoodsMessageCell.m; sourceTree = "<group>"; };
 		2F726A6E213FC7F80024A73F /* AMTGoodsImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTGoodsImageView.h; sourceTree = "<group>"; };
 		2F726A6F213FC7F80024A73F /* AMTGoodsImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTGoodsImageView.m; sourceTree = "<group>"; };
+		2F893C8C2143656C00D441B2 /* AMTMyLikeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMyLikeViewController.h; sourceTree = "<group>"; };
+		2F893C8D2143656C00D441B2 /* AMTMyLikeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMyLikeViewController.m; sourceTree = "<group>"; };
+		2F893C90214365BA00D441B2 /* AMTMyLikeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMyLikeCell.h; sourceTree = "<group>"; };
+		2F893C91214365BA00D441B2 /* AMTMyLikeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMyLikeCell.m; sourceTree = "<group>"; };
+		2F893C962143AB6A00D441B2 /* AMTMessageHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMessageHeadView.h; sourceTree = "<group>"; };
+		2F893C972143AB6A00D441B2 /* AMTMessageHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMessageHeadView.m; sourceTree = "<group>"; };
 		2FAA0A22213E5C41004956CA /* AMTMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMainVC.h; sourceTree = "<group>"; };
 		2FAA0A23213E5C41004956CA /* AMTMainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMainVC.m; sourceTree = "<group>"; };
 		2FAA0A25213E5C4A004956CA /* AMTSubVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTSubVC.h; sourceTree = "<group>"; };
@@ -759,6 +768,25 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		2F893C8B2143653000D441B2 /* MyLike */ = {
+			isa = PBXGroup;
+			children = (
+				2F893C8C2143656C00D441B2 /* AMTMyLikeViewController.h */,
+				2F893C8D2143656C00D441B2 /* AMTMyLikeViewController.m */,
+				2F893C8F2143658900D441B2 /* view */,
+			);
+			path = MyLike;
+			sourceTree = "<group>";
+		};
+		2F893C8F2143658900D441B2 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				2F893C90214365BA00D441B2 /* AMTMyLikeCell.h */,
+				2F893C91214365BA00D441B2 /* AMTMyLikeCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		2FAA0A20213E5C25004956CA /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1212,6 +1240,7 @@
 		2FE2A5F12137D25E002AB1D8 /* SubController */ = {
 			isa = PBXGroup;
 			children = (
+				2F893C8B2143653000D441B2 /* MyLike */,
 				58CF92422142BA060065EF0F /* MyComments */,
 				58CF923A2142B20C0065EF0F /* collection */,
 				58CF9229214295B60065EF0F /* Focus */,
@@ -1263,6 +1292,8 @@
 		2FE2A5F72137D25E002AB1D8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2F893C962143AB6A00D441B2 /* AMTMessageHeadView.h */,
+				2F893C972143AB6A00D441B2 /* AMTMessageHeadView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1703,6 +1734,7 @@
 				2F1C3A602140CB62008D3B66 /* UIView+extension.m in Sources */,
 				2F1C3A6A2140D11B008D3B66 /* CPLinkLabView.m in Sources */,
 				2F726A3F213F87810024A73F /* AMTContentView.m in Sources */,
+				2F893C8E2143656C00D441B2 /* AMTMyLikeViewController.m in Sources */,
 				2FE2A5A22137C81D002AB1D8 /* KKClassificationView.m in Sources */,
 				2F597CF4214278E100C5B4A0 /* AMTAnnouncementCell.m in Sources */,
 				2FE2A5012137C7B2002AB1D8 /* BaseViewController.m in Sources */,
@@ -1765,11 +1797,13 @@
 				2FE2A5E12137C851002AB1D8 /* GTMBase64.m in Sources */,
 				58CF922F214297650065EF0F /* AMTFocusShopController.m in Sources */,
 				2F1C3A442140B8AE008D3B66 /* AMTLoginVC.m in Sources */,
+				2F893C92214365BA00D441B2 /* AMTMyLikeCell.m in Sources */,
 				2F726A3A213F7FAA0024A73F /* AMTScreenTitleCell.m in Sources */,
 				2FE2A5952137C810002AB1D8 /* IQBarButtonItem.m in Sources */,
 				2FE2A5902137C810002AB1D8 /* IQUIView+Hierarchy.m in Sources */,
 				2F726A33213F723B0024A73F /* AMTGoodsClassModel.m in Sources */,
 				2F726A59213FAF010024A73F /* KKHistorySearchView.m in Sources */,
+				2F893C982143AB6A00D441B2 /* AMTMessageHeadView.m in Sources */,
 				2FAA0A27213E5C4A004956CA /* AMTSubVC.m in Sources */,
 				2F1C3BD121410C3D008D3B66 /* AMTRegisterModel.m in Sources */,
 				2F726A69213FAF540024A73F /* WSLWaterFlowLayout.m in Sources */,

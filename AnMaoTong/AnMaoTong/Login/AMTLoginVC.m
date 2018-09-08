@@ -21,12 +21,16 @@
     self.navBar.backgroundColor = [UIColor clearColor];
     self.navBar.backButton.hidden = NO;
     [self.navBar.backButton setImage:imageNamed(@"Login_close") forState:UIControlStateNormal];
+    
     self.navBar.titieLab.textColor = [UIColor cz_ToUIColorByStr:@"FFFFFF"];
     self.navBar.lineView.hidden = YES;
     AMTLoginView *loginView = [[AMTLoginView alloc]initWithFrame:self.view.bounds];
     loginView.delegate = self;
     [self.view addSubview:loginView];
-    
+    weakSelf(self);
+    [[self.navBar.backButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
 - (void)LoginClick:(NSInteger)tag

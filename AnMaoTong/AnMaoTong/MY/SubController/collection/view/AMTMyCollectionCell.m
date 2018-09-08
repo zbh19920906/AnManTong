@@ -80,4 +80,9 @@
     .heightIs(25)
     .widthIs(57);
 }
+
+- (void)setIsHistory:(BOOL)isHistory
+{
+    self.foucusBtn.hidden = isHistory;
+}
 @end

@@ -12,6 +12,7 @@
 #import "AMTFocusViewController.h"
 #import "AMTMyCollectionViewController.h"
 #import "AMTMyCommentsViewController.h"
+#import "AMTMyLikeViewController.h"
 @interface AMTMyVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) AMTMyHeadView *headView;
 @property (nonatomic, strong) BaseTableView *tableView;
@@ -105,6 +106,21 @@
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
+            case 1:
+            {
+                AMTMyLikeViewController *vc = [[AMTMyLikeViewController alloc]init];
+                
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 2:
+            {
+                AMTMyCollectionViewController *vc = [[AMTMyCollectionViewController alloc]init];
+                vc.isHistory = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+                
                 
             default:
                 break;
@@ -118,7 +134,7 @@
 {
     if (!_tableView) {
         
-        _tableView = [[BaseTableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN - TabBarHFit) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource =self;
         _tableView.tableHeaderView = self.headView;

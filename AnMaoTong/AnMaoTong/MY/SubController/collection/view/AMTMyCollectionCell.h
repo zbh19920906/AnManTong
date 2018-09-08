@@ -9,5 +9,5 @@
 #import "BaseTableViewCell.h"
 
 @interface AMTMyCollectionCell : BaseTableViewCell
-
+@property (nonatomic, assign) BOOL isHistory;
 @end

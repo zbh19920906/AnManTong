@@ -19,7 +19,7 @@ typedef enum {
 typedef void(^Completion)(BOOL isSuccess,id json,NSInteger code);
 //方法内Bolck回调
 typedef void(^ProgressBlock)(NSProgress *uploadProgress);
-
+@property (nonatomic, copy) NSString *http_type;
 //初始化方法
 +(KKNetWorking *)getShard;
 

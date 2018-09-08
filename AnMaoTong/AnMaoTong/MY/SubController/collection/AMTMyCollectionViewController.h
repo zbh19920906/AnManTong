@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface AMTMyCollectionViewController : BaseViewController
-
+@property (nonatomic, assign) BOOL isHistory;
 @end
