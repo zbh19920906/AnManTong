@@ -24,13 +24,12 @@
     [super viewDidLoad];
     self.navBar.titieLab.text = @"安贸通";
     [self.navBar.rightButton setImage:imageNamed(@"search") forState:UIControlStateNormal];
-    
     weakSelf(self);
-    [[KKNetWorking getShard]request:GET url:getGoodsClass parameters:nil completion:^(BOOL isSuccess, id json, NSInteger code) {
-        if (code == 1) {
-            weakSelf.titleArr = [AMTGoodsClassModel mj_objectArrayWithKeyValuesArray:json[@"data"]];
-            [weakSelf.view addSubview:weakSelf.managerView];
-        }
+    [[KKNetWorking getShard]request:GET url:getGoodsClass parameters:nil completion:^(id json, NSInteger code) {
+        weakSelf.titleArr = [AMTGoodsClassModel mj_objectArrayWithKeyValuesArray:json[@"data"]];
+        [weakSelf.view addSubview:weakSelf.managerView];
+    } fail:^(NSString *message, NSInteger code) {
+        [SVProgressHUD showErrorHUD:message completeBlock:nil];
     }];
     
 }

@@ -10,6 +10,9 @@
 
 @interface AMTLoginView : BaseView
 @property (nonatomic, weak) id delegate;
+
+@property (nonatomic, strong) BaseTextField *phoneTF;
+@property (nonatomic, strong) BaseTextField *codeTF;
 @end
 @protocol AMTLoginViewDelegate <NSObject>
 - (void)LoginClick:(NSInteger)tag;

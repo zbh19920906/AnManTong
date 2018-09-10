@@ -27,11 +27,11 @@
 - (void)requestData:(NSString *)goodsID
 {
     weakSelf(self);
-    [[KKNetWorking getShard]request:GET url:getBrand parameters:@{@"goods_class_id":goodsID} completion:^(BOOL isSuccess, id json, NSInteger code) {
-        if (code == 1) {
-            weakSelf.itemArr = [AMTBrandModel mj_objectArrayWithKeyValuesArray:json[@"data"]];
-            weakSelf.itemView.itemArr = weakSelf.itemArr;
-        }
+    [[KKNetWorking getShard]request:GET url:getBrand parameters:@{@"goods_class_id":goodsID} completion:^(id json, NSInteger code) {
+        weakSelf.itemArr = [AMTBrandModel mj_objectArrayWithKeyValuesArray:json[@"data"]];
+        weakSelf.itemView.itemArr = weakSelf.itemArr;
+    } fail:^(NSString *message, NSInteger code) {
+        [SVProgressHUD showErrorHUD:message completeBlock:nil];
     }];
 }
 

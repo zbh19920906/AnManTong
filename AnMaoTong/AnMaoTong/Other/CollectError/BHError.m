@@ -77,11 +77,10 @@ void UncaughtExceptionHandler(NSException * exception)
 
 + (void)sendExceptionLogWithData:(NSString *)data path:(NSString *)path
 {
-    [[KKNetWorking getShard] request:POST url:@"" parameters:@{@"errorlog":data, @"app_type": @(1)} completion:^(BOOL isSuccess, id json, NSInteger code) {
-        KKLog(@"%@",json);
-        if (isSuccess) {
-            [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
-        }
+    [[KKNetWorking getShard] request:POST url:@"" parameters:@{@"errorlog":data, @"app_type": @(1)} completion:^(id json, NSInteger code) {
+        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+    } fail:^(NSString *message, NSInteger code) {
+        
     }];
 }
 

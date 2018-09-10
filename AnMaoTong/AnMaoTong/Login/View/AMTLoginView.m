@@ -8,8 +8,6 @@
 
 #import "AMTLoginView.h"
 @interface AMTLoginView ()
-@property (nonatomic, strong) BaseTextField *phoneTF;
-@property (nonatomic, strong) BaseTextField *codeTF;
 
 @end
 @implementation AMTLoginView
@@ -29,18 +27,26 @@
     
     BaseImageView *iconImage = [[BaseImageView alloc]initWithImage:imageNamed(@"Login_Logo")];
     
+    
     self.phoneTF = [[BaseTextField alloc]init];
     self.phoneTF.sd_cornerRadius = @(23);
-    self.phoneTF.attributedPlaceholder = [[NSMutableAttributedString alloc]initWithString:@"    请输入手机号码" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15],NSForegroundColorAttributeName : [UIColor cz_ToUIColorByStr:@"ffffff"]}];
+    self.phoneTF.attributedPlaceholder = [[NSMutableAttributedString alloc]initWithString:@"请输入手机号码" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15],NSForegroundColorAttributeName : [UIColor cz_ToUIColorByStr:@"ffffff"]}];
     self.phoneTF.alpha = 0.5;
+    [self.phoneTF setLableColor:@"FFFFFF" font:15 bold:0];
     self.phoneTF.keyboardType = UIKeyboardTypePhonePad;
     self.phoneTF.layer.borderColor = [[UIColor cz_ToUIColorByStr:@"FFFFFF"] CGColor];
+    self.phoneTF.leftView = [[BaseView alloc]initWithFrame:CGRectMake(0, 0, 15, 10)];
+    self.phoneTF.leftViewMode = UITextFieldViewModeAlways;
     self.phoneTF.layer.borderWidth = 1;
     
     self.codeTF = [[BaseTextField alloc]init];
     self.codeTF.sd_cornerRadius = @(23);
-    self.codeTF.attributedPlaceholder = [[NSMutableAttributedString alloc]initWithString:@"    请输入密码" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15],NSForegroundColorAttributeName : [UIColor cz_ToUIColorByStr:@"ffffff"]}];
+    self.codeTF.attributedPlaceholder = [[NSMutableAttributedString alloc]initWithString:@"请输入密码" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15],NSForegroundColorAttributeName : [UIColor cz_ToUIColorByStr:@"ffffff"]}];
+    [self.codeTF setLableColor:@"FFFFFF" font:15 bold:0];
     self.codeTF.alpha = 0.5;
+    self.codeTF.secureTextEntry = YES;
+    self.codeTF.leftView = [[BaseView alloc]initWithFrame:CGRectMake(0, 0, 15, 10)];
+    self.codeTF.leftViewMode = UITextFieldViewModeAlways;
     self.codeTF.layer.borderColor = [[UIColor cz_ToUIColorByStr:@"FFFFFF"] CGColor];
     self.codeTF.layer.borderWidth = 1;
     

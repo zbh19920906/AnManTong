@@ -65,6 +65,12 @@
         }
     }];
     [[self.nextBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [[KKNetWorking getShard] request:POST url:modifInfoOne parameters:[self.model mj_keyValues] completion:^(id json, NSInteger code) {
+            BaseTabBarController *tab = [[BaseTabBarController alloc]init];
+            getWindow.rootViewController = tab;
+        } fail:^(NSString *message, NSInteger code) {
+            [SVProgressHUD showErrorHUD:message completeBlock:nil];
+        }];
         
     }];
     

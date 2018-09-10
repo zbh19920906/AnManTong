@@ -87,9 +87,13 @@ const NSInteger codeMaxTime = 60;
         _getCodeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input){
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber){
                 [SVProgressHUD show];
-                [[KKNetWorking getShard] request:GET url:getCode parameters:@{@"phone":KKString(input)} completion:^(BOOL isSuccess, id json, NSInteger code) {
+                [[KKNetWorking getShard] request:GET url:getCode parameters:@{@"phone":KKString(input)} completion:^(id json, NSInteger code) {
                     [SVProgressHUD dismiss];
-                    [subscriber sendNext:RACTuplePack(@(code == 1))];
+                    [subscriber sendNext:RACTuplePack(@(YES))];
+                    [subscriber sendCompleted];
+                } fail:^(NSString *message, NSInteger code) {
+                    [SVProgressHUD showErrorHUD:message completeBlock:nil];
+                    [subscriber sendNext:RACTuplePack(@(NO))];
                     [subscriber sendCompleted];
                 }];
                 return nil;
@@ -105,23 +109,20 @@ const NSInteger codeMaxTime = 60;
     {
         _loginCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input){
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber){
-//                NSDictionary *dic = @{@"phone":KKString(input[0]),
-//                                      @"password":KKString([input[1] md5])
-//                                      };
-//                [SVProgressHUD show];
-//                [CPNetTool login:dic success:^(NSDictionary * _Nullable responseObject , NSURLSessionDataTask * _Nonnull task){
-//                    CPLog(@"%@",responseObject)
-//                    [CPUserDefaultTool setLoginPhone:CPString(input[0])];
-//                    CPUserModel *user = [CPUserModel mj_objectWithKeyValues:responseObject[@"data"]];
-//                    [CPAppSingle shareManager].userModel = user;
-//                    [CPUserDefaultTool setUserInfo:[user mj_keyValues]];
-//                    [subscriber sendNext:RACTuplePack(@(YES))];
-//                    [subscriber sendCompleted];
-//                } fail:^(NSString * _Nullable message, NSString *code , NSURLSessionDataTask * _Nonnull task){
-//                    [SVProgressHUD showErrorHUD:message completeBlock:nil];
-//                    [subscriber sendNext:RACTuplePack(@(NO))];
-//                    [subscriber sendCompleted];
-//                }];
+                NSDictionary *dic = @{@"phone":KKString(input[0]),
+                                      @"password":KKString([input[1] md5])
+                                      };
+                [SVProgressHUD show];
+                [[KKNetWorking getShard]request:POST url:login parameters:dic completion:^(id json, NSInteger code) {
+                    [UserHelper savePersonalInfoToCacheWith:json[@"data"]];
+                    [subscriber sendNext:RACTuplePack(@(YES))];
+                    [subscriber sendCompleted];
+                } fail:^(NSString *message, NSInteger code) {
+                    [SVProgressHUD showErrorHUD:message completeBlock:nil];
+                    [subscriber sendNext:RACTuplePack(@(YES))];
+                    [subscriber sendCompleted];
+                }];
+
                 return nil;
             }];
         }];
@@ -138,12 +139,16 @@ const NSInteger codeMaxTime = 60;
                 NSDictionary *dic = @{@"phone":KKString(input[0]),
                                       @"code":KKString(input[1]),
                                       @"password":KKString([input[2] md5]),
-                                      @"channel_name" : @"",
+                                      @"channel_name" : @"ios",
                                       @"type":KKString(input[3])};
                 [SVProgressHUD show];
-                [[KKNetWorking getShard] request:POST url:Register parameters:dic completion:^(BOOL isSuccess, id json, NSInteger code) {
-                    [SVProgressHUD dismiss];
-                    [subscriber sendNext:RACTuplePack(@(code == 1))];
+                [[KKNetWorking getShard] request:POST url:Register parameters:dic completion:^(id json, NSInteger code) {
+                    [UserHelper shareInstance];
+                    [UserHelper savePersonalInfoToCacheWith:json[@"data"]];
+                    [subscriber sendNext:RACTuplePack(@(code))];
+                    [subscriber sendCompleted];
+                } fail:^(NSString *message, NSInteger code) {
+                    [subscriber sendNext:RACTuplePack(@(code))];
                     [subscriber sendCompleted];
                 }];
                 return nil;

@@ -45,7 +45,7 @@ static KKNetWorking * shard;
     NSString *total     = [CP_AES cpStringToAes256_encrypt:[NSString stringWithFormat:@"%@%@%@%@%@%@",KKString(userId),random,token,platform,version,http_type]];
     
     
-    [self.requestSerializer setValue:userId forHTTPHeaderField:@"HTTP_USERID"];
+    [self.requestSerializer setValue:userId forHTTPHeaderField:@"http_user_id"];
     [self.requestSerializer setValue:random forHTTPHeaderField:@"HTTP_RANDOM"];
     [self.requestSerializer setValue:token forHTTPHeaderField:@"HTTP_TOKEN"];
     [self.requestSerializer setValue:platform forHTTPHeaderField:@"HTTP_PLATFORM"];
@@ -61,7 +61,7 @@ static KKNetWorking * shard;
 /**
  网络请求
  */
-- (void)request:(HTTPMothd)Mothd url:(NSString *)urlString parameters:(NSDictionary *)parameters completion:(Completion)resultConpletion
+- (void)request:(HTTPMothd)Mothd url:(NSString *)urlString parameters:(NSDictionary *)parameters completion:(Completion)resultConpletion fail:(fail)fail
 {
     [self addRequestSerializerHead:urlString];
     
@@ -72,13 +72,18 @@ static KKNetWorking * shard;
     
     //成功回调
     void(^successBolck)(NSURLSessionDataTask * task,id json) = ^(NSURLSessionDataTask * task,id json){
-                 resultConpletion(YES,json,[json[@"code"] integerValue]);
+        if ([json[@"code"] integerValue] == 1) {
+            resultConpletion(json,[json[@"code"] integerValue]);
+        }else{
+            fail(json[@"message"],[json[@"code"] integerValue]);
+        }
+        
     };
     
     //失败回调
     void(^failureBolck)(NSURLSessionDataTask * task,NSError * error) = ^(NSURLSessionDataTask * task,NSError * error){
         KKLog(@"%@",error);
-        resultConpletion(NO,@{@"code":@"0",@"message" : kServerErrMsg},0);
+        fail(kServerErrMsg,0);
         //        shard.isUse==YES ? NSLog(@""):LFLog(@"请求失败%@",error);
     };
     
@@ -118,10 +123,10 @@ static KKNetWorking * shard;
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //上传成功
-            resultConpletion(YES, responseObject,[responseObject[@"code"] integerValue]);
+            resultConpletion(responseObject,[responseObject[@"code"] integerValue]);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //上传失败
-        resultConpletion(NO, @{@"code" : @"0",
+        resultConpletion(@{@"code" : @"0",
                                @"message" : kServerErrMsg},0);
     }];
 }

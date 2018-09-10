@@ -8,9 +8,11 @@
 
 #import "AMTLoginVC.h"
 #import "AMTLoginView.h"
+#import "LoginDataModel.h"
 #import "RegisterViewController.h"
 @interface AMTLoginVC ()<AMTLoginViewDelegate>
-
+@property (nonatomic , strong) LoginDataModel *dataModel;
+@property (nonatomic, strong) AMTLoginView *loginView;
 @end
 
 @implementation AMTLoginVC
@@ -24,15 +26,25 @@
     
     self.navBar.titieLab.textColor = [UIColor cz_ToUIColorByStr:@"FFFFFF"];
     self.navBar.lineView.hidden = YES;
-    AMTLoginView *loginView = [[AMTLoginView alloc]initWithFrame:self.view.bounds];
-    loginView.delegate = self;
-    [self.view addSubview:loginView];
+    _loginView = [[AMTLoginView alloc]initWithFrame:self.view.bounds];
+    _loginView.delegate = self;
+    [self.view addSubview:_loginView];
+    [self change];
+}
+
+- (void)change
+{
     weakSelf(self);
     [[self.navBar.backButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }];
+    
+    [self.dataModel.loginCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
+        if ([x[0] boolValue]) {
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
 }
-
 - (void)LoginClick:(NSInteger)tag
 {
     switch (tag) {
@@ -44,6 +56,7 @@
         case 2:
         {
             //登录
+            [self.dataModel.loginCommand execute:RACTuplePack(self.loginView.phoneTF.text,self.loginView.codeTF.text)];
         }
             break;
         case 3:
@@ -68,5 +81,13 @@
         default:
             break;
     }
+}
+
+-(LoginDataModel *)dataModel
+{
+    if (_dataModel == nil) {
+        _dataModel = [LoginDataModel new];
+    }
+    return _dataModel;
 }
 @end

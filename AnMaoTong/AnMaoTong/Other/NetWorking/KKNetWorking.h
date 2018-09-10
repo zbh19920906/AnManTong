@@ -16,7 +16,9 @@ typedef enum {
 }HTTPMothd;
 
 //方法内Bolck回调
-typedef void(^Completion)(BOOL isSuccess,id json,NSInteger code);
+typedef void(^Completion)(id json,NSInteger code);
+//失败方法内Bolck回调
+typedef void(^fail)(NSString *message,NSInteger code);
 //方法内Bolck回调
 typedef void(^ProgressBlock)(NSProgress *uploadProgress);
 @property (nonatomic, copy) NSString *http_type;
@@ -24,7 +26,7 @@ typedef void(^ProgressBlock)(NSProgress *uploadProgress);
 +(KKNetWorking *)getShard;
 
 //请求网络返数据
--(void)request:(HTTPMothd)Mothd url:(NSString *)urlString parameters:(NSDictionary *)parameters completion:(Completion)result;
+-(void)request:(HTTPMothd)Mothd url:(NSString *)urlString parameters:(NSDictionary *)parameters completion:(Completion)result  fail:(fail)fail;
 
 //上传图片(限制2M大小)
 - (void)uploadImageWithUrl:(NSString *)urlString imageName:(NSString *)imageName image:(UIImage *)image completion:(Completion)resultConpletion;

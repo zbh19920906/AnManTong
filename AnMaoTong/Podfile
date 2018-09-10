@@ -13,6 +13,10 @@ def pods
     pod 'FMDB'
     pod 'JPush'
     pod 'TZImagePickerController'
+      pod 'AMapSearch'
+      pod 'AMapLocation'
+      pod 'RongCloudIM/IMLib'
+      pod 'RongCloudIM/IMKit'
 end
 target 'AnMaoTong' do
   pods

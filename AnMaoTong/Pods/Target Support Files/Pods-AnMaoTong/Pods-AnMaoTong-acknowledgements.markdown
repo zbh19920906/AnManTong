@@ -24,6 +24,21 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+## AMapFoundation
+
+Copyright © 2014 AutoNavi. All Rights Reserved.
+
+
+## AMapLocation
+
+Copyright © 2014 AutoNavi. All Rights Reserved.
+
+
+## AMapSearch
+
+Copyright © 2014 AutoNavi. All Rights Reserved.
+
+
 ## AliPay
 
 支付宝(中国)网络技术有限公司  版权所有.
@@ -135,6 +150,10 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+
+## RongCloudIM
+
+Copyright 2014 Rong Cloud
 
 ## SDAutoLayout
 

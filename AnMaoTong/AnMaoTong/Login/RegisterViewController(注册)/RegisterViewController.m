@@ -99,7 +99,7 @@
     
     //注册回调
     [self.dataModel.registerCommand.executionSignals.switchToLatest subscribeNext:^(id  _Nullable x) {
-        if ([x[0] boolValue])
+        if ([x[0] integerValue] == 1)
         {
             [UIView showStatusHUD:@"注册成功" completeBlock:nil];
             AMTUserNameViewController *vc = [AMTUserNameViewController new];
@@ -107,6 +107,9 @@
             model.type = KKString(@(self.type));
             vc.model = model;
             [weakSelf.navigationController pushViewController:vc animated:YES];
+        }else if ([x[0] integerValue] == 6){
+            [UIView showStatusHUD:@"该手机号已注册" completeBlock:nil];
+            
         }
     }];
     

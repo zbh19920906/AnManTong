@@ -15,10 +15,12 @@
 
 //外网测试
 #define AMTURL                @"http://test.6677app.com/"
-
+//登录
+#define login   [NSString stringWithFormat:@"%@api/method/login", AMTURL]
 //注册
 #define Register   [NSString stringWithFormat:@"%@api/method/Register", AMTURL]
-
+//注册下一步
+#define modifInfoOne   [NSString stringWithFormat:@"%@api/method/modifInfoOne", AMTURL]
 //获取验证码
 #define getCode   [NSString stringWithFormat:@"%@api/method/getCode", AMTURL]
 //获取产品分类

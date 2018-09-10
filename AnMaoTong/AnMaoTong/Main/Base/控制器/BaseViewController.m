@@ -105,4 +105,79 @@
     [_navBar.backButton removeTarget:self action:@selector(clickBackButtonAcion:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+
+- (void)takePhotoForViewController
+{
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePicker.videoQuality = UIImagePickerControllerQualityTypeHigh;
+        imagePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        imagePicker.allowsEditing = YES;
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }
+    else
+    {
+        [UIView showMakeSureAletView:@"" message:@"该设备不支持拍照" btnTitle:@"确定" btnTitleBlock:^{}];
+    }
+}
+
+- (void)takePhotoForViewControllerForNoEdit
+{
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePicker.videoQuality = UIImagePickerControllerQualityTypeHigh;
+        imagePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        imagePicker.allowsEditing = NO;
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }
+    else
+    {
+        [UIView showMakeSureAletView:@"" message:@"该设备不支持拍照" btnTitle:@"确定" btnTitleBlock:^{}];
+    }
+}
+
+- (void)takeAlbumForViewControllerWithEditing:(BOOL)isEditing
+                             ischooseMulImage:(BOOL)isChooseMul
+                                     maxCount:(NSInteger)count
+{
+    if (!isChooseMul)
+    {
+        UIImagePickerController *pick = [[UIImagePickerController alloc] init];
+        pick.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        pick.delegate = self;
+        pick.allowsEditing = isEditing;
+        [pick.navigationBar setTintColor:[UIColor blackColor]];
+        [self presentViewController:pick animated:YES completion:nil];
+    }
+    else
+    {
+        TZImagePickerController *imageVC = [[TZImagePickerController alloc] initWithMaxImagesCount:count delegate:self];
+//        [imageVC.navigationBar addBottomLineWithOffset:0 color:CPColor(@"e5e5e5")];
+        imageVC.allowPickingGif = NO;
+        imageVC.allowPickingVideo = NO;
+        imageVC.isStatusBarDefault = YES;
+        imageVC.naviTitleColor = [UIColor blackColor];
+        imageVC.naviBgColor = [UIColor whiteColor];
+        imageVC.barItemTextColor = [UIColor blackColor];
+        [imageVC.navigationBar setTintColor:[UIColor blackColor]];
+        [self presentViewController:imageVC animated:YES completion:nil];
+    }
+}
+
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    
+}
+
+#pragma mark - TZImagePickerControllerDelegate
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto{
+    
+}
 @end
