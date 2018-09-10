@@ -14,7 +14,6 @@
 #import "BHNavigationLeftBtn.h"
 #import "NSMutableString+KKHyperlinks.h"
 #import "UIViewController+Seting.h"
-#import "NSObject+Navication.h"
 #import "UIImage+Extension.h"
 #import "UIColor+CZAddition.h"
 #import "NSObject+Permissions.h"
@@ -28,3 +27,4 @@
 #import "NSObject+KKTextSize.h"
 #import "UIView+extension.h"
 #import "NSString+Extension.h"
+#import "NSMutableAttributedString+Extension.h"

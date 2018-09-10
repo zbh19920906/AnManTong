@@ -75,7 +75,9 @@ XYTabBarDelegate>
 #pragma mark - tabbar代理方法
 - (void)tabBarDidClickPlusButton:(XYTabBar *)tabBar
 {
-
+    AMTAddButtonVC *vc = [[AMTAddButtonVC alloc]init];
+    BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark --UITabBarControllerDelegate

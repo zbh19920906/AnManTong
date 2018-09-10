@@ -1,0 +1,45 @@
+//
+//  KKLocationManager.h
+//  JIaYou
+//
+//  Created by lk05 on 2017/7/31.
+//  Copyright © 2017年 lk06. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+typedef void (^locationManagerBlock)(CLLocationCoordinate2D coor,NSString *city,NSString *provinces);
+@interface KKLocationManager : NSObject
+
+/**
+ 代码块
+ */
+@property (nonatomic, strong) locationManagerBlock locationBlock;
+
+/**
+ 静态参数
+ */
+@property (nonatomic, assign) dispatch_once_t onceToken;
+
+/**
+ 是否显示提醒框，默认yes
+ */
+@property (nonatomic, assign) BOOL isShowAlart;
+
+@property (nonatomic, assign) BOOL isCity;
+/**
+ 经纬度
+ */
+@property (nonatomic, assign) CLLocationCoordinate2D coor;
+
+/**
+ 初始化
+
+ @return KKLocationManager
+ */
++ (KKLocationManager *)sharedLocationManager;
+
+/**
+ 开启定位
+ */
+- (void)startLocation;
+@end

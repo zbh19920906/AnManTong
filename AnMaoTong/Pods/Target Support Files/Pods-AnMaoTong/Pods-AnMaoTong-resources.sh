@@ -94,12 +94,24 @@ EOM
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/AliPay/AlipaySDK.bundle"
   install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/RongCloud.bundle"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/en.lproj"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/zh-Hans.lproj"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/Emoji.plist"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/RCColor.plist"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/RCConfig.plist"
   install_resource "${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
   install_resource "${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/AliPay/AlipaySDK.bundle"
   install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/RongCloud.bundle"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/en.lproj"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/zh-Hans.lproj"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/Emoji.plist"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/RCColor.plist"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/RCConfig.plist"
   install_resource "${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
   install_resource "${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle"
 fi

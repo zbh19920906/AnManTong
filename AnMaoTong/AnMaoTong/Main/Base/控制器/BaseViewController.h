@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "BaseNavgationBar.h"
 
-@interface BaseViewController : UIViewController
+@interface BaseViewController : UIViewController <
+UIImagePickerControllerDelegate,
+UINavigationControllerDelegate,
+TZImagePickerControllerDelegate>
 
 @property (nonatomic , strong)BaseNavgationBar * navBar;
 
@@ -23,5 +26,20 @@
 - (void)removeLeftButtonTarget;
 #pragma mark - 跳转到他人主页
 - (void)gotoWeiboPersonVC:(NSString *)userID;
+/**
+ 拍照，编辑
+ */
+- (void)takePhotoForViewController;
 
+/**
+ 拍照，不编辑
+ */
+- (void)takePhotoForViewControllerForNoEdit;
+
+/**
+ 相册选择照片
+ */
+- (void)takeAlbumForViewControllerWithEditing:(BOOL)isEditing
+                             ischooseMulImage:(BOOL)isChooseMul
+                                     maxCount:(NSInteger)count;
 @end

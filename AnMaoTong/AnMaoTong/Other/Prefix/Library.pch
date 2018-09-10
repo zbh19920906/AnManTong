@@ -25,6 +25,10 @@
 #import <SDWebImage/UIButton+WebCache.h>
 #import <SDWebImage/UIImage+MultiFormat.h>
 #import "SDCollectionTagsFlowLayout.h"
+#import <TZImagePickerController/TZImageManager.h>
+#import <AMapLocationKit/AMapLocationKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
 //控制器
 #import "AMTLoginVC.h"
 #import "AMTBaseInfoViewController.h"
@@ -39,7 +43,9 @@
 #import "AMTBrandModel.h"
 #import "static.h"
 #import "AMTRegisterModel.h"
+#import "CPBaseImageCollectionView.h"
 #import "PersonalRadioView.h"
+#import "CPAMapLocationManager.h"
 //枚举
 
 #endif /* Library_pch */

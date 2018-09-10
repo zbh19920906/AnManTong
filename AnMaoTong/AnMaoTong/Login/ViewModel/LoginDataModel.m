@@ -135,11 +135,11 @@ const NSInteger codeMaxTime = 60;
     {
         _registerCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input){
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber){
-                NSDictionary *dic = @{@"phone":KKString(input[0]),
-                                      @"code":KKString(input[1]),
-                                      @"password":KKString([input[2] md5]),
+                NSDictionary *dic = @{@"phone" : KKString(input[0]),
+                                      @"code" : KKString(input[1]),
+                                      @"password" : KKString([input[2] md5]),
                                       @"channel_name" : @"",
-                                      @"type":KKString(input[3])};
+                                      @"type" : KKString(input[3])};
                 [SVProgressHUD show];
                 [[KKNetWorking getShard] request:POST url:Register parameters:dic completion:^(BOOL isSuccess, id json, NSInteger code) {
                     [SVProgressHUD dismiss];

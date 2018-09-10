@@ -25,6 +25,8 @@
     manager.enable = YES;
     manager.shouldResignOnTouchOutside = YES;
     manager.enableAutoToolbar = NO;
+    [AMapServices sharedServices].apiKey = @"cb806af53242533534b3761f5d374690";
+    [[AMapServices sharedServices] setEnableHTTPS:YES];
     return YES;
 }
 

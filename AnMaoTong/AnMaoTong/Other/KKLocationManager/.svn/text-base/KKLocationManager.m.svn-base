@@ -1,0 +1,123 @@
+//
+//  KKLocationManager.m
+//  JIaYou
+//
+//  Created by lk05 on 2017/7/31.
+//  Copyright © 2017年 lk06. All rights reserved.
+//
+
+#import "KKLocationManager.h"
+#import <CoreLocation/CoreLocation.h>
+
+@interface KKLocationManager ()<CLLocationManagerDelegate>
+@property (nonatomic, strong) CLLocationManager * locationManager;
+@property (nonatomic, strong) CLGeocoder *geoC;
+@end
+@implementation KKLocationManager
+
++ (KKLocationManager *)sharedLocationManager
+{
+     KKLocationManager *   sharedManagerInstance = [[self alloc] init];
+    return sharedManagerInstance;
+}
+
+- (void)startLocation
+{
+    [self.locationManager startUpdatingLocation];
+    _onceToken = 0;
+}
+
+- (void)monitorPermissions
+{
+    if (_isShowAlart) {
+        if(![NSObject isLocation]){
+            ZLAlertView * alertView = [[ZLAlertView alloc]initWithTitle:@"定位服务未开启" message:@"请在设置->隐私->定位服务中开启定位服务,云加油需要知道您的位置才能提供更好的服务~"];
+            [alertView addBtnTitle:@"取消" action:^{
+                
+            }];
+            [alertView addBtnTitle:@"前去开启" action:^{
+                [NSObject versionsJudge:@"去开启"];
+            }];
+            [alertView showAlertWithSender:getWindow.rootViewController];
+        }
+    }
+}
+
+#pragma mark -  CLLocationManagerDelegate
+// 地理位置发生改变时触发
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+//    LFLog(@"定位成功了");
+    [self.locationManager stopUpdatingLocation];
+    self.coor = [WGS84TOGCJ02 wgs84ToBd09:newLocation.coordinate];
+    
+#if DEBUG
+    
+#else
+    [JPUSHService setLatitude:self.coor.latitude longitude:self.coor.longitude];
+#endif
+    weakSelf(self);
+    if (_isCity) {
+        dispatch_once(&_onceToken, ^{
+            [self.geoC reverseGeocodeLocation:newLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+                if(error == nil){
+                    CLPlacemark *pl = [placemarks firstObject];
+                    !weakSelf.locationBlock ? nil :  weakSelf.locationBlock(weakSelf.coor,pl.locality,pl.administrativeArea);
+                }else{
+                    !weakSelf.locationBlock ? nil :  weakSelf.locationBlock(CLLocationCoordinate2DMake(0, 0),@"",@"");
+                }
+            }];
+        });
+        
+    }else{
+        dispatch_once(&_onceToken, ^{
+            !weakSelf.locationBlock ? :  weakSelf.locationBlock(self.coor,@"",@"");
+        });
+    }
+    
+    User *user = [UserHelper shareInstance].user;
+    if (user.user_id.length > 0) {
+        user.lon = [NSString stringWithFormat:@"%lf",self.coor.longitude] ;
+        user.lat = [NSString stringWithFormat:@"%lf",self.coor.latitude];
+        [UserHelper saveModifiedPersonalDetailInfoToCache];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    KKLog(@"定位失败了%@",error);
+    [self monitorPermissions];
+    self.locationBlock ? self.locationBlock(CLLocationCoordinate2DMake(0, 0),@"",@""): nil;
+}
+
+#pragma mark - get and set
+- (CLLocationManager *)locationManager
+{
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.delegate = self;
+        [_locationManager requestWhenInUseAuthorization];
+    }
+    return _locationManager;
+}
+
+-(CLGeocoder *)geoC
+{
+    if (!_geoC) {
+        _geoC = [[CLGeocoder alloc] init];
+    }
+    return _geoC;
+}
+
+- (void)setIsShowAlart:(BOOL)isShowAlart
+{
+    _isShowAlart = isShowAlart;
+}
+
+- (void)setIsCity:(BOOL)isCity
+{
+    _isCity = isCity;
+}
+@end
