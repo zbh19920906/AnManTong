@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AMTMainVC : BaseViewController
-
+@property (nonatomic, copy) NSString *goods_class_id;
 @end

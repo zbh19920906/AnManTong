@@ -27,6 +27,10 @@
 #define getGoodsClass   [NSString stringWithFormat:@"%@api/method/getGoodsClass", AMTURL]
 //商品类型下的所有品牌
 #define getBrand   [NSString stringWithFormat:@"%@api/method/getBrand", AMTURL]
+//动态发布详情
+#define getDynamicDetails   [NSString stringWithFormat:@"%@api/method/getDynamicDetails", AMTURL]
+//获取分类下对应的专区
+#define getClassZone   [NSString stringWithFormat:@"%@api/method/getClassZone", AMTURL]
 
 #endif /* Request_pch */
 

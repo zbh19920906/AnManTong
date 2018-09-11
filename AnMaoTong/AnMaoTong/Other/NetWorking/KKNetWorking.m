@@ -75,6 +75,7 @@ static KKNetWorking * shard;
         if ([json[@"code"] integerValue] == 1) {
             resultConpletion(json,[json[@"code"] integerValue]);
         }else{
+            
             fail(json[@"message"],[json[@"code"] integerValue]);
         }
         

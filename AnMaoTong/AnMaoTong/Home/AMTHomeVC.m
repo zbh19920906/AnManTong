@@ -89,6 +89,8 @@
         _viewControllers = [[NSMutableArray alloc]init];
         for (NSInteger i = 0 ; i < self.titleArr.count; i ++) {
             AMTMainVC *vc = [[AMTMainVC alloc]init];
+            AMTGoodsClassModel *model = self.titleArr[i];
+            vc.goods_class_id = model.ID;
             [_viewControllers addObject:vc];
         }
     }

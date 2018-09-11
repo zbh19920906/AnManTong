@@ -14,7 +14,7 @@ UIKIT_STATIC_INLINE UIColor * BHColor(NSString *colroStr)
     return [UIColor cz_ToUIColorByStr:colroStr];
 }
 
-//平方细体Font适配
+//Font适配
 UIKIT_STATIC_INLINE UIFont * BHFont(NSUInteger fontSize)
 {
     return [UIFont systemFontOfSize:fontSize];

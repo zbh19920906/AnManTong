@@ -33,6 +33,7 @@
 #import "AMTLoginVC.h"
 #import "AMTBaseInfoViewController.h"
 //自定义拓展类
+#import "SDCycleScrollView.h"
 #import "UserHelper.h"
 #import "KKNetWorking.h"
 #import "CP_AES.h"

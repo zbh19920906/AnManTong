@@ -85,9 +85,11 @@ XYTabBarDelegate>
 {
     NSInteger idx = [self.childViewControllers indexOfObject:viewController];
     if (idx == 3) {
-        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[AMTLoginVC new]];
-        [getWindow.rootViewController presentViewController:nav animated:YES completion:nil];
-        return NO;
+        if ([UserHelper shareInstance].user.user_id.length == 0) {
+            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[AMTLoginVC new]];
+            [getWindow.rootViewController presentViewController:nav animated:YES completion:nil];
+            return NO;
+        }
     }
     
     return YES;

@@ -7,11 +7,13 @@
 //
 
 #import "AMTDetailsVC.h"
-#import "AMTDetailsModel.h"
+
 #import "AMTGoodsMessageCell.h"
+#import "AMTDetailsViewModel.h"
 @interface AMTDetailsVC ()<UITableViewDataSource,UITableViewDelegate>
-@property (nonatomic, strong) AMTDetailsModel *model;
+
 @property (nonatomic, strong) BaseTableView *tableView;
+@property (nonatomic, strong) AMTDetailsViewModel *viewModels;
 @end
 
 @implementation AMTDetailsVC
@@ -19,8 +21,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navBar.titieLab.text = @"详情";
-    self.model = [[AMTDetailsModel alloc]init];
     [self.view addSubview:self.tableView];
+    [self setBingDing];
+}
+
+- (void)setBingDing
+{
+    weakSelf(self);
+    [[self.viewModels.detailsCommand execute:@[@"1"]] subscribeNext:^(id x) {
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -36,13 +46,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AMTGoodsMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTGoodsMessageCell class]) forIndexPath:indexPath];
-    cell.model = self.model;
+    cell.model = self.viewModels.model;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [tableView cellHeightForIndexPath:indexPath model:self.model keyPath:@"model" cellClass:[AMTGoodsMessageCell class] contentViewWidth:WIDTH_SCREEN];
+    return [tableView cellHeightForIndexPath:indexPath model:self.viewModels.model keyPath:@"model" cellClass:[AMTGoodsMessageCell class] contentViewWidth:WIDTH_SCREEN];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -66,4 +76,11 @@
     return _tableView;
 }
 
+- (AMTDetailsViewModel *)viewModels
+{
+    if (!_viewModels) {
+        _viewModels = [[AMTDetailsViewModel alloc]init];
+    }
+    return _viewModels;
+}
 @end

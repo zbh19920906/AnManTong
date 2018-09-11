@@ -8,6 +8,7 @@
 
 #import "AMTGoodsMessageCell.h"
 #import "AMTGoodsImageView.h"
+#import "AMTGoodsTitleView.h"
 @interface AMTGoodsMessageCell ()
 @property (nonatomic, strong) BaseImageView *headImageView;
 @property (nonatomic, strong) BaseLabel *nameLab;
@@ -16,6 +17,8 @@
 @property (nonatomic, strong) AMTGoodsImageView *goodsImageView;
 @property (nonatomic, strong) BaseImageView *addressImageView;
 @property (nonatomic, strong) BaseLabel *addressLab;
+@property (nonatomic, strong) BaseImageView *iconImage;
+@property (nonatomic, strong) AMTGoodsTitleView *titleView;
 @end
 @implementation AMTGoodsMessageCell
 
@@ -31,6 +34,7 @@
 {
     self.headImageView = [[BaseImageView alloc]init];
     self.headImageView.sd_cornerRadius = @(20);
+    self.headImageView.backgroundColor = [UIColor redColor];
     
     self.nameLab = [[BaseLabel alloc]init];
     [self.nameLab setLableColor:@"FF3658" font:14 bold:0];
@@ -48,7 +52,11 @@
     self.addressLab = [[BaseLabel alloc]init];
     [self.addressLab setLableColor:@"CCCCCC" font:11 bold:0];
     
-    [self.contentView sd_addSubviews:@[self.headImageView,self.nameLab,self.timeLab,self.contentLab,self.goodsImageView,self.addressImageView,self.addressLab]];
+    self.iconImage = [[BaseImageView alloc]init];
+    
+    self.titleView = [[AMTGoodsTitleView alloc]init];
+    
+    [self.contentView sd_addSubviews:@[self.headImageView,self.nameLab,self.timeLab,self.contentLab,self.goodsImageView,self.addressImageView,self.addressLab,self.iconImage,self.titleView]];
     
     self.headImageView.sd_layout
     .topSpaceToView(self.contentView, 18)
@@ -74,14 +82,27 @@
     .rightSpaceToView(self.contentView, 11)
     .autoHeightRatio(0);
     
+    self.iconImage.sd_layout
+    .topEqualToView(self.contentView)
+    .rightSpaceToView(self.contentView, 10)
+    .widthIs(23)
+    .heightIs(29);
+    
     self.goodsImageView.sd_layout
     .topSpaceToView(self.contentLab, 14)
     .leftEqualToView(self.contentView)
     .widthIs(WIDTH_SCREEN)
     .heightIs((WIDTH_SCREEN - 37)/3);
     
+    self.titleView.sd_layout
+    .topSpaceToView(self.goodsImageView, 13)
+    .leftEqualToView(self.contentView)
+    .rightEqualToView(self.contentView)
+    .heightIs(15);
+    
+    
     self.addressImageView.sd_layout
-    .topSpaceToView(self.goodsImageView, 43)
+    .topSpaceToView(self.titleView, 15)
     .leftSpaceToView(self.contentView, 10)
     .widthIs(9)
     .heightIs(11);
@@ -91,17 +112,19 @@
     .centerYEqualToView(self.addressImageView)
     .heightIs(11);
     [self.addressLab setSingleLineAutoResizeWithMaxWidth:250];
+    
 }
 
 - (void)setModel:(AMTDetailsModel *)model
 {
-    self.nameLab.text = model.name;
-    [self.headImageView sd_setImageWithURL:UrlString(model.headImage)];
-    self.timeLab.text = model.time;
-    self.contentLab.text = model.content;
+    self.nameLab.text = model.type == 1 ? model.nickname : model.name;
+    [self.headImageView sd_setImageWithURL:UrlString(model.head_img)];
+    self.timeLab.text = model.auth_time;
+    self.contentLab.text = model.title;
     self.goodsImageView.images = model.images;
-    self.addressLab.text = model.address;
-    
+    self.addressLab.text = model.position;
+    self.titleView.titles = model.titles;
+    self.iconImage.image = imageNamed(model.type == 1 ? @"gong" : @"qiu");
     [self setupAutoHeightWithBottomView:self.addressLab bottomMargin:10];
 }
 @end
