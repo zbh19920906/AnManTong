@@ -1,23 +1,21 @@
 //
-//  AMTMainVC.m
+//  AMTZoneMainController.m
 //  AnMaoTong
 //
-//  Created by lk05 on 2018/9/4.
+//  Created by lk05 on 2018/9/12.
 //  Copyright © 2018年 zhu. All rights reserved.
 //
 
-#import "AMTMainVC.h"
+#import "AMTZoneMainController.h"
 #import "AMTHomeViewModel.h"
 #import "AMTBannerCell.h"
-#import "AMTZoneCell.h"
 #import "AMTHeadView.h"
-#import "AMTMerchantDetalisController.h"
-@interface AMTMainVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface AMTZoneMainController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) BaseTableView *tableView;
 @property (nonatomic, strong) AMTHomeViewModel *viewModels;
 @end
 
-@implementation AMTMainVC
+@implementation AMTZoneMainController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,28 +42,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 2 : self.viewModels.listArray.count;
+    return section == 0 ? 1 : self.viewModels.listArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            AMTBannerCell *cell = [tableView dequeueReusableCellWithIdentifier:[AMTBannerCell identifier] forIndexPath:indexPath];
-            cell.images =  @[@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1536638317&di=145bdb0984d3a7d778624b5f4545101e&src=http://static.oeofo.com/201610/27/131242571000812.png",@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1536638317&di=145bdb0984d3a7d778624b5f4545101e&src=http://static.oeofo.com/201610/27/131242571000812.png",@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1536638317&di=145bdb0984d3a7d778624b5f4545101e&src=http://static.oeofo.com/201610/27/131242571000812.png"];
-            return cell;
-        }
-        
-        AMTZoneCell *cell = [tableView dequeueReusableCellWithIdentifier:[AMTZoneCell identifier] forIndexPath:indexPath];
-        cell.zoneArray = self.viewModels.zoneArray;
+        AMTBannerCell *cell = [tableView dequeueReusableCellWithIdentifier:[AMTBannerCell identifier] forIndexPath:indexPath];
+        cell.images =  @[@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1536638317&di=145bdb0984d3a7d778624b5f4545101e&src=http://static.oeofo.com/201610/27/131242571000812.png",@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1536638317&di=145bdb0984d3a7d778624b5f4545101e&src=http://static.oeofo.com/201610/27/131242571000812.png",@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1536638317&di=145bdb0984d3a7d778624b5f4545101e&src=http://static.oeofo.com/201610/27/131242571000812.png"];
         return cell;
     }
     AMTGoodsMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTGoodsMessageCell class]) forIndexPath:indexPath];
-    weakSelf(self);
-    [[cell.headTap rac_gestureSignal]subscribeNext:^(id x) {
-        AMTMerchantDetalisController *vc = [[AMTMerchantDetalisController alloc]init];
-        [weakSelf.navigationController pushViewController:vc animated:YES];
-    }];
     cell.contentView.backgroundColor = BHColor(@"f5f5f5");
     cell.model = self.viewModels.listArray[indexPath.row];
     return cell;
@@ -86,7 +73,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return indexPath.row == 0 ? 188 : 10 + (ceil(self.viewModels.zoneArray.count * 1.0 / 2) * 95);
+        return 188;
     }
     return [tableView cellHeightForIndexPath:indexPath model:self.viewModels.listArray[indexPath.row] keyPath:@"model" cellClass:[AMTGoodsMessageCell class] contentViewWidth:WIDTH_SCREEN] +10;
 }
@@ -94,10 +81,9 @@
 - (BaseTableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN - NavHFit - 38 - TabBarHFit) style:UITableViewStylePlain];
+        _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN - NavHFit - 38) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource =self;
-        [_tableView registerClass:[AMTZoneCell class] forCellReuseIdentifier:[AMTZoneCell identifier]];
         [_tableView registerClass:[AMTBannerCell class] forCellReuseIdentifier:[AMTBannerCell identifier]];
         [_tableView registerClass:[AMTGoodsMessageCell class] forCellReuseIdentifier:[AMTGoodsMessageCell identifier]];
     }
@@ -111,4 +97,15 @@
     }
     return _viewModels;
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
 @end

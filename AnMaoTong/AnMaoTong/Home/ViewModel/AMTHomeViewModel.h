@@ -12,4 +12,5 @@
 @property (nonatomic, strong) RACCommand *classCommand;
 @property (nonatomic, strong) RACCommand *listCommand;
 @property (nonatomic, strong) NSMutableArray <AMTZoneModel *>*zoneArray;
+@property (nonatomic, strong) NSMutableArray <AMTDetailsModel *>*listArray;
 @end

@@ -9,7 +9,9 @@
 #import "AMTGoodsMessageCell.h"
 #import "AMTGoodsImageView.h"
 #import "AMTGoodsTitleView.h"
+#import "AMTDynamicCountView.h"
 @interface AMTGoodsMessageCell ()
+@property (nonatomic, strong) BaseView *bgView;
 @property (nonatomic, strong) BaseImageView *headImageView;
 @property (nonatomic, strong) BaseLabel *nameLab;
 @property (nonatomic, strong) BaseLabel *timeLab;
@@ -19,6 +21,7 @@
 @property (nonatomic, strong) BaseLabel *addressLab;
 @property (nonatomic, strong) BaseImageView *iconImage;
 @property (nonatomic, strong) AMTGoodsTitleView *titleView;
+@property (nonatomic, strong) AMTDynamicCountView *countView;
 @end
 @implementation AMTGoodsMessageCell
 
@@ -32,9 +35,20 @@
 
 - (void)setSubView
 {
+    self.bgView = [[BaseView alloc]init];
+    self.bgView.backgroundColor = [UIColor whiteColor];
+    [self.contentView addSubview:self.bgView];
+    
+    self.bgView.sd_layout
+    .spaceToSuperView(UIEdgeInsetsMake(0, 0, 10, 0));
+    
     self.headImageView = [[BaseImageView alloc]init];
     self.headImageView.sd_cornerRadius = @(20);
     self.headImageView.backgroundColor = [UIColor redColor];
+    
+    _headTap = [UITapGestureRecognizer new];
+    self.headImageView.userInteractionEnabled = YES;
+    [self.headImageView addGestureRecognizer:_headTap];
     
     self.nameLab = [[BaseLabel alloc]init];
     [self.nameLab setLableColor:@"FF3658" font:14 bold:0];
@@ -56,7 +70,9 @@
     
     self.titleView = [[AMTGoodsTitleView alloc]init];
     
-    [self.contentView sd_addSubviews:@[self.headImageView,self.nameLab,self.timeLab,self.contentLab,self.goodsImageView,self.addressImageView,self.addressLab,self.iconImage,self.titleView]];
+    self.countView = [[AMTDynamicCountView alloc]init];
+    
+    [self.contentView sd_addSubviews:@[self.headImageView,self.nameLab,self.timeLab,self.contentLab,self.goodsImageView,self.addressImageView,self.addressLab,self.iconImage,self.titleView,self.countView]];
     
     self.headImageView.sd_layout
     .topSpaceToView(self.contentView, 18)
@@ -113,6 +129,12 @@
     .heightIs(11);
     [self.addressLab setSingleLineAutoResizeWithMaxWidth:250];
     
+    
+    self.countView.sd_layout
+    .topSpaceToView(self.addressImageView, 0)
+    .heightIs(60)
+    .leftEqualToView(self.contentView)
+    .rightEqualToView(self.contentView);
 }
 
 - (void)setModel:(AMTDetailsModel *)model
@@ -125,6 +147,7 @@
     self.addressLab.text = model.position;
     self.titleView.titles = model.titles;
     self.iconImage.image = imageNamed(model.type == 1 ? @"gong" : @"qiu");
-    [self setupAutoHeightWithBottomView:self.addressLab bottomMargin:10];
+    self.countView.model = model.dynamic_num;
+    [self setupAutoHeightWithBottomView:self.countView bottomMargin:0];
 }
 @end

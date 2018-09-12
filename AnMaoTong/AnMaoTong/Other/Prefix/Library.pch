@@ -47,6 +47,7 @@
 #import "CPBaseImageCollectionView.h"
 #import "PersonalRadioView.h"
 #import "CPAMapLocationManager.h"
+#import "AMTGoodsMessageCell.h"
 //枚举
 
 #endif /* Library_pch */

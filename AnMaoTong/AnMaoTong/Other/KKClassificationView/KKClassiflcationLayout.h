@@ -76,5 +76,13 @@
  容器数组
  */
 @property (nonatomic, copy) NSArray *viewControllers;
+/**
+ 头部
+ */
+@property (nonatomic, strong) UIView *headView;
 
+/**
+ 头部高度
+ */
+@property (nonatomic, assign) CGFloat headViewH;
 @end

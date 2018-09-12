@@ -20,4 +20,21 @@ UIKIT_STATIC_INLINE UIFont * BHFont(NSUInteger fontSize)
     return [UIFont systemFontOfSize:fontSize];
 }
 
+//整型转字符串
+UIKIT_STATIC_INLINE NSString * BHIString(NSInteger f)
+{
+    return [NSString stringWithFormat:@"%ld",(long)f];
+}
+
+//浮点转字符串
+UIKIT_STATIC_INLINE NSString * BHFString(CGFloat f)
+{
+    return [NSString stringWithFormat:@"%.2lf",f];
+}
+
+//浮点转字符串
+UIKIT_STATIC_INLINE NSString * BHLFString(CGFloat f)
+{
+    return [NSString stringWithFormat:@"%lf",f];
+}
 #endif /* static_h */

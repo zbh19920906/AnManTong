@@ -33,9 +33,25 @@
 - (RACCommand *)listCommand
 {
     if (!_listCommand) {
+        weakSelf(self);
         _listCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
             return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-                
+                NSDictionary *dic = @{
+                                      @"type" : input[0],
+                                      @"goods_class_id" : input[1],
+                                      @"brand_id" : input[2],
+                                      @"zone_id" : input[3],
+                                      @"size" : input[4],
+                                      @"page" : input[5]
+                                      };
+                [[KKNetWorking getShard] request:GET url:getDynamic parameters:dic completion:^(id json, NSInteger code) {
+                    weakSelf.listArray = [AMTDetailsModel mj_objectArrayWithKeyValuesArray:json[@"data"]];
+                    [subscriber sendNext:RACTuplePack(@(YES))];
+                    [subscriber sendCompleted];
+                } fail:^(NSString *message, NSInteger code) {
+                    [subscriber sendNext:RACTuplePack(@(NO))];
+                    [subscriber sendCompleted];
+                }];
                 return nil;
             }];
         }];
@@ -49,5 +65,13 @@
         _zoneArray = [[NSMutableArray alloc]init];
     }
     return _zoneArray;
+}
+
+- (NSMutableArray<AMTDetailsModel *> *)listArray
+{
+    if (!_listArray) {
+        _listArray = [[NSMutableArray alloc]init];
+    }
+    return _listArray;
 }
 @end

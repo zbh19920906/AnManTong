@@ -10,4 +10,5 @@
 #import "AMTDetailsModel.h"
 @interface AMTGoodsMessageCell : BaseTableViewCell
 @property (nonatomic, strong) AMTDetailsModel *model;
+@property (nonatomic, strong) UITapGestureRecognizer *headTap;
 @end

@@ -70,11 +70,25 @@
 		2F95EDA1214753F7008EA374 /* AMTDynamicCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F95EDA0214753F7008EA374 /* AMTDynamicCountModel.m */; };
 		2F95EDA421476C9A008EA374 /* AMTHomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F95EDA321476C9A008EA374 /* AMTHomeViewModel.m */; };
 		2F95EDA721477032008EA374 /* AMTZoneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F95EDA621477032008EA374 /* AMTZoneModel.m */; };
-		2F95EDAA21477254008EA374 /* AMTBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F95EDA921477254008EA374 /* AMTBannerView.m */; };
 		2F95EDAD21479551008EA374 /* AMTZoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F95EDAC21479551008EA374 /* AMTZoneCell.m */; };
 		2F95EDB02147B67B008EA374 /* AMTGoodsTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F95EDAF2147B67B008EA374 /* AMTGoodsTitleView.m */; };
 		2F95EDB32147BDEF008EA374 /* AMTDynamicCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F95EDB22147BDEF008EA374 /* AMTDynamicCountView.m */; };
 		2FAA0A24213E5C41004956CA /* AMTMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA0A23213E5C41004956CA /* AMTMainVC.m */; };
+		2FC013DC2148B1120007BA3B /* AMTHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013DB2148B1120007BA3B /* AMTHeadView.m */; };
+		2FC013DF2148B5F00007BA3B /* AMTBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013DE2148B5F00007BA3B /* AMTBannerCell.m */; };
+		2FC013E32148F1110007BA3B /* AMTZoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013E22148F1110007BA3B /* AMTZoneController.m */; };
+		2FC013E62148F1530007BA3B /* AMTZoneMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013E52148F1530007BA3B /* AMTZoneMainController.m */; };
+		2FC013EB2148F9BD0007BA3B /* AMTMerchantDetalisController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013EA2148F9BD0007BA3B /* AMTMerchantDetalisController.m */; };
+		2FC013EF2148FAA40007BA3B /* AMTDetailsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013EE2148FAA40007BA3B /* AMTDetailsHeadView.m */; };
+		2FC013FA2148FDBB0007BA3B /* LTAdvancedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013F22148FDBA0007BA3B /* LTAdvancedManager.swift */; };
+		2FC013FB2148FDBB0007BA3B /* LTDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013F32148FDBA0007BA3B /* LTDispatchQueue.swift */; };
+		2FC013FC2148FDBB0007BA3B /* LTPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013F42148FDBA0007BA3B /* LTPageView.swift */; };
+		2FC013FD2148FDBB0007BA3B /* LTScrollExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013F52148FDBA0007BA3B /* LTScrollExtension.swift */; };
+		2FC013FE2148FDBB0007BA3B /* LTSimpleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013F62148FDBA0007BA3B /* LTSimpleManager.swift */; };
+		2FC013FF2148FDBB0007BA3B /* LTTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013F72148FDBA0007BA3B /* LTTableView.swift */; };
+		2FC014002148FDBB0007BA3B /* LTTableViewProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013F82148FDBA0007BA3B /* LTTableViewProtocal.swift */; };
+		2FC014012148FDBB0007BA3B /* LTVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013F92148FDBA0007BA3B /* LTVCExtension.swift */; };
+		2FC0140721490ADF0007BA3B /* AMTDetailsClassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC0140621490ADF0007BA3B /* AMTDetailsClassView.m */; };
 		2FE2A4C321378B05002AB1D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FE2A4C121378B05002AB1D8 /* Main.storyboard */; };
 		2FE2A4C521378B06002AB1D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FE2A4C421378B06002AB1D8 /* Assets.xcassets */; };
 		2FE2A4C821378B06002AB1D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FE2A4C621378B06002AB1D8 /* LaunchScreen.storyboard */; };
@@ -313,8 +327,6 @@
 		2F95EDA321476C9A008EA374 /* AMTHomeViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTHomeViewModel.m; sourceTree = "<group>"; };
 		2F95EDA521477032008EA374 /* AMTZoneModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTZoneModel.h; sourceTree = "<group>"; };
 		2F95EDA621477032008EA374 /* AMTZoneModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTZoneModel.m; sourceTree = "<group>"; };
-		2F95EDA821477254008EA374 /* AMTBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTBannerView.h; sourceTree = "<group>"; };
-		2F95EDA921477254008EA374 /* AMTBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTBannerView.m; sourceTree = "<group>"; };
 		2F95EDAB21479551008EA374 /* AMTZoneCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTZoneCell.h; sourceTree = "<group>"; };
 		2F95EDAC21479551008EA374 /* AMTZoneCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTZoneCell.m; sourceTree = "<group>"; };
 		2F95EDAE2147B67B008EA374 /* AMTGoodsTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTGoodsTitleView.h; sourceTree = "<group>"; };
@@ -323,6 +335,28 @@
 		2F95EDB22147BDEF008EA374 /* AMTDynamicCountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTDynamicCountView.m; sourceTree = "<group>"; };
 		2FAA0A22213E5C41004956CA /* AMTMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMainVC.h; sourceTree = "<group>"; };
 		2FAA0A23213E5C41004956CA /* AMTMainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMainVC.m; sourceTree = "<group>"; };
+		2FC013DA2148B1120007BA3B /* AMTHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTHeadView.h; sourceTree = "<group>"; };
+		2FC013DB2148B1120007BA3B /* AMTHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTHeadView.m; sourceTree = "<group>"; };
+		2FC013DD2148B5F00007BA3B /* AMTBannerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTBannerCell.h; sourceTree = "<group>"; };
+		2FC013DE2148B5F00007BA3B /* AMTBannerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTBannerCell.m; sourceTree = "<group>"; };
+		2FC013E12148F1110007BA3B /* AMTZoneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTZoneController.h; sourceTree = "<group>"; };
+		2FC013E22148F1110007BA3B /* AMTZoneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTZoneController.m; sourceTree = "<group>"; };
+		2FC013E42148F1530007BA3B /* AMTZoneMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTZoneMainController.h; sourceTree = "<group>"; };
+		2FC013E52148F1530007BA3B /* AMTZoneMainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTZoneMainController.m; sourceTree = "<group>"; };
+		2FC013E92148F9BD0007BA3B /* AMTMerchantDetalisController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMerchantDetalisController.h; sourceTree = "<group>"; };
+		2FC013EA2148F9BD0007BA3B /* AMTMerchantDetalisController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMerchantDetalisController.m; sourceTree = "<group>"; };
+		2FC013ED2148FAA40007BA3B /* AMTDetailsHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTDetailsHeadView.h; sourceTree = "<group>"; };
+		2FC013EE2148FAA40007BA3B /* AMTDetailsHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTDetailsHeadView.m; sourceTree = "<group>"; };
+		2FC013F22148FDBA0007BA3B /* LTAdvancedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTAdvancedManager.swift; sourceTree = "<group>"; };
+		2FC013F32148FDBA0007BA3B /* LTDispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTDispatchQueue.swift; sourceTree = "<group>"; };
+		2FC013F42148FDBA0007BA3B /* LTPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPageView.swift; sourceTree = "<group>"; };
+		2FC013F52148FDBA0007BA3B /* LTScrollExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTScrollExtension.swift; sourceTree = "<group>"; };
+		2FC013F62148FDBA0007BA3B /* LTSimpleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSimpleManager.swift; sourceTree = "<group>"; };
+		2FC013F72148FDBA0007BA3B /* LTTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTTableView.swift; sourceTree = "<group>"; };
+		2FC013F82148FDBA0007BA3B /* LTTableViewProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTTableViewProtocal.swift; sourceTree = "<group>"; };
+		2FC013F92148FDBA0007BA3B /* LTVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTVCExtension.swift; sourceTree = "<group>"; };
+		2FC0140521490ADF0007BA3B /* AMTDetailsClassView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTDetailsClassView.h; sourceTree = "<group>"; };
+		2FC0140621490ADF0007BA3B /* AMTDetailsClassView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTDetailsClassView.m; sourceTree = "<group>"; };
 		2FE2A4B821378B05002AB1D8 /* AnMaoTong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnMaoTong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FE2A4C221378B05002AB1D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2FE2A4C421378B06002AB1D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -920,6 +954,69 @@
 			path = MainVC;
 			sourceTree = "<group>";
 		};
+		2FC013E02148F0FC0007BA3B /* ZoneVC */ = {
+			isa = PBXGroup;
+			children = (
+				2FC013E12148F1110007BA3B /* AMTZoneController.h */,
+				2FC013E22148F1110007BA3B /* AMTZoneController.m */,
+				2FC013E42148F1530007BA3B /* AMTZoneMainController.h */,
+				2FC013E52148F1530007BA3B /* AMTZoneMainController.m */,
+			);
+			path = ZoneVC;
+			sourceTree = "<group>";
+		};
+		2FC013E72148F2B00007BA3B /* UserDetailsVC */ = {
+			isa = PBXGroup;
+			children = (
+				2FC013E82148F98F0007BA3B /* 商家详情 */,
+			);
+			path = UserDetailsVC;
+			sourceTree = "<group>";
+		};
+		2FC013E82148F98F0007BA3B /* 商家详情 */ = {
+			isa = PBXGroup;
+			children = (
+				2FC013E92148F9BD0007BA3B /* AMTMerchantDetalisController.h */,
+				2FC013EA2148F9BD0007BA3B /* AMTMerchantDetalisController.m */,
+				2FC013EC2148FA870007BA3B /* View */,
+			);
+			path = "商家详情";
+			sourceTree = "<group>";
+		};
+		2FC013EC2148FA870007BA3B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2FC013ED2148FAA40007BA3B /* AMTDetailsHeadView.h */,
+				2FC013EE2148FAA40007BA3B /* AMTDetailsHeadView.m */,
+				2FC0140521490ADF0007BA3B /* AMTDetailsClassView.h */,
+				2FC0140621490ADF0007BA3B /* AMTDetailsClassView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2FC013F02148FDBA0007BA3B /* LTScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				2FC013F12148FDBA0007BA3B /* Lib */,
+			);
+			path = LTScrollView;
+			sourceTree = "<group>";
+		};
+		2FC013F12148FDBA0007BA3B /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				2FC013F22148FDBA0007BA3B /* LTAdvancedManager.swift */,
+				2FC013F32148FDBA0007BA3B /* LTDispatchQueue.swift */,
+				2FC013F42148FDBA0007BA3B /* LTPageView.swift */,
+				2FC013F52148FDBA0007BA3B /* LTScrollExtension.swift */,
+				2FC013F62148FDBA0007BA3B /* LTSimpleManager.swift */,
+				2FC013F72148FDBA0007BA3B /* LTTableView.swift */,
+				2FC013F82148FDBA0007BA3B /* LTTableViewProtocal.swift */,
+				2FC013F92148FDBA0007BA3B /* LTVCExtension.swift */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
 		2FE2A4AF21378B05002AB1D8 = {
 			isa = PBXGroup;
 			children = (
@@ -1048,6 +1145,7 @@
 		2FE2A5212137C7E1002AB1D8 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				2FC013F02148FDBA0007BA3B /* LTScrollView */,
 				2F95ED9521466AD7008EA374 /* CPAMapLocationManager */,
 				2F95ED70214602C3008EA374 /* CPBaseImageCollectionView */,
 				2F597CBF214216A100C5B4A0 /* PersonalRadioView */,
@@ -1539,6 +1637,8 @@
 		2FE2A6052137D25E002AB1D8 /* SubController */ = {
 			isa = PBXGroup;
 			children = (
+				2FC013E72148F2B00007BA3B /* UserDetailsVC */,
+				2FC013E02148F0FC0007BA3B /* ZoneVC */,
 				2F726A48213FAD780024A73F /* searchVC */,
 				2F726A2D213F6DB70024A73F /* screenVC */,
 				2F726A2C213F6D850024A73F /* detailsVC */,
@@ -1549,8 +1649,10 @@
 		2FE2A6062137D25E002AB1D8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2F95EDA821477254008EA374 /* AMTBannerView.h */,
-				2F95EDA921477254008EA374 /* AMTBannerView.m */,
+				2FC013DD2148B5F00007BA3B /* AMTBannerCell.h */,
+				2FC013DE2148B5F00007BA3B /* AMTBannerCell.m */,
+				2FC013DA2148B1120007BA3B /* AMTHeadView.h */,
+				2FC013DB2148B1120007BA3B /* AMTHeadView.m */,
 				2F95EDAB21479551008EA374 /* AMTZoneCell.h */,
 				2F95EDAC21479551008EA374 /* AMTZoneCell.m */,
 			);
@@ -1838,6 +1940,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FC013DF2148B5F00007BA3B /* AMTBannerCell.m in Sources */,
 				2FE2A5CF2137C846002AB1D8 /* User.m in Sources */,
 				2F1C3A542140C9E4008D3B66 /* RegisterViewController.m in Sources */,
 				2FE2A5922137C810002AB1D8 /* IQKeyboardManager.m in Sources */,
@@ -1851,7 +1954,6 @@
 				2F726A66213FAF540024A73F /* KKHorizontalPageableLayout.m in Sources */,
 				2F597CE921426E2200C5B4A0 /* AMTPersonalViewController.m in Sources */,
 				2F597CF12142713F00C5B4A0 /* AMTPersonalCell.m in Sources */,
-				2F95EDAA21477254008EA374 /* AMTBannerView.m in Sources */,
 				2F597CC2214216A100C5B4A0 /* PersonalRadioView.m in Sources */,
 				2F1C3A5D2140CA69008D3B66 /* LoginDataModel.m in Sources */,
 				2FE2A51F2137C7D2002AB1D8 /* BaseTableViewCell.m in Sources */,
@@ -1869,17 +1971,23 @@
 				2F726A5C213FAF010024A73F /* KKHistorySearchModel.m in Sources */,
 				2FAA0A24213E5C41004956CA /* AMTMainVC.m in Sources */,
 				2F597CC82142577A00C5B4A0 /* AMTHeadInfoView.m in Sources */,
+				2FC013FF2148FDBB0007BA3B /* LTTableView.swift in Sources */,
+				2FC013DC2148B1120007BA3B /* AMTHeadView.m in Sources */,
 				2FE2A55D2137C7FA002AB1D8 /* UIBarButtonItem+KKExtension.m in Sources */,
 				2FE2A60D2137D2A6002AB1D8 /* AMTFindVC.m in Sources */,
 				58CF92492142BAB30065EF0F /* AMTMyCommentsCell.m in Sources */,
+				2FC013FA2148FDBB0007BA3B /* LTAdvancedManager.swift in Sources */,
 				58CF92452142BA2F0065EF0F /* AMTMyCommentsViewController.m in Sources */,
 				2F95EDB32147BDEF008EA374 /* AMTDynamicCountView.m in Sources */,
 				2FE2A5992137C810002AB1D8 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				2FE2A5552137C7FA002AB1D8 /* NSObject+KKTextSize.m in Sources */,
 				2F1C3BDA21412DB1008D3B66 /* AMTBaseInfoViewController.m in Sources */,
+				2FC013FB2148FDBB0007BA3B /* LTDispatchQueue.swift in Sources */,
 				2F1C3A602140CB62008D3B66 /* UIView+extension.m in Sources */,
+				2FC0140721490ADF0007BA3B /* AMTDetailsClassView.m in Sources */,
 				2F95ED94214657EF008EA374 /* NSMutableAttributedString+Extension.m in Sources */,
 				2F1C3A6A2140D11B008D3B66 /* CPLinkLabView.m in Sources */,
+				2FC013E32148F1110007BA3B /* AMTZoneController.m in Sources */,
 				2F726A3F213F87810024A73F /* AMTContentView.m in Sources */,
 				2F893C8E2143656C00D441B2 /* AMTMyLikeViewController.m in Sources */,
 				2FE2A5A22137C81D002AB1D8 /* KKClassificationView.m in Sources */,
@@ -1900,6 +2008,7 @@
 				2FE2A5C42137C837002AB1D8 /* TAAnimatedDotView.m in Sources */,
 				2FE2A5C82137C837002AB1D8 /* SDCycleScrollView.m in Sources */,
 				2FE2A58E2137C810002AB1D8 /* IQUIScrollView+Additions.m in Sources */,
+				2FC013EF2148FAA40007BA3B /* AMTDetailsHeadView.m in Sources */,
 				2FE2A5A32137C81D002AB1D8 /* KKClassiflcationLayout.m in Sources */,
 				2FE2A5592137C7FA002AB1D8 /* NSString+CZPath.m in Sources */,
 				2FE2A58F2137C810002AB1D8 /* IQUITextFieldView+Additions.m in Sources */,
@@ -1916,14 +2025,18 @@
 				2FE2A5AA2137C828002AB1D8 /* KKNetWorking.m in Sources */,
 				2F95ED7C21461125008EA374 /* AMTPartitionView.m in Sources */,
 				2F726A58213FAF010024A73F /* KKSearchGoodsViewController.m in Sources */,
+				2FC013EB2148F9BD0007BA3B /* AMTMerchantDetalisController.m in Sources */,
 				2FE2A5192137C7D2002AB1D8 /* BaseImageView.m in Sources */,
 				2F1C3A552140C9E4008D3B66 /* RegisterOneDataModel.m in Sources */,
 				2FE2A5982137C810002AB1D8 /* IQToolbar.m in Sources */,
 				2FE2A5942137C810002AB1D8 /* IQTextView.m in Sources */,
+				2FC013FC2148FDBB0007BA3B /* LTPageView.swift in Sources */,
 				58CF92362142A5430065EF0F /* AMTFocusShopCell.m in Sources */,
+				2FC013E62148F1530007BA3B /* AMTZoneMainController.m in Sources */,
 				2FE2A4CB21378B06002AB1D8 /* main.m in Sources */,
 				2F1C3A712140FFA2008D3B66 /* AMTUserNameViewController.m in Sources */,
 				2F95EDA721477032008EA374 /* AMTZoneModel.m in Sources */,
+				2FC013FD2148FDBB0007BA3B /* LTScrollExtension.swift in Sources */,
 				2FE2A5C92137C837002AB1D8 /* UIView+SDExtension.m in Sources */,
 				2FE2A51B2137C7D2002AB1D8 /* BaseTableView.m in Sources */,
 				2FE2A58D2137C810002AB1D8 /* IQNSArray+Sort.m in Sources */,
@@ -1939,6 +2052,7 @@
 				2FE2A5E02137C851002AB1D8 /* CP_AES.m in Sources */,
 				2F726A5B213FAF010024A73F /* KKTagCell.m in Sources */,
 				2FE2A55A2137C7FA002AB1D8 /* NSString+KKPhoneNumber.m in Sources */,
+				2FC013FE2148FDBB0007BA3B /* LTSimpleManager.swift in Sources */,
 				2FE2A55B2137C7FA002AB1D8 /* NSString+KKStringDate.m in Sources */,
 				2F597CC5214254AC00C5B4A0 /* AMTMyHeadView.m in Sources */,
 				2FE2A6132137D2C2002AB1D8 /* AMTMessageVC.m in Sources */,
@@ -1975,11 +2089,13 @@
 				2FE2A5502137C7FA002AB1D8 /* BHNavigationLeftBtn.m in Sources */,
 				2FE2A5512137C7FA002AB1D8 /* CALayer+KKCustomLayer.m in Sources */,
 				2FE2A55F2137C7FA002AB1D8 /* UIImage+Base64.m in Sources */,
+				2FC014012148FDBB0007BA3B /* LTVCExtension.swift in Sources */,
 				2F95EDAD21479551008EA374 /* AMTZoneCell.m in Sources */,
 				2F597CED21426FD000C5B4A0 /* AMTPersonalModel.m in Sources */,
 				2F95ED9E21474E77008EA374 /* AMTDetailsViewModel.m in Sources */,
 				2FE2A5002137C7B2002AB1D8 /* BaseNavigationController.m in Sources */,
 				2FE2A51C2137C7D2002AB1D8 /* BaseView.m in Sources */,
+				2FC014002148FDBB0007BA3B /* LTTableViewProtocal.swift in Sources */,
 				2F95ED8921464E56008EA374 /* ReleaseDynamicTitleCell.m in Sources */,
 				58CF92412142B2C40065EF0F /* AMTMyCollectionCell.m in Sources */,
 				2FE2A5652137C7FA002AB1D8 /* UIViewController+Seting.m in Sources */,
@@ -2171,6 +2287,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xmamt.amt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2193,6 +2310,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xmamt.amt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2200,6 +2318,7 @@
 		2FE2A4E821378B06002AB1D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8223AEM4EH;
@@ -2219,6 +2338,7 @@
 		2FE2A4E921378B06002AB1D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8223AEM4EH;
@@ -2238,6 +2358,7 @@
 		2FE2A4EB21378B06002AB1D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8223AEM4EH;
 				INFOPLIST_FILE = AnMaoTongUITests/Info.plist;
@@ -2256,6 +2377,7 @@
 		2FE2A4EC21378B06002AB1D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8223AEM4EH;
 				INFOPLIST_FILE = AnMaoTongUITests/Info.plist;

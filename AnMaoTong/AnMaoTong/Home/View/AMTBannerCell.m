@@ -1,28 +1,31 @@
 //
-//  AMTBannerView.m
+//  AMTBannerCell.m
 //  AnMaoTong
 //
-//  Created by lk05 on 2018/9/11.
+//  Created by lk05 on 2018/9/12.
 //  Copyright © 2018年 zhu. All rights reserved.
 //
 
-#import "AMTBannerView.h"
-@interface AMTBannerView ()<SDCycleScrollViewDelegate>
+#import "AMTBannerCell.h"
+@interface AMTBannerCell ()<SDCycleScrollViewDelegate>
 @property(nonatomic,strong)SDCycleScrollView *  cycleScrollView;
 @end
-@implementation AMTBannerView
-
-- (instancetype)initWithFrame:(CGRect)frame
+@implementation AMTBannerCell
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    if (self = [super initWithFrame:frame]) {
-        [self addSubview:self.cycleScrollView];
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self.contentView addSubview:self.cycleScrollView];
     }
     return self;
 }
-
 - (void)setImages:(NSArray *)images
 {
     self.cycleScrollView.imageURLStringsGroup = images;
+}
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+{
+    
 }
 
 //图片轮播视图
@@ -35,4 +38,5 @@
     }
     return _cycleScrollView;
 }
+
 @end
