@@ -36,12 +36,12 @@ static KKNetWorking * shard;
 
     
     User *user   = [UserHelper shareInstance].user;
-    NSString *userId    = [NSString stringWithFormat:@"%@",user.user_id ? user.user_id : @""];
+    NSString *userId    = [NSString stringWithFormat:@"%@",user.user_id ? user.user_id : @"0"];
     NSString *random    = [NSString stringWithFormat:@"%d",arc4random_uniform(100000)];
     NSString *token     = [NSString stringWithFormat:@"%@",user.token ? user.token : @""];
     NSString *platform  = @"ios";
     NSString *version   = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSString *http_type = user.type ? user.type : self.http_type.length > 0 ? self.http_type : @"1";
+    NSString *http_type = user.type ? user.type : @"0";
     NSString *total     = [CP_AES cpStringToAes256_encrypt:[NSString stringWithFormat:@"%@%@%@%@%@%@",KKString(userId),random,token,platform,version,http_type]];
     
     
