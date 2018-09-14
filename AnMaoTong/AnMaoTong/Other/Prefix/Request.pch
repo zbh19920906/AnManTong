@@ -33,5 +33,8 @@
 #define getClassZone   [NSString stringWithFormat:@"%@api/method/getClassZone", AMTURL]
 //首页动态
 #define getDynamic   [NSString stringWithFormat:@"%@api/method/getDynamic", AMTURL]
+//获取轮播图
+#define getCarouselMap   [NSString stringWithFormat:@"%@api/method/getCarouselMap", AMTURL]
+
 #endif /* Request_pch */
 

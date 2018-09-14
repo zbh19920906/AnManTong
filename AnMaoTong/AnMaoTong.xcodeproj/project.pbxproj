@@ -73,6 +73,11 @@
 		2F95EDAD21479551008EA374 /* AMTZoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F95EDAC21479551008EA374 /* AMTZoneCell.m */; };
 		2F95EDB02147B67B008EA374 /* AMTGoodsTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F95EDAF2147B67B008EA374 /* AMTGoodsTitleView.m */; };
 		2F95EDB32147BDEF008EA374 /* AMTDynamicCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F95EDB22147BDEF008EA374 /* AMTDynamicCountView.m */; };
+		2FA1E051214B955600031511 /* AMTFindSubVIewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA1E050214B955600031511 /* AMTFindSubVIewController.m */; };
+		2FA1E054214B965E00031511 /* AMTFindHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA1E053214B965E00031511 /* AMTFindHeadView.m */; };
+		2FA1E057214B97FC00031511 /* AMTFindViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA1E056214B97FC00031511 /* AMTFindViewModel.m */; };
+		2FA1E05A214B9FD400031511 /* AMTBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA1E059214B9FD400031511 /* AMTBannerModel.m */; };
+		2FA1E05D214BB2B800031511 /* AMTFindHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA1E05C214BB2B800031511 /* AMTFindHeadCell.m */; };
 		2FAA0A24213E5C41004956CA /* AMTMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA0A23213E5C41004956CA /* AMTMainVC.m */; };
 		2FC013DC2148B1120007BA3B /* AMTHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013DB2148B1120007BA3B /* AMTHeadView.m */; };
 		2FC013DF2148B5F00007BA3B /* AMTBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013DE2148B5F00007BA3B /* AMTBannerCell.m */; };
@@ -333,6 +338,16 @@
 		2F95EDAF2147B67B008EA374 /* AMTGoodsTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTGoodsTitleView.m; sourceTree = "<group>"; };
 		2F95EDB12147BDEF008EA374 /* AMTDynamicCountView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTDynamicCountView.h; sourceTree = "<group>"; };
 		2F95EDB22147BDEF008EA374 /* AMTDynamicCountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTDynamicCountView.m; sourceTree = "<group>"; };
+		2FA1E04F214B955600031511 /* AMTFindSubVIewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTFindSubVIewController.h; sourceTree = "<group>"; };
+		2FA1E050214B955600031511 /* AMTFindSubVIewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTFindSubVIewController.m; sourceTree = "<group>"; };
+		2FA1E052214B965E00031511 /* AMTFindHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTFindHeadView.h; sourceTree = "<group>"; };
+		2FA1E053214B965E00031511 /* AMTFindHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTFindHeadView.m; sourceTree = "<group>"; };
+		2FA1E055214B97FC00031511 /* AMTFindViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTFindViewModel.h; sourceTree = "<group>"; };
+		2FA1E056214B97FC00031511 /* AMTFindViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTFindViewModel.m; sourceTree = "<group>"; };
+		2FA1E058214B9FD400031511 /* AMTBannerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTBannerModel.h; sourceTree = "<group>"; };
+		2FA1E059214B9FD400031511 /* AMTBannerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTBannerModel.m; sourceTree = "<group>"; };
+		2FA1E05B214BB2B800031511 /* AMTFindHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTFindHeadCell.h; sourceTree = "<group>"; };
+		2FA1E05C214BB2B800031511 /* AMTFindHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTFindHeadCell.m; sourceTree = "<group>"; };
 		2FAA0A22213E5C41004956CA /* AMTMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMainVC.h; sourceTree = "<group>"; };
 		2FAA0A23213E5C41004956CA /* AMTMainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMainVC.m; sourceTree = "<group>"; };
 		2FC013DA2148B1120007BA3B /* AMTHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTHeadView.h; sourceTree = "<group>"; };
@@ -1577,6 +1592,8 @@
 				2FE2A6022137D25E002AB1D8 /* ViewModel */,
 				2FE2A60B2137D2A6002AB1D8 /* AMTFindVC.h */,
 				2FE2A60C2137D2A6002AB1D8 /* AMTFindVC.m */,
+				2FA1E04F214B955600031511 /* AMTFindSubVIewController.h */,
+				2FA1E050214B955600031511 /* AMTFindSubVIewController.m */,
 			);
 			path = Find;
 			sourceTree = "<group>";
@@ -1598,6 +1615,10 @@
 		2FE2A6012137D25E002AB1D8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2FA1E052214B965E00031511 /* AMTFindHeadView.h */,
+				2FA1E053214B965E00031511 /* AMTFindHeadView.m */,
+				2FA1E05B214BB2B800031511 /* AMTFindHeadCell.h */,
+				2FA1E05C214BB2B800031511 /* AMTFindHeadCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1605,6 +1626,8 @@
 		2FE2A6022137D25E002AB1D8 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				2FA1E055214B97FC00031511 /* AMTFindViewModel.h */,
+				2FA1E056214B97FC00031511 /* AMTFindViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1628,6 +1651,8 @@
 			children = (
 				2F95EDA521477032008EA374 /* AMTZoneModel.h */,
 				2F95EDA621477032008EA374 /* AMTZoneModel.m */,
+				2FA1E058214B9FD400031511 /* AMTBannerModel.h */,
+				2FA1E059214B9FD400031511 /* AMTBannerModel.m */,
 				2F726A31213F723B0024A73F /* AMTGoodsClassModel.h */,
 				2F726A32213F723B0024A73F /* AMTGoodsClassModel.m */,
 			);
@@ -1940,6 +1965,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA1E05A214B9FD400031511 /* AMTBannerModel.m in Sources */,
 				2FC013DF2148B5F00007BA3B /* AMTBannerCell.m in Sources */,
 				2FE2A5CF2137C846002AB1D8 /* User.m in Sources */,
 				2F1C3A542140C9E4008D3B66 /* RegisterViewController.m in Sources */,
@@ -1968,6 +1994,7 @@
 				2FE2A5642137C7FA002AB1D8 /* UIView+TL.m in Sources */,
 				2F726A30213F6E3C0024A73F /* AMTScreenVC.m in Sources */,
 				2F726A6D213FBDF70024A73F /* AMTGoodsMessageCell.m in Sources */,
+				2FA1E05D214BB2B800031511 /* AMTFindHeadCell.m in Sources */,
 				2F726A5C213FAF010024A73F /* KKHistorySearchModel.m in Sources */,
 				2FAA0A24213E5C41004956CA /* AMTMainVC.m in Sources */,
 				2F597CC82142577A00C5B4A0 /* AMTHeadInfoView.m in Sources */,
@@ -2000,6 +2027,7 @@
 				2FE2A5E92137C988002AB1D8 /* BaseModel.m in Sources */,
 				2F726A36213F79750024A73F /* AMTScreenTitleView.m in Sources */,
 				2FE2A5532137C7FA002AB1D8 /* NSMutableAttributedString+FindOutNumber.m in Sources */,
+				2FA1E057214B97FC00031511 /* AMTFindViewModel.m in Sources */,
 				58CF92392142ABE70065EF0F /* AMTFocusUserCell.m in Sources */,
 				2FE2A4FE2137C7B2002AB1D8 /* BaseCollectionView.m in Sources */,
 				2FE2A5972137C810002AB1D8 /* IQTitleBarButtonItem.m in Sources */,
@@ -2032,6 +2060,7 @@
 				2FE2A5942137C810002AB1D8 /* IQTextView.m in Sources */,
 				2FC013FC2148FDBB0007BA3B /* LTPageView.swift in Sources */,
 				58CF92362142A5430065EF0F /* AMTFocusShopCell.m in Sources */,
+				2FA1E054214B965E00031511 /* AMTFindHeadView.m in Sources */,
 				2FC013E62148F1530007BA3B /* AMTZoneMainController.m in Sources */,
 				2FE2A4CB21378B06002AB1D8 /* main.m in Sources */,
 				2F1C3A712140FFA2008D3B66 /* AMTUserNameViewController.m in Sources */,
@@ -2095,6 +2124,7 @@
 				2F95ED9E21474E77008EA374 /* AMTDetailsViewModel.m in Sources */,
 				2FE2A5002137C7B2002AB1D8 /* BaseNavigationController.m in Sources */,
 				2FE2A51C2137C7D2002AB1D8 /* BaseView.m in Sources */,
+				2FA1E051214B955600031511 /* AMTFindSubVIewController.m in Sources */,
 				2FC014002148FDBB0007BA3B /* LTTableViewProtocal.swift in Sources */,
 				2F95ED8921464E56008EA374 /* ReleaseDynamicTitleCell.m in Sources */,
 				58CF92412142B2C40065EF0F /* AMTMyCollectionCell.m in Sources */,

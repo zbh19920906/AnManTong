@@ -8,15 +8,17 @@
 
 #import "AMTHeadView.h"
 @interface AMTHeadView ()
+@property (nonatomic, copy) NSArray *titleArr;
 @property (nonatomic, strong) BaseButton *oldButton;
 @property (nonatomic, strong) BaseView *linkView;
 @end
 @implementation AMTHeadView
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray *)titleArray
 {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor whiteColor];
+        _titleArr = titleArray;
         [self setSubView];
     }
     return self;
@@ -24,14 +26,14 @@
 
 - (void)setSubView
 {
-    NSArray *titleArr = @[@"全部",@"供货",@"求购"];
-    for (NSInteger i = 0; i < 3; i ++) {
+    for (NSInteger i = 0; i < _titleArr.count; i ++) {
         BaseButton *button = [BaseButton buttonWithType:UIButtonTypeCustom];
         [button setLableColor:@"959595" font:14 bold:1];
         [button setTitleColor:BHColor(@"222222") forState:UIControlStateSelected];
-        [button setTitle:titleArr[i] forState:UIControlStateNormal];
+        [button setTitle:_titleArr[i] forState:UIControlStateNormal];
         button.tag = i + 10;
-        button.frame = CGRectMake(114 + (27 +32)*i, 12, 35, 15);
+        CGFloat X = (WIDTH_SCREEN - (35 *_titleArr.count + 27 *(_titleArr.count-1)))/2;
+        button.frame = CGRectMake(X + (27 +32)*i, 12, 35, 15);
         [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
         if (i == 0) {

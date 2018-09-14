@@ -9,5 +9,5 @@
 #import "BaseView.h"
 
 @interface AMTHeadView : BaseView
-
+- (instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray *)titleArray;
 @end

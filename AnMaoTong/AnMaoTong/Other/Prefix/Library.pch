@@ -48,6 +48,8 @@
 #import "PersonalRadioView.h"
 #import "CPAMapLocationManager.h"
 #import "AMTGoodsMessageCell.h"
+#import "AMTHeadView.h"
+#import "AMTBannerModel.h"
 //枚举
 
 #endif /* Library_pch */

@@ -11,4 +11,6 @@
 @interface AMTMyHeadView : BaseView
 @property (nonatomic, strong) AMTMyModel *model;
 @property (nonatomic, strong) BaseButton *changeBtn;
+
+- (void)changeUI;
 @end

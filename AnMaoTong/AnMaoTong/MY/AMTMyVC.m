@@ -25,9 +25,14 @@
     [super viewDidLoad];
     self.navBar.hidden = YES;
     self.headView.model = self.model;
-    
     [self.view addSubview:self.tableView];
     [self event];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.headView changeUI];
 }
 
 - (void)event

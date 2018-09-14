@@ -28,6 +28,7 @@
 - (void)setSubView
 {
     self.bgImage = [[BaseImageView alloc]init];
+    self.bgImage.image = imageNamed(@"bgImage");
     
     self.headImage = [[BaseImageView alloc]init];
     self.headImage.image = imageNamed(@"headImage");
@@ -39,6 +40,7 @@
     self.contentLab = [[BaseLabel alloc]init];
     [self.contentLab setLableColor:@"FEFEFF" font:11 bold:0];
     self.contentLab.text = @"点击立即登录";
+    self.contentLab.isAttributedContent = YES;
     
     self.headInfoView = [[AMTHeadInfoView alloc]init];
     
@@ -68,8 +70,8 @@
     self.contentLab.sd_layout
     .topSpaceToView(self.nameLab, 17)
     .leftEqualToView(self.nameLab)
-    .heightIs(11);
-    [self.contentLab setSingleLineAutoResizeWithMaxWidth:200];
+    .heightIs(11)
+    .rightSpaceToView(self, 17);
     
     self.headInfoView.sd_layout
     .bottomEqualToView(self)
@@ -87,5 +89,24 @@
 - (void)setModel:(AMTMyModel *)model
 {
     [self.headInfoView layoutIfNeeded];
+}
+
+- (void)changeUI
+{
+    User *user = [UserHelper shareInstance].user;
+    [self.headImage sd_setImageWithURL:UrlString(user.head_img) placeholderImage:imageNamed(@"headImage")];
+    
+    if ([user.type isEqualToString:@"1"]) {
+        self.nameLab.text = user.nickname;
+        self.contentLab.attributedText = [NSMutableAttributedString cpGetAttributedStringWithlocation:CPAttributedImageLocation_left rect:CGRectMake(0, -3, 13, 13) imageName:[user.sex isEqualToString:@"1"] ? @"男性" : @"女性" title:[NSString stringWithFormat:@"  %@岁",@"22"]];
+    }else{
+        self.nameLab.text = user.name;
+    }
+    self.changeBtn.hidden = NO;
+    if (user.user_id.length == 0) {
+        self.nameLab.text = @"未登录";
+        self.contentLab.text = @"点击立即登录";
+        self.changeBtn.hidden = YES;
+    }
 }
 @end
