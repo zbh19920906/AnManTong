@@ -10,7 +10,6 @@
 
 #import "ReleaseDynamicDataModel.h"
 //#import "ReleaseDynamicBottomView.h"
-
 @class AMTAddButtonVC;
 @interface ReleaseDynamicViewModel : NSObject
 
@@ -21,7 +20,6 @@
 @property (nonatomic , strong) BaseTextView *textView;
 
 @property (nonatomic , strong) CPBaseImageCollectionView *imagesCollectionView;
-
 //@property (nonatomic , strong) ReleaseDynamicBottomView *bottomView;
 
 @property (nonatomic , strong) UIButton *locationBtn;

@@ -9,7 +9,7 @@
 #import "ReleaseDynamicViewModel.h"
 #import "AMTAddButtonVC.h"
 #import "AMTPartitionView.h"
-
+#import "AMTAddTitleController.h"
 @interface ReleaseDynamicViewModel ()<
 CPBaseImageCollectionViewDelegate,PersonalRadioViewDelegate>
 
@@ -110,7 +110,11 @@ CPBaseImageCollectionViewDelegate,PersonalRadioViewDelegate>
         weakSelf.dataModel.isBrand = NO;
         PersonalRadioView *radioView = [PersonalRadioView radioViewWithTitle:@"选择专区"];
         radioView.cpDelegate = weakSelf;
-        radioView.dataSource = @[@"自主品牌",@"鞋类", @"包包", @"手表"];
+        NSMutableArray *zoneArray = [[NSMutableArray alloc]init];;
+        for (AMTZoneModel *model in weakSelf.viewController.viewModels.model.zoneArray) {
+            [zoneArray addObject:model.name];
+        }
+        radioView.dataSource = zoneArray;
         [weakSelf.viewController.navigationController.view addSubview:radioView];
     }];
     
@@ -118,8 +122,17 @@ CPBaseImageCollectionViewDelegate,PersonalRadioViewDelegate>
         weakSelf.dataModel.isBrand = YES;
         PersonalRadioView *radioView = [PersonalRadioView radioViewWithTitle:@"选择品牌"];
         radioView.cpDelegate = weakSelf;
-        radioView.dataSource = @[@"自主品牌",@"鞋类", @"包包", @"手表"];
+        NSMutableArray *brandArray = [[NSMutableArray alloc]init];;
+        for (AMTZoneModel *model in weakSelf.viewController.viewModels.model.brandArray) {
+            [brandArray addObject:model.name];
+        }
+        radioView.dataSource = brandArray;
         [weakSelf.viewController.navigationController.view addSubview:radioView];
+    }];
+    
+    [[self.titleView.tap rac_gestureSignal]subscribeNext:^(id x) {
+        AMTAddTitleController *vc = [[AMTAddTitleController alloc]init];
+        [weakSelf.viewController.navigationController pushViewController:vc animated:YES];
     }];
 }
 
@@ -128,9 +141,22 @@ CPBaseImageCollectionViewDelegate,PersonalRadioViewDelegate>
     if (self.dataModel.isBrand) {
         self.brandView.contentLab.text = valueStr;
         self.brandView.contentLab.textColor = BHColor(@"222222");
+        for (AMTBrandModel *model in self.viewController.viewModels.model.brandArray) {
+            if ([model.name isEqualToString:valueStr]) {
+                self.viewController.viewModels.brandID = model.ID;
+                break;
+            }
+        }
+        
     }else{
         self.partitionView.contentLab.text = valueStr;
         self.partitionView.contentLab.textColor = BHColor(@"222222");
+        for (AMTZoneModel *model in self.viewController.viewModels.model.zoneArray) {
+            if ([model.name isEqualToString:valueStr]) {
+                self.viewController.viewModels.zoneID = model.ID;
+                break;
+            }
+        }
     }
 }
 
@@ -138,6 +164,7 @@ CPBaseImageCollectionViewDelegate,PersonalRadioViewDelegate>
 {
     if (location)
     {
+        self.viewController.viewModels.position = location;
         [self.locationBtn setTitle:[NSString stringWithFormat:@"   %@  ㄨ",location] forState:UIControlStateNormal];
         [self.locationBtn setImage:[imageNamed(@"releaseLocation") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
         [self.locationBtn setTintColor:BHColor(@"FFD800")];
@@ -146,6 +173,7 @@ CPBaseImageCollectionViewDelegate,PersonalRadioViewDelegate>
     }
     else
     {
+        self.viewController.viewModels.position = @"";
         [self.locationBtn setTitle:@"   你在哪里" forState:UIControlStateNormal];
         [self.locationBtn setImage:[imageNamed(@"releaseLocation") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
         [self.locationBtn setTintColor:BHColor(@"999999")];

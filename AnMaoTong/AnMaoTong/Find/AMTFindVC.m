@@ -14,17 +14,26 @@
 @property(strong, nonatomic) KKClassificationView *managerView;
 @property (nonatomic, strong) NSMutableArray *titleArr;
 @property(copy, nonatomic) NSMutableArray *viewControllers;
+@property (nonatomic, assign) BOOL isGoods;
 @end
 
 @implementation AMTFindVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AMTHeadView *titleView = [[AMTHeadView alloc]initWithFrame:CGRectMake(0, 15, WIDTH_SCREEN, 44) titleArray:@[@"商家",@"产品"]];
+    weakSelf(self);
+    AMTHeadView *titleView = [[AMTHeadView alloc]initWithFrame:CGRectMake(0, 15, WIDTH_SCREEN, 44) titleArray:@[@"商家",@"产品"] click:^(NSInteger tag) {
+        if(weakSelf.viewControllers.count > 0){
+            
+            AMTFindSubVIewController *vc = weakSelf.viewControllers[weakSelf.managerView.selectedIndex];
+            weakSelf.isGoods = tag;
+            vc.isGoods = weakSelf.isGoods;
+        }
+    }];
     [self.navBar addSubview:titleView];
     [self.navBar.rightButton setImage:imageNamed(@"search") forState:UIControlStateNormal];
     [self.navBar bringSubviewToFront:self.navBar.rightButton];
-    weakSelf(self);
+  
     [[KKNetWorking getShard]request:GET url:getGoodsClass parameters:nil completion:^(id json, NSInteger code) {
         weakSelf.titleArr = [AMTGoodsClassModel mj_objectArrayWithKeyValuesArray:json[@"data"]];
         [weakSelf.view addSubview:weakSelf.managerView];
@@ -39,7 +48,8 @@
     if (!_managerView) {
         weakSelf(self);
         _managerView = [[KKClassificationView alloc]initWithFrame:CGRectMake(0, NavHFit, self.view.bounds.size.width, HEIGHT_SCREEN - TabBarHFit - NavHFit) viewController:self layout:self.layout clickBlock:^(NSInteger index) {
-            
+             AMTFindSubVIewController *vc = weakSelf.viewControllers[index];
+            vc.isGoods = weakSelf.isGoods;
         }];
     }
     return _managerView;
@@ -81,6 +91,7 @@
             AMTFindSubVIewController *vc = [[AMTFindSubVIewController alloc]init];
             AMTGoodsClassModel *model = self.titleArr[i];
             vc.goods_class_id = model.ID;
+            vc.isGoods = NO;
             [_viewControllers addObject:vc];
         }
     }

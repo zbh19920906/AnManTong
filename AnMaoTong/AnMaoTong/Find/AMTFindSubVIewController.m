@@ -9,6 +9,8 @@
 #import "AMTFindSubVIewController.h"
 #import "AMTFindViewModel.h"
 #import "AMTFindHeadView.h"
+#import "AMTMyCollectionCell.h"
+#import "AMTFocusShopCell.h"
 @interface AMTFindSubVIewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) AMTFindViewModel *viewModels;
 @property (nonatomic, copy) NSArray <AMTBrandModel *> *brandArray;
@@ -22,8 +24,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.tableView];
+    
     [self setBingding];
+}
+
+- (void)setIsGoods:(BOOL)isGoods
+{
+    _isGoods = isGoods;
+    [self.tableView reloadData];
 }
 
 - (void)setBingding
@@ -44,9 +52,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[BaseTableViewCell identifier] forIndexPath:indexPath];
+    if(self.isGoods){
+        AMTMyCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTMyCollectionCell class]) forIndexPath:indexPath];
+        cell.isHistory = NO;
+        return cell;
+    }else{
+        AMTFocusShopCell*cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTFocusShopCell class]) forIndexPath:indexPath];
+        return cell;
+    }
     
-    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 136;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -66,7 +85,9 @@
         _tableView = [[BaseTableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource =self;
-        [_tableView registerClass:[BaseTableViewCell class] forCellReuseIdentifier:[BaseTableViewCell identifier]];
+        [_tableView registerClass:[AMTMyCollectionCell class] forCellReuseIdentifier:[AMTMyCollectionCell identifier]];
+        [_tableView registerClass:[AMTFocusShopCell class] forCellReuseIdentifier:[AMTFocusShopCell identifier]];
+        [self.view addSubview:_tableView];
     }
     return _tableView;
 }

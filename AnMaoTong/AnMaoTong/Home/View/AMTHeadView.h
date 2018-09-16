@@ -7,7 +7,8 @@
 //
 
 #import "BaseView.h"
-
+typedef void (^HeadClick)(NSInteger tag);
 @interface AMTHeadView : BaseView
-- (instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray *)titleArray;
+@property (nonatomic, copy) HeadClick headClick;
+- (instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray *)titleArray click:(HeadClick)click;
 @end

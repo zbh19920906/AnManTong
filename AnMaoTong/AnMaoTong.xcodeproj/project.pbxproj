@@ -175,6 +175,10 @@
 		2FE2A6102137D2B8002AB1D8 /* AMTAddButtonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE2A60F2137D2B8002AB1D8 /* AMTAddButtonVC.m */; };
 		2FE2A6132137D2C2002AB1D8 /* AMTMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE2A6122137D2C2002AB1D8 /* AMTMessageVC.m */; };
 		2FE2A6162137D2D1002AB1D8 /* AMTMyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE2A6152137D2D1002AB1D8 /* AMTMyVC.m */; };
+		580D24CC214D22E700144D5D /* AMTClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 580D24CB214D22E700144D5D /* AMTClassModel.m */; };
+		580D24CF214D239A00144D5D /* AMTReleaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 580D24CE214D239A00144D5D /* AMTReleaseViewModel.m */; };
+		580D24D3214D37E500144D5D /* AMTAddTitleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 580D24D2214D37E500144D5D /* AMTAddTitleController.m */; };
+		580D24D8214D3CD300144D5D /* AMTKeyBoardInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 580D24D7214D3CD300144D5D /* AMTKeyBoardInputView.m */; };
 		58CF922C214295EE0065EF0F /* AMTFocusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CF922B214295EE0065EF0F /* AMTFocusViewController.m */; };
 		58CF922F214297650065EF0F /* AMTFocusShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CF922E214297650065EF0F /* AMTFocusShopController.m */; };
 		58CF92322142977D0065EF0F /* AMTFocusUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CF92312142977D0065EF0F /* AMTFocusUserController.m */; };
@@ -544,6 +548,14 @@
 		2FE2A6122137D2C2002AB1D8 /* AMTMessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMessageVC.m; sourceTree = "<group>"; };
 		2FE2A6142137D2D1002AB1D8 /* AMTMyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMyVC.h; sourceTree = "<group>"; };
 		2FE2A6152137D2D1002AB1D8 /* AMTMyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMyVC.m; sourceTree = "<group>"; };
+		580D24CA214D22E700144D5D /* AMTClassModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTClassModel.h; sourceTree = "<group>"; };
+		580D24CB214D22E700144D5D /* AMTClassModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTClassModel.m; sourceTree = "<group>"; };
+		580D24CD214D239A00144D5D /* AMTReleaseViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTReleaseViewModel.h; sourceTree = "<group>"; };
+		580D24CE214D239A00144D5D /* AMTReleaseViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTReleaseViewModel.m; sourceTree = "<group>"; };
+		580D24D1214D37E500144D5D /* AMTAddTitleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTAddTitleController.h; sourceTree = "<group>"; };
+		580D24D2214D37E500144D5D /* AMTAddTitleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTAddTitleController.m; sourceTree = "<group>"; };
+		580D24D6214D3CD300144D5D /* AMTKeyBoardInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTKeyBoardInputView.h; sourceTree = "<group>"; };
+		580D24D7214D3CD300144D5D /* AMTKeyBoardInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTKeyBoardInputView.m; sourceTree = "<group>"; };
 		58CF922A214295EE0065EF0F /* AMTFocusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTFocusViewController.h; sourceTree = "<group>"; };
 		58CF922B214295EE0065EF0F /* AMTFocusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTFocusViewController.m; sourceTree = "<group>"; };
 		58CF922D214297650065EF0F /* AMTFocusShopController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTFocusShopController.h; sourceTree = "<group>"; };
@@ -1538,7 +1550,7 @@
 		2FE2A5F92137D25E002AB1D8 /* AddButton */ = {
 			isa = PBXGroup;
 			children = (
-				2FE2A5FA2137D25E002AB1D8 /* Model */,
+				580D24C9214D22C100144D5D /* Model */,
 				2FE2A5FB2137D25E002AB1D8 /* SubController */,
 				2FE2A5FC2137D25E002AB1D8 /* View */,
 				2FE2A5FD2137D25E002AB1D8 /* ViewModel */,
@@ -1548,16 +1560,10 @@
 			path = AddButton;
 			sourceTree = "<group>";
 		};
-		2FE2A5FA2137D25E002AB1D8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		2FE2A5FB2137D25E002AB1D8 /* SubController */ = {
 			isa = PBXGroup;
 			children = (
+				580D24D0214D379400144D5D /* titleControll */,
 				2F95ED7D21464E55008EA374 /* ReleaseDynamicCity */,
 			);
 			path = SubController;
@@ -1579,6 +1585,8 @@
 				2F95ED6D21460273008EA374 /* ReleaseDynamicViewModel.m */,
 				2F95ED7721460809008EA374 /* ReleaseDynamicDataModel.h */,
 				2F95ED7821460809008EA374 /* ReleaseDynamicDataModel.m */,
+				580D24CD214D239A00144D5D /* AMTReleaseViewModel.h */,
+				580D24CE214D239A00144D5D /* AMTReleaseViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1691,6 +1699,26 @@
 				2F95EDA321476C9A008EA374 /* AMTHomeViewModel.m */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		580D24C9214D22C100144D5D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				580D24CA214D22E700144D5D /* AMTClassModel.h */,
+				580D24CB214D22E700144D5D /* AMTClassModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		580D24D0214D379400144D5D /* titleControll */ = {
+			isa = PBXGroup;
+			children = (
+				580D24D1214D37E500144D5D /* AMTAddTitleController.h */,
+				580D24D2214D37E500144D5D /* AMTAddTitleController.m */,
+				580D24D6214D3CD300144D5D /* AMTKeyBoardInputView.h */,
+				580D24D7214D3CD300144D5D /* AMTKeyBoardInputView.m */,
+			);
+			path = titleControll;
 			sourceTree = "<group>";
 		};
 		58CF9229214295B60065EF0F /* Focus */ = {
@@ -1982,6 +2010,7 @@
 				2F597CF12142713F00C5B4A0 /* AMTPersonalCell.m in Sources */,
 				2F597CC2214216A100C5B4A0 /* PersonalRadioView.m in Sources */,
 				2F1C3A5D2140CA69008D3B66 /* LoginDataModel.m in Sources */,
+				580D24D8214D3CD300144D5D /* AMTKeyBoardInputView.m in Sources */,
 				2FE2A51F2137C7D2002AB1D8 /* BaseTableViewCell.m in Sources */,
 				2FE2A60A2137D290002AB1D8 /* AMTHomeVC.m in Sources */,
 				2F726A27213F6AC30024A73F /* AMTDetailsVC.m in Sources */,
@@ -2101,6 +2130,7 @@
 				2FE2A5902137C810002AB1D8 /* IQUIView+Hierarchy.m in Sources */,
 				2F726A33213F723B0024A73F /* AMTGoodsClassModel.m in Sources */,
 				2F726A59213FAF010024A73F /* KKHistorySearchView.m in Sources */,
+				580D24D3214D37E500144D5D /* AMTAddTitleController.m in Sources */,
 				2F893C982143AB6A00D441B2 /* AMTMessageHeadView.m in Sources */,
 				2F95ED75214602C3008EA374 /* CPBaseImageCollectionCell.m in Sources */,
 				2F1C3BD121410C3D008D3B66 /* AMTRegisterModel.m in Sources */,
@@ -2120,7 +2150,9 @@
 				2FE2A55F2137C7FA002AB1D8 /* UIImage+Base64.m in Sources */,
 				2FC014012148FDBB0007BA3B /* LTVCExtension.swift in Sources */,
 				2F95EDAD21479551008EA374 /* AMTZoneCell.m in Sources */,
+				580D24CF214D239A00144D5D /* AMTReleaseViewModel.m in Sources */,
 				2F597CED21426FD000C5B4A0 /* AMTPersonalModel.m in Sources */,
+				580D24CC214D22E700144D5D /* AMTClassModel.m in Sources */,
 				2F95ED9E21474E77008EA374 /* AMTDetailsViewModel.m in Sources */,
 				2FE2A5002137C7B2002AB1D8 /* BaseNavigationController.m in Sources */,
 				2FE2A51C2137C7D2002AB1D8 /* BaseView.m in Sources */,

@@ -10,4 +10,5 @@
 
 @interface AMTFindSubVIewController : BaseViewController
 @property (nonatomic, copy)NSString *goods_class_id;
+@property (nonatomic, assign) BOOL isGoods;
 @end

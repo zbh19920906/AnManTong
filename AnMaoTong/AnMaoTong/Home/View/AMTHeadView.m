@@ -14,10 +14,11 @@
 @end
 @implementation AMTHeadView
 
-- (instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray *)titleArray
+- (instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray *)titleArray click:(id)click
 {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor whiteColor];
+        self.headClick = click;
         _titleArr = titleArray;
         [self setSubView];
     }
@@ -52,6 +53,7 @@
     _oldButton.selected = NO;
     button.selected = YES;
     _oldButton = button;
+    self.headClick ? self.headClick(button.tag - 10) : nil;
     weakSelf(self);
     [UIView animateWithDuration:0.3 animations:^{
         weakSelf.linkView.frame = CGRectMake(weakSelf.oldButton.centerX - 11, self.height - 8, 22, 2);

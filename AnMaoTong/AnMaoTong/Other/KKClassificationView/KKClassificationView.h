@@ -11,6 +11,7 @@
 typedef void (^ClickBlock)(NSInteger index);
 @interface KKClassificationView : UIView
 @property (nonatomic, copy) ClickBlock clickBlock;
+@property (nonatomic, assign) NSInteger selectedIndex;
 /**
  初始化方法
 

@@ -67,6 +67,7 @@
 
 - (void)changeSubView:(NSInteger)index
 {
+    self.selectedIndex = index;
     self.clickBlock(index);
     [self.collection scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
 }

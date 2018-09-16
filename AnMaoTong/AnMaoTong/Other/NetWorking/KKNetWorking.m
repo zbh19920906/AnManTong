@@ -87,7 +87,33 @@ static KKNetWorking * shard;
         fail(kServerErrMsg,0);
         //        shard.isUse==YES ? NSLog(@""):LFLog(@"请求失败%@",error);
     };
-    
+    //文件上传
+    if ([urlString isEqualToString:Release]) {
+        [shard POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            NSArray *images = parameters[@"image"];
+            for (int i = 0; i < images.count; i++) {
+                
+                UIImage *image = images[i];
+                //压缩图片，限制大小为2M
+                NSData *imageData = [image compressQualityWithMaxLength:2*1024*1024];
+                
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                formatter.dateFormat =@"yyyyMMddHHmmss";
+                NSString *str = [formatter stringFromDate:[NSDate date]];
+                NSString *fileName = [NSString stringWithFormat:@"%@%@.jpg", str, [UserHelper shareInstance].user.user_id];
+                
+                //上传的参数(上传图片，以文件流的格式)
+                [formData appendPartWithFileData:imageData
+                                            name:@"image"
+                                        fileName:fileName
+                                        mimeType:@"image/jpeg"];
+            }
+        } progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:successBolck failure:failureBolck];
+        
+        return;
+    }
     ///判断是GET还是POST
     if (Mothd == GET)
     {

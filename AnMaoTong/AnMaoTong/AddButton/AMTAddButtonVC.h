@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ReleaseDynamicViewModel.h"
+#import "AMTReleaseViewModel.h"
 @interface AMTAddButtonVC : BaseViewController
 @property (nonatomic , strong) ReleaseDynamicViewModel *viewModel;
 @property (nonatomic , strong) ReleaseDynamicDataModel *dataModel;
+@property (nonatomic, strong) AMTReleaseViewModel *viewModels;
 @end

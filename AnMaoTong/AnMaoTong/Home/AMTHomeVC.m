@@ -23,6 +23,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navBar.titieLab.text = @"安贸通";
+    [[CPAMapLocationManager shareManager] startUpdatingLocationManager];
+    [[CPAMapLocationManager shareManager].locationReplaySubject subscribeNext:^(id x) {
+        
+    }];
     [self.navBar.rightButton setImage:imageNamed(@"search") forState:UIControlStateNormal];
     weakSelf(self);
     [[KKNetWorking getShard]request:GET url:getGoodsClass parameters:nil completion:^(id json, NSInteger code) {

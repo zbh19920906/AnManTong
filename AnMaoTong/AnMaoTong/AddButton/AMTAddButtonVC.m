@@ -8,7 +8,8 @@
 
 #import "AMTAddButtonVC.h"
 #import "ReleaseDynamicCityController.h"
-@interface AMTAddButtonVC ()
+
+@interface AMTAddButtonVC ()<ReleaseDynamicCityControllerDelegate>
 
 @end
 
@@ -17,21 +18,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [[CPAMapLocationManager shareManager] startUpdatingLocationManager];
-    [[CPAMapLocationManager shareManager].locationReplaySubject subscribeNext:^(id x) {
-        
-    }];
+    
     [self setSubView];
+    [self setBingding];
 }
 
+- (void)setBingding
+{
+    weakSelf(self);
+    [self.viewModels.zoneCommand execute:@[@"1"]];
+    [self.viewModels.brandCommand execute:@[@"1"]];
+    
+    
+    
+}
 - (void)setSubView
 {
     [self.navBar.backButton setImage:[UIImage new] forState:UIControlStateNormal];
+    self.navBar.backButton.hidden = NO;
     [self.navBar.backButton setTitle:@"取消" forState:UIControlStateNormal];
     [self.navBar.backButton setLableColor:@"000000" font:14 bold:0];
     
     [self.navBar.rightButton setTitle:@"发布" forState:UIControlStateNormal];
-    [self.navBar.rightButton setBackgroundColor:BHColor(@"")];
+    [self.navBar.rightButton setBackgroundColor:BHColor(@"FF3658")];
+    self.navBar.rightButton.sd_cornerRadius = @(15);
+    self.navBar.rightButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    [self.navBar.rightButton setLableColor:@"FFFFFF" font:14 bold:0];
+    self.navBar.rightButton.sd_layout
+    .rightSpaceToView(self.navBar, 11)
+    .bottomSpaceToView(self.navBar, 7)
+    .widthIs(60)
+    .heightIs(30);
     [self.viewModel setupInitLayout];
     weakSelf(self);
     [[self.viewModel.locationBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
@@ -39,6 +56,18 @@
         vc.cpDelegate = weakSelf;
         vc.currentPOI = weakSelf.dataModel.locationPOI;
         [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
+}
+
+- (void)clickBackButtonAcion:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)clickRightButtonAction:(id)sender
+{
+    [[self.viewModels.releaseCommand execute:@[self.viewModel.textView.text,self.viewModels.position,self.viewModels.zoneID,self.viewModels.brandID,@"1",@"",self.dataModel.imageDataSource]]subscribeNext:^(id x) {
+        
     }];
 }
 
@@ -74,5 +103,13 @@
         _dataModel = [ReleaseDynamicDataModel new];
     }
     return _dataModel;
+}
+
+- (AMTReleaseViewModel *)viewModels
+{
+    if (!_viewModels) {
+        _viewModels = [[AMTReleaseViewModel alloc]init];
+    }
+    return _viewModels;
 }
 @end

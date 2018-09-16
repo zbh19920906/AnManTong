@@ -35,6 +35,8 @@
 #define getDynamic   [NSString stringWithFormat:@"%@api/method/getDynamic", AMTURL]
 //获取轮播图
 #define getCarouselMap   [NSString stringWithFormat:@"%@api/method/getCarouselMap", AMTURL]
+//发布动态
+#define Release   [NSString stringWithFormat:@"%@api/method/Release", AMTURL]
 
 #endif /* Request_pch */
 
