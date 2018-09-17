@@ -90,8 +90,8 @@
     _oldButton = button;
     [UIView animateWithDuration:.5 animations:^{
         self.linkView.frame = CGRectMake(button.center.x - self.layout.bottomLineWidth / 2, self.layout.sliderHeight - self.layout.bottomLineHeight - 3, self.layout.bottomLineWidth, self.layout.bottomLineHeight);
-        if (_delegate && [_delegate respondsToSelector:@selector(changeSubView:)]) {
-            [_delegate changeSubView:button.tag - 100];
+        if (self.delegate && [_delegate respondsToSelector:@selector(changeSubView:)]) {
+            [self.delegate changeSubView:button.tag - 100];
         }
     }];
 }

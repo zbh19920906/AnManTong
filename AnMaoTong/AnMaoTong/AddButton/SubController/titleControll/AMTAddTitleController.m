@@ -7,10 +7,11 @@
 //
 
 #import "AMTAddTitleController.h"
-
+#import "AMTKeyBoardInputView.h"
 @interface AMTAddTitleController ()
 @property (nonatomic, strong) BaseLabel *placeholderLab;
 @property (nonatomic, strong) BaseLabel *countLab;
+@property (nonatomic, strong) AMTKeyBoardInputView *keyBoardInput;
 @end
 
 @implementation AMTAddTitleController
@@ -18,13 +19,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setSubView];
+    weakSelf(self);
     [[myNoti rac_addObserverForName:UIKeyboardWillChangeFrameNotification object:nil]subscribeNext:^(id x) {
-        
+       NSNotification *notif = x;
+         NSValue *value = [notif.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+        [weakSelf.keyBoardInput show:[value CGRectValue].size.height];
+    }];
+    
+    [[myNoti rac_addObserverForName:UIKeyboardWillHideNotification object:nil]subscribeNext:^(id x) {
+        [weakSelf.keyBoardInput hidden];
     }];
 }
 
 - (void)setSubView
 {
+    self.keyBoardInput = [[AMTKeyBoardInputView alloc]init];
+    
     self.view.backgroundColor = BHColor(@"F4F3F2");
     BaseView *bgView = [[BaseView alloc]init];
     bgView.backgroundColor = [UIColor cz_ToUIColorByStr:@"ffffff"];
@@ -47,7 +57,7 @@
     addBtn.sd_cornerRadius = @(3);
     weakSelf(self);
     [[addBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [weakSelf.view becomeFirstResponder];
+        [weakSelf.keyBoardInput.inputTF becomeFirstResponder];
     }];
     
     self.placeholderLab = [[BaseLabel alloc]init];
@@ -84,5 +94,6 @@
     .rightSpaceToView(bgView, 11)
     .widthIs(20)
     .heightIs(10);
+    
 }
 @end

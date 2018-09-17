@@ -110,11 +110,27 @@
     .widthIs(WIDTH_SCREEN)
     .heightIs((WIDTH_SCREEN - 37)/3);
     
+   
+}
+
+- (void)setModel:(AMTDetailsModel *)model
+{
+    _model = model;
+    self.nameLab.text = model.type == 1 ? model.nickname : model.name;
+    [self.headImageView sd_setImageWithURL:UrlString(model.head_img)];
+    self.timeLab.text = model.auth_time;
+    self.contentLab.text = model.title;
+    self.goodsImageView.images = model.images;
+    self.addressLab.text = model.position;
+    self.titleView.titles = model.titles;
+    self.iconImage.image = imageNamed(model.type == 1 ? @"gong" : @"qiu");
+    self.countView.model = model;
+    
     self.titleView.sd_layout
-    .topSpaceToView(self.goodsImageView, 13)
+    .topSpaceToView(self.goodsImageView, self.model.titles.count > 0 ? 13 : 0)
     .leftEqualToView(self.contentView)
     .rightEqualToView(self.contentView)
-    .heightIs(15);
+    .heightIs(self.model.titles.count > 0 ? 15 : 0);
     
     
     self.addressImageView.sd_layout
@@ -135,19 +151,9 @@
     .heightIs(60)
     .leftEqualToView(self.contentView)
     .rightEqualToView(self.contentView);
-}
-
-- (void)setModel:(AMTDetailsModel *)model
-{
-    self.nameLab.text = model.type == 1 ? model.nickname : model.name;
-    [self.headImageView sd_setImageWithURL:UrlString(model.head_img)];
-    self.timeLab.text = model.auth_time;
-    self.contentLab.text = model.title;
-    self.goodsImageView.images = model.images;
-    self.addressLab.text = model.position;
-    self.titleView.titles = model.titles;
-    self.iconImage.image = imageNamed(model.type == 1 ? @"gong" : @"qiu");
-    self.countView.model = model.dynamic_num;
+    
+    
     [self setupAutoHeightWithBottomView:self.countView bottomMargin:0];
+    
 }
 @end

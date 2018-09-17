@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "AMTDetailsModel.h"
+#import "AMTCommentModel.h"
 @interface AMTDetailsViewModel : NSObject
 @property (nonatomic, strong) RACCommand *detailsCommand;
+@property (nonatomic, strong) RACCommand *listCommand;
 @property (nonatomic, strong) AMTDetailsModel *model;
+@property (nonatomic, strong) NSMutableArray <AMTCommentModel *>*listArray;
 @end

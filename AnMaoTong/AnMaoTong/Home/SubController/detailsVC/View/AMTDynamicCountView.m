@@ -22,20 +22,29 @@
 
 - (void)setSubView
 {
+    weakSelf(self);
     self.commentBtn = [BaseButton buttonWithType:UIButtonTypeCustom];
     [self.commentBtn setImage:imageNamed(@"comment") forState:UIControlStateNormal];
     [self.commentBtn setLableColor:@"B9B9B9" font:12 bold:0];
-    
+    [[self.commentBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        [myNoti postNotificationName:commentNoti object:nil userInfo:@{@"model" : weakSelf.model}];
+    }];
     
     self.collectionBtn = [BaseButton buttonWithType:UIButtonTypeCustom];
     [self.collectionBtn setImage:imageNamed(@"collection") forState:UIControlStateNormal];
     [self.collectionBtn setImage:imageNamed(@"collection_pre") forState:UIControlStateSelected];
     [self.collectionBtn setLableColor:@"B9B9B9" font:12 bold:0];
+    [[self.collectionBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        [myNoti postNotificationName:collectionNoti object:nil userInfo:@{@"model" : weakSelf.model}];
+    }];
     
     self.likeBtn = [BaseButton buttonWithType:UIButtonTypeCustom];
     [self.likeBtn setImage:imageNamed(@"like") forState:UIControlStateNormal];
     [self.likeBtn setImage:imageNamed(@"like_pre") forState:UIControlStateSelected];
     [self.likeBtn setLableColor:@"B9B9B9" font:12 bold:0];
+    [[self.likeBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        [myNoti postNotificationName:likeNoti object:nil userInfo:@{@"model" : weakSelf.model}];
+    }];
     
     self.browseBtn = [BaseButton buttonWithType:UIButtonTypeCustom];
     [self.browseBtn setImage:imageNamed(@"browse") forState:UIControlStateNormal];
@@ -68,13 +77,14 @@
     .widthIs(width);
 }
 
-- (void)setModel:(AMTDynamicCountModel *)model
+- (void)setModel:(AMTDetailsModel *)model
 {
     _model = model;
-    [self.commentBtn setTitle:BHIString(model.comment_count) forState:UIControlStateNormal];
-    [self.collectionBtn setTitle:BHIString(model.collection_count) forState:UIControlStateNormal];
-    [self.likeBtn setTitle:BHIString(model.like_count) forState:UIControlStateNormal];
-    [self.browseBtn setTitle:BHIString(model.browse_count) forState:UIControlStateNormal];
-    
+    [self.commentBtn setTitle:BHIString(model.dynamic_num.comment_count) forState:UIControlStateNormal];
+    [self.collectionBtn setTitle:BHIString(model.dynamic_num.collection_count) forState:UIControlStateNormal];
+    [self.likeBtn setTitle:BHIString(model.dynamic_num.like_count) forState:UIControlStateNormal];
+    [self.browseBtn setTitle:BHIString(model.dynamic_num.browse_count) forState:UIControlStateNormal];
+    self.collectionBtn.selected = model.dynamic_num.my_collection;
+    self.likeBtn.selected = model.dynamic_num.my_like;
 }
 @end

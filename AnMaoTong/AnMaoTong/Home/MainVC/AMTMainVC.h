@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AMTMainVC : BaseViewController
+@interface AMTMainVC : AMTKeyBoradController
 @property (nonatomic, copy) NSString *goods_class_id;
 @end

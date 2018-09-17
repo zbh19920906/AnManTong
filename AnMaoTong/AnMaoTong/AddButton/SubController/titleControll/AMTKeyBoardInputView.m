@@ -8,9 +8,10 @@
 
 #import "AMTKeyBoardInputView.h"
 @interface AMTKeyBoardInputView ()
+@property (nonatomic, strong) BaseView *bgView;
 @property (nonatomic, strong) BaseView *inputView;
 
-@property (nonatomic, strong) BaseTextField *inputTF;
+
 @property (nonatomic, strong) BaseLabel *countLab;
 
 @property (nonatomic, strong) BaseButton *determineBtn;
@@ -27,13 +28,18 @@
 
 - (void)setSubView
 {
-    BaseView *bgView = [[BaseView alloc]init];
-    bgView.backgroundColor = [UIColor blackColor];
-    bgView.alpha = 0.5;
-    [self addSubview:bgView];
+    self.frame = CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN);
+    self.hidden = YES;
+    [getWindow addSubview:self];
     
-    bgView.sd_layout
-    .spaceToSuperView(UIEdgeInsetsZero);
+    self.bgView = [[BaseView alloc]init];
+    self.bgView.backgroundColor = [UIColor blackColor];
+    self.bgView.alpha = 0.5;
+    self.bgView.hidden = YES;
+    [self addSubview:self.bgView];
+    
+    self.bgView.sd_layout
+    .spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
     
     self.inputView = [[BaseView alloc]initWithFrame:CGRectMake(0, HEIGHT_SCREEN, WIDTH_SCREEN, 45)];
     self.inputView.backgroundColor = BHColor(@"F7F7F7");
@@ -70,9 +76,21 @@
     
 }
 
-- (void)show
+- (void)show:(CGFloat)height
 {
-    
+    self.hidden = NO;
+    self.bgView.hidden = NO;
+    [UIView animateWithDuration:0.25 animations:^{
+        self.inputView.frame = CGRectMake(0, HEIGHT_SCREEN - height - 45, WIDTH_SCREEN, 45);
+    }];
 }
 
+- (void)hidden
+{
+    self.hidden = YES;
+    self.bgView.hidden = YES;
+    [UIView animateWithDuration:0.25 animations:^{
+        self.inputView.frame = CGRectMake(0, HEIGHT_SCREEN + 45, WIDTH_SCREEN, 45);
+    }];
+}
 @end

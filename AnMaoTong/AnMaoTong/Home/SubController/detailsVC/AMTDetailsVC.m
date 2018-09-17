@@ -7,11 +7,11 @@
 //
 
 #import "AMTDetailsVC.h"
-
+#import "AMTCommentListCell.h"
 #import "AMTGoodsMessageCell.h"
 #import "AMTDetailsViewModel.h"
 @interface AMTDetailsVC ()<UITableViewDataSource,UITableViewDelegate>
-
+@property (nonatomic, strong) BaseLabel *commentCountLab;
 @property (nonatomic, strong) BaseTableView *tableView;
 @property (nonatomic, strong) AMTDetailsViewModel *viewModels;
 @end
@@ -28,8 +28,12 @@
 - (void)setBingDing
 {
     weakSelf(self);
-    [[self.viewModels.detailsCommand execute:@[@"1"]] subscribeNext:^(id x) {
+    [[self.viewModels.detailsCommand execute:@[self.dynamic_id]] subscribeNext:^(id x) {
         [weakSelf.tableView reloadData];
+    }];
+    [[self.viewModels.listCommand execute:@[self.dynamic_id,@"1"]] subscribeNext:^(id x) {
+        
+            [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
 
@@ -40,29 +44,49 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 1 : 2;
+    return section == 0 ? 1 : self.viewModels.listArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AMTGoodsMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTGoodsMessageCell class]) forIndexPath:indexPath];
-    cell.model = self.viewModels.model;
+    if (indexPath.section == 0) {
+        AMTGoodsMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTGoodsMessageCell class]) forIndexPath:indexPath];
+        cell.model = self.viewModels.model;
+        return cell;
+    }
+    AMTCommentListCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTCommentListCell class]) forIndexPath:indexPath];
+    cell.model = self.viewModels.listArray[indexPath.row];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [tableView cellHeightForIndexPath:indexPath model:self.viewModels.model keyPath:@"model" cellClass:[AMTGoodsMessageCell class] contentViewWidth:WIDTH_SCREEN];
+    return indexPath.section == 0 ? [tableView cellHeightForIndexPath:indexPath model:self.viewModels.model keyPath:@"model" cellClass:[AMTGoodsMessageCell class] contentViewWidth:WIDTH_SCREEN] : [tableView cellHeightForIndexPath:indexPath model:self.viewModels.listArray[indexPath.row] keyPath:@"model" cellClass:[AMTCommentListCell class] contentViewWidth:WIDTH_SCREEN];;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 1) {
+        BaseView *headView = [[BaseView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 44)];
+        headView.backgroundColor = [UIColor whiteColor];
+        self.commentCountLab = [[BaseLabel alloc]initWithFrame:CGRectMake(12, 20, 200, 12)];
+        [self.commentCountLab setLableColor:@"222222" font:12 bold:0];
+        self.commentCountLab.text = [NSString stringWithFormat:@"最新评论(%ld)",self.viewModels.listArray.count];
+        [headView addSubview:self.commentCountLab];
+        
+        return headView;
+    }
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return section == 0 ? 0.01 : 10;
+    return section == 0 ? 0.01 : 44;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.01;
+    return section == 0 ? 10 : 0.01;
 }
 
 - (BaseTableView *)tableView
@@ -72,6 +96,8 @@
         _tableView.delegate = self;
         _tableView.dataSource =self;
         [_tableView registerClass:[AMTGoodsMessageCell class] forCellReuseIdentifier:NSStringFromClass([AMTGoodsMessageCell class])];
+        [_tableView registerClass:[AMTCommentListCell class] forCellReuseIdentifier:NSStringFromClass([AMTCommentListCell class])];
+        
     }
     return _tableView;
 }

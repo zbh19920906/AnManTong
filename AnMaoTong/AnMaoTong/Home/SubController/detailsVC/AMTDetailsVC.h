@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AMTDetailsVC : BaseViewController
-
+@property (nonatomic, copy) NSString *dynamic_id;
 @end

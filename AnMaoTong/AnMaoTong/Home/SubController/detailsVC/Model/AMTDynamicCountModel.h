@@ -25,4 +25,12 @@
  查看数
  */
 @property (nonatomic, assign) NSInteger browse_count;
+/**
+ 是否收藏
+ */
+@property (nonatomic, assign) BOOL my_collection;
+/**
+ 是否点赞
+ */
+@property (nonatomic, assign) BOOL my_like;
 @end

@@ -29,6 +29,8 @@
 #define getBrand   [NSString stringWithFormat:@"%@api/method/getBrand", AMTURL]
 //动态发布详情
 #define getDynamicDetails   [NSString stringWithFormat:@"%@api/method/getDynamicDetails", AMTURL]
+//查看动态评论
+#define dynamicComment   [NSString stringWithFormat:@"%@api/method/dynamicComment", AMTURL]
 //获取分类下对应的专区
 #define getClassZone   [NSString stringWithFormat:@"%@api/method/getClassZone", AMTURL]
 //首页动态
@@ -37,6 +39,11 @@
 #define getCarouselMap   [NSString stringWithFormat:@"%@api/method/getCarouselMap", AMTURL]
 //发布动态
 #define Release   [NSString stringWithFormat:@"%@api/method/Release", AMTURL]
-
+//收藏
+#define Collection   [NSString stringWithFormat:@"%@api/method/collection", AMTURL]
+//点赞
+#define dynamicLike   [NSString stringWithFormat:@"%@api/method/dynamicLike", AMTURL]
+//动态评论
+#define InsertComment   [NSString stringWithFormat:@"%@api/method/InsertComment", AMTURL]
 #endif /* Request_pch */
 

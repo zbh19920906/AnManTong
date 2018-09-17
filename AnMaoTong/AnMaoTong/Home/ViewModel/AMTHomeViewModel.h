@@ -11,6 +11,9 @@
 @interface AMTHomeViewModel : NSObject
 @property (nonatomic, strong) RACCommand *classCommand;
 @property (nonatomic, strong) RACCommand *listCommand;
+@property (nonatomic, strong) RACCommand *commentCommand;
+@property (nonatomic, strong) RACCommand *likeCommand;
+@property (nonatomic, strong) RACCommand *collectionCommand;
 @property (nonatomic, strong) NSMutableArray <AMTZoneModel *>*zoneArray;
 @property (nonatomic, strong) NSMutableArray <AMTDetailsModel *>*listArray;
 @end

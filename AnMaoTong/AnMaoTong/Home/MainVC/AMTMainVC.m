@@ -11,10 +11,12 @@
 #import "AMTBannerCell.h"
 #import "AMTZoneCell.h"
 #import "AMTHeadView.h"
+#import "AMTDetailsVC.h"
 #import "AMTMerchantDetalisController.h"
 @interface AMTMainVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) BaseTableView *tableView;
 @property (nonatomic, strong) AMTHomeViewModel *viewModels;
+@property (nonatomic, strong) AMTDetailsModel *commentModel;
 @end
 
 @implementation AMTMainVC
@@ -23,7 +25,7 @@
     [super viewDidLoad];
     
     [self.view addSubview:self.tableView];
-    [self setBingding];
+    
 }
 
 - (void)setBingding
@@ -35,6 +37,49 @@
     [[self.viewModels.listCommand execute:@[@"1",@"0",@"0",@"0",@(10),@(1)]]subscribeNext:^(id x) {
         [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     }];
+    
+    [myNoti addObserver:self selector:@selector(comment:) name:commentNoti object:nil];
+    [myNoti addObserver:self selector:@selector(sendComment) name:sendCommentNoti object:nil];
+    [myNoti addObserver:self selector:@selector(collection:) name:collectionNoti object:nil];
+    [myNoti addObserver:self selector:@selector(like:) name:likeNoti object:nil];
+    [myNoti addObserver:self selector:@selector(willChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+}
+
+- (void)comment:(NSNotification *)notifi
+{
+    self.commentModel = notifi.userInfo[@"model"];
+    [self.keyBoardInputView.inputTF becomeFirstResponder];
+}
+
+- (void)sendComment
+{
+    [[self.viewModels.commentCommand execute:@[self.commentModel,self.keyBoardInputView.inputTF.text]] subscribeNext:^(id x) {
+                    [self.keyBoardInputView.inputTF resignFirstResponder];
+                    [self.tableView reloadData];
+    }];
+}
+
+- (void)collection:(NSNotification *)notifi
+{
+    AMTDetailsModel *model = notifi.userInfo[@"model"];
+    [[self.viewModels.collectionCommand execute:model] subscribeNext:^(id x) {
+        [self.tableView reloadData];
+    }];
+}
+
+- (void)like:(NSNotification *)notifi
+{
+    AMTDetailsModel *model = notifi.userInfo[@"model"];
+    [[self.viewModels.likeCommand execute:model] subscribeNext:^(id x) {
+        [self.tableView reloadData];
+    }];
+}
+
+- (void)willChange:(NSNotification *)notifi
+{
+    NSValue *value = [notifi.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    [self.keyBoardInputView show:[value CGRectValue].size.height];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -91,6 +136,16 @@
         return indexPath.row == 0 ? 188 : 10 + (ceil(self.viewModels.zoneArray.count * 1.0 / 2) * 95);
     }
     return [tableView cellHeightForIndexPath:indexPath model:self.viewModels.listArray[indexPath.row] keyPath:@"model" cellClass:[AMTGoodsMessageCell class] contentViewWidth:WIDTH_SCREEN] +10;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 1) {
+        
+        AMTDetailsVC *vc = [[AMTDetailsVC alloc]init];
+        vc.dynamic_id = self.viewModels.listArray[indexPath.row].ID;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (BaseTableView *)tableView

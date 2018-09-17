@@ -13,5 +13,5 @@
 @property (nonatomic, strong) BaseButton *likeBtn;
 @property (nonatomic, strong) BaseButton *collectionBtn;
 @property (nonatomic, strong) BaseButton *browseBtn;
-@property (nonatomic, strong) AMTDynamicCountModel *model;
+@property (nonatomic, strong) AMTDetailsModel *model;
 @end

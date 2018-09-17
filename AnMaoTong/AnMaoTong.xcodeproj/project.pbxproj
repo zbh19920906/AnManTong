@@ -94,6 +94,10 @@
 		2FC014002148FDBB0007BA3B /* LTTableViewProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013F82148FDBA0007BA3B /* LTTableViewProtocal.swift */; };
 		2FC014012148FDBB0007BA3B /* LTVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013F92148FDBA0007BA3B /* LTVCExtension.swift */; };
 		2FC0140721490ADF0007BA3B /* AMTDetailsClassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC0140621490ADF0007BA3B /* AMTDetailsClassView.m */; };
+		2FCAD0D5214F4954006EA81D /* AMTKeyBoardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD0D4214F4954006EA81D /* AMTKeyBoardTextView.m */; };
+		2FCAD0D8214F4CE8006EA81D /* AMTKeyBoradController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD0D7214F4CE8006EA81D /* AMTKeyBoradController.m */; };
+		2FCAD0DB214F9792006EA81D /* AMTCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD0DA214F9792006EA81D /* AMTCommentModel.m */; };
+		2FCAD0DF214F9BC4006EA81D /* AMTCommentListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD0DE214F9BC4006EA81D /* AMTCommentListCell.m */; };
 		2FE2A4C321378B05002AB1D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FE2A4C121378B05002AB1D8 /* Main.storyboard */; };
 		2FE2A4C521378B06002AB1D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FE2A4C421378B06002AB1D8 /* Assets.xcassets */; };
 		2FE2A4C821378B06002AB1D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FE2A4C621378B06002AB1D8 /* LaunchScreen.storyboard */; };
@@ -376,6 +380,14 @@
 		2FC013F92148FDBA0007BA3B /* LTVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTVCExtension.swift; sourceTree = "<group>"; };
 		2FC0140521490ADF0007BA3B /* AMTDetailsClassView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTDetailsClassView.h; sourceTree = "<group>"; };
 		2FC0140621490ADF0007BA3B /* AMTDetailsClassView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTDetailsClassView.m; sourceTree = "<group>"; };
+		2FCAD0D3214F4954006EA81D /* AMTKeyBoardTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTKeyBoardTextView.h; sourceTree = "<group>"; };
+		2FCAD0D4214F4954006EA81D /* AMTKeyBoardTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTKeyBoardTextView.m; sourceTree = "<group>"; };
+		2FCAD0D6214F4CE8006EA81D /* AMTKeyBoradController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTKeyBoradController.h; sourceTree = "<group>"; };
+		2FCAD0D7214F4CE8006EA81D /* AMTKeyBoradController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTKeyBoradController.m; sourceTree = "<group>"; };
+		2FCAD0D9214F9792006EA81D /* AMTCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTCommentModel.h; sourceTree = "<group>"; };
+		2FCAD0DA214F9792006EA81D /* AMTCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTCommentModel.m; sourceTree = "<group>"; };
+		2FCAD0DD214F9BC4006EA81D /* AMTCommentListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTCommentListCell.h; sourceTree = "<group>"; };
+		2FCAD0DE214F9BC4006EA81D /* AMTCommentListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTCommentListCell.m; sourceTree = "<group>"; };
 		2FE2A4B821378B05002AB1D8 /* AnMaoTong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnMaoTong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FE2A4C221378B05002AB1D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2FE2A4C421378B06002AB1D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -756,6 +768,8 @@
 				2F726A2A213F6B130024A73F /* AMTDetailsModel.m */,
 				2F95ED9F214753F7008EA374 /* AMTDynamicCountModel.h */,
 				2F95EDA0214753F7008EA374 /* AMTDynamicCountModel.m */,
+				2FCAD0D9214F9792006EA81D /* AMTCommentModel.h */,
+				2FCAD0DA214F9792006EA81D /* AMTCommentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -882,6 +896,7 @@
 				2F95EDAF2147B67B008EA374 /* AMTGoodsTitleView.m */,
 				2F95EDB12147BDEF008EA374 /* AMTDynamicCountView.h */,
 				2F95EDB22147BDEF008EA374 /* AMTDynamicCountView.m */,
+				2FCAD0DC214F9B7E006EA81D /* 评论cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -977,6 +992,8 @@
 			children = (
 				2FAA0A22213E5C41004956CA /* AMTMainVC.h */,
 				2FAA0A23213E5C41004956CA /* AMTMainVC.m */,
+				2FCAD0D6214F4CE8006EA81D /* AMTKeyBoradController.h */,
+				2FCAD0D7214F4CE8006EA81D /* AMTKeyBoradController.m */,
 			);
 			path = MainVC;
 			sourceTree = "<group>";
@@ -1042,6 +1059,15 @@
 				2FC013F92148FDBA0007BA3B /* LTVCExtension.swift */,
 			);
 			path = Lib;
+			sourceTree = "<group>";
+		};
+		2FCAD0DC214F9B7E006EA81D /* 评论cell */ = {
+			isa = PBXGroup;
+			children = (
+				2FCAD0DD214F9BC4006EA81D /* AMTCommentListCell.h */,
+				2FCAD0DE214F9BC4006EA81D /* AMTCommentListCell.m */,
+			);
+			path = "评论cell";
 			sourceTree = "<group>";
 		};
 		2FE2A4AF21378B05002AB1D8 = {
@@ -1682,6 +1708,8 @@
 		2FE2A6062137D25E002AB1D8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2FCAD0D3214F4954006EA81D /* AMTKeyBoardTextView.h */,
+				2FCAD0D4214F4954006EA81D /* AMTKeyBoardTextView.m */,
 				2FC013DD2148B5F00007BA3B /* AMTBannerCell.h */,
 				2FC013DE2148B5F00007BA3B /* AMTBannerCell.m */,
 				2FC013DA2148B1120007BA3B /* AMTHeadView.h */,
@@ -2091,6 +2119,7 @@
 				58CF92362142A5430065EF0F /* AMTFocusShopCell.m in Sources */,
 				2FA1E054214B965E00031511 /* AMTFindHeadView.m in Sources */,
 				2FC013E62148F1530007BA3B /* AMTZoneMainController.m in Sources */,
+				2FCAD0DB214F9792006EA81D /* AMTCommentModel.m in Sources */,
 				2FE2A4CB21378B06002AB1D8 /* main.m in Sources */,
 				2F1C3A712140FFA2008D3B66 /* AMTUserNameViewController.m in Sources */,
 				2F95EDA721477032008EA374 /* AMTZoneModel.m in Sources */,
@@ -2124,6 +2153,7 @@
 				58CF922F214297650065EF0F /* AMTFocusShopController.m in Sources */,
 				2F1C3A442140B8AE008D3B66 /* AMTLoginVC.m in Sources */,
 				2F893C92214365BA00D441B2 /* AMTMyLikeCell.m in Sources */,
+				2FCAD0DF214F9BC4006EA81D /* AMTCommentListCell.m in Sources */,
 				2F95ED76214602C3008EA374 /* CPBaseImageCollectionView.m in Sources */,
 				2F726A3A213F7FAA0024A73F /* AMTScreenTitleCell.m in Sources */,
 				2FE2A5952137C810002AB1D8 /* IQBarButtonItem.m in Sources */,
@@ -2146,6 +2176,7 @@
 				2F726A46213FA5E20024A73F /* AMTBrandItemCell.m in Sources */,
 				58CF923D2142B29D0065EF0F /* AMTMyCollectionViewController.m in Sources */,
 				2FE2A5502137C7FA002AB1D8 /* BHNavigationLeftBtn.m in Sources */,
+				2FCAD0D8214F4CE8006EA81D /* AMTKeyBoradController.m in Sources */,
 				2FE2A5512137C7FA002AB1D8 /* CALayer+KKCustomLayer.m in Sources */,
 				2FE2A55F2137C7FA002AB1D8 /* UIImage+Base64.m in Sources */,
 				2FC014012148FDBB0007BA3B /* LTVCExtension.swift in Sources */,
@@ -2162,6 +2193,7 @@
 				58CF92412142B2C40065EF0F /* AMTMyCollectionCell.m in Sources */,
 				2FE2A5652137C7FA002AB1D8 /* UIViewController+Seting.m in Sources */,
 				2F726A70213FC7F80024A73F /* AMTGoodsImageView.m in Sources */,
+				2FCAD0D5214F4954006EA81D /* AMTKeyBoardTextView.m in Sources */,
 				2FE2A5E32137C851002AB1D8 /* NSString+aes.m in Sources */,
 				2FE2A51E2137C7D2002AB1D8 /* BaseLabel.m in Sources */,
 				2FE2A5692137C802002AB1D8 /* BHError.m in Sources */,

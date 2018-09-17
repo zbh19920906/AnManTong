@@ -52,8 +52,7 @@
         _managerView = [[KKClassificationView alloc]initWithFrame:CGRectMake(0, NavHFit, self.view.bounds.size.width, HEIGHT_SCREEN - TabBarHFit - NavHFit) viewController:self layout:self.layout clickBlock:^(NSInteger index) {
 //            AMTScreenVC *vc =[[AMTScreenVC alloc]init];
 //            vc.titles = weakSelf.titleArr;
-            AMTDetailsVC *vc = [[AMTDetailsVC alloc]init];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
+            
         }];
     }
     return _managerView;

@@ -30,7 +30,6 @@
     [self.viewModels.brandCommand execute:@[@"1"]];
     
     
-    
 }
 - (void)setSubView
 {
@@ -66,9 +65,24 @@
 
 - (void)clickRightButtonAction:(id)sender
 {
+    weakSelf(self);
     [[self.viewModels.releaseCommand execute:@[self.viewModel.textView.text,self.viewModels.position,self.viewModels.zoneID,self.viewModels.brandID,@"1",@"",self.dataModel.imageDataSource]]subscribeNext:^(id x) {
-        
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }];
+}
+#pragma mark - ReleaseDynamicCityControllerDelegate
+- (void)releaseDynamicCityController:(ReleaseDynamicCityController *)viewController POI:(id)poi
+{
+    self.dataModel.locationPOI = poi;
+    if (![poi isKindOfClass:[AMapPOI class]])
+    {
+        [self.viewModel updataLocation:poi];
+    }
+    else
+    {
+        AMapPOI * poiModel = (AMapPOI *)poi;
+        [self.viewModel updataLocation:poiModel.name];
+    }
 }
 
 #pragma mark - UIImagePickerControllerDelegate

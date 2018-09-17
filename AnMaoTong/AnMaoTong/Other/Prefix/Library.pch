@@ -29,6 +29,7 @@
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
+#import <RongIMKit/RongIMKit.h>
 //控制器
 #import "AMTLoginVC.h"
 #import "AMTBaseInfoViewController.h"
@@ -51,6 +52,7 @@
 #import "AMTHeadView.h"
 #import "AMTBannerModel.h"
 #import "AMTZoneModel.h"
+#import "AMTKeyBoradController.h"
 //枚举
 
 #endif /* Library_pch */
