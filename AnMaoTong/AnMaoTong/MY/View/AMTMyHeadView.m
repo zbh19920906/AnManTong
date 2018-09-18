@@ -32,6 +32,7 @@
     
     self.headImage = [[BaseImageView alloc]init];
     self.headImage.image = imageNamed(@"headImage");
+    self.headImage.sd_cornerRadius = @(40);
     
     self.nameLab = [[BaseLabel alloc]init];
     [self.nameLab setLableColor:@"FFFFFF" font:20 bold:0];
@@ -98,7 +99,7 @@
     
     if ([user.type isEqualToString:@"1"]) {
         self.nameLab.text = user.nickname;
-        self.contentLab.attributedText = [NSMutableAttributedString cpGetAttributedStringWithlocation:CPAttributedImageLocation_left rect:CGRectMake(0, -3, 13, 13) imageName:[user.sex isEqualToString:@"1"] ? @"男性" : @"女性" title:[NSString stringWithFormat:@"  %@岁",@"22"]];
+        self.contentLab.attributedText = [NSMutableAttributedString cpGetAttributedStringWithlocation:CPAttributedImageLocation_left rect:CGRectMake(0, -3, 13, 13) imageName:user.sex == 1 ? @"男性" : @"女性" title:[NSString stringWithFormat:@"  %@岁",@"22"]];
     }else{
         self.nameLab.text = user.name;
     }

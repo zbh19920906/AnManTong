@@ -10,4 +10,5 @@
 
 @interface AMTPersonalViewController : BaseViewController
 @property (nonatomic, assign) BOOL isUser;
+
 @end

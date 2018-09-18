@@ -109,6 +109,8 @@
 #define kTokenSecret      @"yundouyouappdownloadsecret"
 //二维码宽度
 #define rectangularFream CGRectMake((WIDTH_SCREEN - 260)/2, 100, 260, 260)
+//请求条数
+#define requestSize  @"10"
 #endif
 
 

@@ -7,7 +7,10 @@
 //
 
 #import "BaseTableViewCell.h"
-
 @interface AMTPersonalCell : BaseTableViewCell
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, assign) BOOL isUser;
+@property (nonatomic, strong) BaseImageView *headImage;
+@property (nonatomic, strong) BaseTextField *rightTF;
+@property (nonatomic, strong) BaseButton *rightBtn;
 @end

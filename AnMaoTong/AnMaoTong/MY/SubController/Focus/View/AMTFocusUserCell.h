@@ -7,7 +7,7 @@
 //
 
 #import "BaseTableViewCell.h"
-
+#import "AMTFocusModel.h"
 @interface AMTFocusUserCell : BaseTableViewCell
-
+@property (nonatomic, strong) AMTFocusModel *model;
 @end

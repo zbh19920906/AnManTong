@@ -9,9 +9,12 @@
 #import "AMTPersonalViewController.h"
 #import "AMTPersonalCell.h"
 #import "AMTAnnouncementCell.h"
-@interface AMTPersonalViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "AMTPersonalVIewModel.h"
+#import "CPDatePickerView.h"
+@interface AMTPersonalViewController ()<UITableViewDelegate,UITableViewDataSource,CPBottomPromitViewDelegate,PersonalRadioViewDelegate>
 @property (nonatomic, copy) NSArray *titleArr;
 @property (nonatomic, strong) BaseTableView *tableView;
+@property (nonatomic, strong) AMTPersonalVIewModel *viewModel;
 @end
 
 @implementation AMTPersonalViewController
@@ -20,6 +23,11 @@
     [super viewDidLoad];
     self.navBar.titieLab.text = self.isUser ? @"个人资料" : @"商家资料";
     [self.view addSubview:self.tableView];
+    [self.navBar.rightButton setTitle:@"保存" forState:UIControlStateNormal];
+    [self.navBar.rightButton setLableColor:@"555555" font:14 bold:0];
+    [[self.navBar.rightButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -40,6 +48,7 @@
         return cell;
     }
     AMTPersonalCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTPersonalCell class]) forIndexPath:indexPath];
+    cell.isUser = self.isUser;
     cell.title = self.titleArr[indexPath.section][indexPath.row];
     return cell;
 }
@@ -60,7 +69,19 @@
         switch (indexPath.row) {
             case 0:
             {
-                
+                CPBottomPromitOption *option = [CPBottomPromitOption new];
+                option.defCancleColor = BHColor(@"0070FF");
+                option.fontForHead = BHFont(12);
+                option.colorForHead = BHColor(@"666666");
+                option.titleFont = BHFont(18);
+                option.separatorColor = BHColor(@"E5E5E5");
+                option.separatorInset = UIEdgeInsetsMake(0, 10, 0, 10);
+                CPBottomPromitView *bottomView = [CPBottomPromitView bottomPromitViewWithStyle:CPBlurEffectStyleLight option:option];
+                bottomView.cpDelegate = self;
+                [bottomView addTitle:@"拍照" detail:nil titleColor:BHColor(@"0070FF") detailColor:nil];
+                [bottomView addTitle:@"从相册选择" detail:nil titleColor:BHColor(@"0070FF") detailColor:nil];
+                [bottomView addHeadViewHeadTitle:@"选择图像来源"];
+                [bottomView showBottomPromit];
             }
                 break;
             case 2:
@@ -73,7 +94,10 @@
                 break;
             case 3:
             {
-                
+                CPDatePickerView *dateView = [CPDatePickerView datePickerViewWithTitle:@"选择日期"];
+                dateView.cpDelegate = self;
+//                [dateView showTime:childModel.content];
+                [self.view addSubview:dateView];
             }
                 break;
            
@@ -82,6 +106,52 @@
         }
     }else{
         
+    }
+}
+
+- (void)radioViewClick:(NSString *)valueStr
+{
+    AMTPersonalCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    [cell.rightBtn setTitle:valueStr forState:UIControlStateNormal];
+}
+
+- (void)pickerViewForClick:(NSString *)timeStr
+{
+    AMTPersonalCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    [cell.rightBtn setTitle:timeStr forState:UIControlStateNormal];
+}
+
+-(void)bottomPromitView:(CPBottomPromitView *)bottomPromitView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        //拍照
+        [self takePhotoForViewController];
+    }
+    else if ((indexPath.row == 1))
+    {
+        //从相册选择
+        [self takeAlbumForViewControllerWithEditing:YES ischooseMulImage:YES maxCount:1];
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    AMTPersonalCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    cell.headImage.image = image;
+    [self.viewModel.headImageCommand execute:image];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - TZImagePickerControllerDelegate
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto{
+    for (UIImage *image in photos){
+        AMTPersonalCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        cell.headImage.image = image;
+        [self.viewModel.headImageCommand execute:image];
     }
 }
 
@@ -103,5 +173,13 @@
         _titleArr = self.isUser ? @[@[@"更换头像",@"昵称",@"性别",@"出生年月",@"微信号",@"QQ号"]] : @[@[@"更换头像",@"商家名称",@"微信号",@"QQ号"],@[@"公告"]];
     }
     return _titleArr;
+}
+
+- (AMTPersonalVIewModel *)viewModel
+{
+    if (!_viewModel) {
+        _viewModel = [[AMTPersonalVIewModel alloc]init];
+    }
+    return _viewModel;
 }
 @end

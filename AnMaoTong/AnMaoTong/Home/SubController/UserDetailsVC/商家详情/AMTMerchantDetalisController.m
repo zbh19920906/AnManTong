@@ -9,15 +9,27 @@
 #import "AMTMerchantDetalisController.h"
 #import "AMTDetailsHeadView.h"
 #import "AMTDetailsClassView.h"
+#import "AMTUserDetailsViewModel.h"
 @interface AMTMerchantDetalisController ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic, strong)BaseTableView *tableView;
+@property (nonatomic, strong) BaseTableView *tableView;
+@property (nonatomic, strong) AMTUserDetailsViewModel *viewModel;
 @end
 
 @implementation AMTMerchantDetalisController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navBar.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.tableView];
+    [self setBingding];
+}
+
+- (void)setBingding
+{
+    weakSelf(self);
+    [[self.viewModel.userInfoCommand execute:@[self.user_id,@(self.type)]] subscribeNext:^(id x) {
+        
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -44,21 +56,31 @@
         return h;
     }
     AMTDetailsClassView *headView = [[AMTDetailsClassView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 40)];
+    
     return headView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return section == 0 ? 100 : 40;
+    return section == 0 ? 305 : 40;
 }
+
 - (BaseTableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, NavHFit, WIDTH_SCREEN, HEIGHT_SCREEN - NavHFit) style:UITableViewStylePlain];
+        _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource =self;
         [_tableView registerClass:[BaseTableViewCell class] forCellReuseIdentifier:[BaseTableViewCell identifier]];
     }
     return _tableView;
+}
+
+- (AMTUserDetailsViewModel *)viewModel
+{
+    if (!_viewModel) {
+        _viewModel = [[AMTUserDetailsViewModel alloc]init];
+    }
+    return _viewModel;
 }
 @end

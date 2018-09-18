@@ -88,7 +88,7 @@ static KKNetWorking * shard;
         //        shard.isUse==YES ? NSLog(@""):LFLog(@"请求失败%@",error);
     };
     //文件上传
-    if ([urlString isEqualToString:Release]) {
+    if ([urlString isEqualToString:Release] || [urlString isEqualToString:modifyHeadImg]) {
         [shard POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             NSArray *images = parameters[@"image"];
             for (int i = 0; i < images.count; i++) {

@@ -94,6 +94,19 @@
 		2FC014002148FDBB0007BA3B /* LTTableViewProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013F82148FDBA0007BA3B /* LTTableViewProtocal.swift */; };
 		2FC014012148FDBB0007BA3B /* LTVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC013F92148FDBA0007BA3B /* LTVCExtension.swift */; };
 		2FC0140721490ADF0007BA3B /* AMTDetailsClassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC0140621490ADF0007BA3B /* AMTDetailsClassView.m */; };
+		2FCA431D2150C99700529C74 /* CPBottomPromitOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA43132150C99700529C74 /* CPBottomPromitOption.m */; };
+		2FCA431E2150C99700529C74 /* CPBottomPromitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA43152150C99700529C74 /* CPBottomPromitView.m */; };
+		2FCA431F2150C99700529C74 /* CPBottomPromitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA43182150C99700529C74 /* CPBottomPromitCell.m */; };
+		2FCA43202150C99700529C74 /* CPBottomPromitHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA431A2150C99700529C74 /* CPBottomPromitHeadView.m */; };
+		2FCA43212150C99700529C74 /* CPBottomPromitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA431C2150C99700529C74 /* CPBottomPromitManager.m */; };
+		2FCA43252150CF3200529C74 /* AMTPersonalVIewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA43242150CF3200529C74 /* AMTPersonalVIewModel.m */; };
+		2FCA43292150D66800529C74 /* CPDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA43282150D66800529C74 /* CPDatePickerView.m */; };
+		2FCA432D2150DDD400529C74 /* AMTCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA432C2150DDD400529C74 /* AMTCollectionViewModel.m */; };
+		2FCA43312150E03E00529C74 /* AMTCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA43302150E03E00529C74 /* AMTCollectionModel.m */; };
+		2FCA43352150EE3200529C74 /* AMTFocusViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA43342150EE3200529C74 /* AMTFocusViewModel.m */; };
+		2FCA43382150EE9B00529C74 /* AMTFocusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA43372150EE9B00529C74 /* AMTFocusModel.m */; };
+		2FCA433C2150FE7000529C74 /* AMTUserDetailsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA433B2150FE7000529C74 /* AMTUserDetailsViewModel.m */; };
+		2FCA433F2150FF7400529C74 /* AMTUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA433E2150FF7400529C74 /* AMTUserInfoModel.m */; };
 		2FCAD0D5214F4954006EA81D /* AMTKeyBoardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD0D4214F4954006EA81D /* AMTKeyBoardTextView.m */; };
 		2FCAD0D8214F4CE8006EA81D /* AMTKeyBoradController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD0D7214F4CE8006EA81D /* AMTKeyBoradController.m */; };
 		2FCAD0DB214F9792006EA81D /* AMTCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD0DA214F9792006EA81D /* AMTCommentModel.m */; };
@@ -380,6 +393,33 @@
 		2FC013F92148FDBA0007BA3B /* LTVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTVCExtension.swift; sourceTree = "<group>"; };
 		2FC0140521490ADF0007BA3B /* AMTDetailsClassView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTDetailsClassView.h; sourceTree = "<group>"; };
 		2FC0140621490ADF0007BA3B /* AMTDetailsClassView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTDetailsClassView.m; sourceTree = "<group>"; };
+		2FCA43112150C99700529C74 /* CPBottomPromit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBottomPromit.h; sourceTree = "<group>"; };
+		2FCA43122150C99700529C74 /* CPBottomPromitOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBottomPromitOption.h; sourceTree = "<group>"; };
+		2FCA43132150C99700529C74 /* CPBottomPromitOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBottomPromitOption.m; sourceTree = "<group>"; };
+		2FCA43142150C99700529C74 /* CPBottomPromitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBottomPromitView.h; sourceTree = "<group>"; };
+		2FCA43152150C99700529C74 /* CPBottomPromitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBottomPromitView.m; sourceTree = "<group>"; };
+		2FCA43172150C99700529C74 /* CPBottomPromitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBottomPromitCell.h; sourceTree = "<group>"; };
+		2FCA43182150C99700529C74 /* CPBottomPromitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBottomPromitCell.m; sourceTree = "<group>"; };
+		2FCA43192150C99700529C74 /* CPBottomPromitHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBottomPromitHeadView.h; sourceTree = "<group>"; };
+		2FCA431A2150C99700529C74 /* CPBottomPromitHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBottomPromitHeadView.m; sourceTree = "<group>"; };
+		2FCA431B2150C99700529C74 /* CPBottomPromitManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBottomPromitManager.h; sourceTree = "<group>"; };
+		2FCA431C2150C99700529C74 /* CPBottomPromitManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBottomPromitManager.m; sourceTree = "<group>"; };
+		2FCA43232150CF3200529C74 /* AMTPersonalVIewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTPersonalVIewModel.h; sourceTree = "<group>"; };
+		2FCA43242150CF3200529C74 /* AMTPersonalVIewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTPersonalVIewModel.m; sourceTree = "<group>"; };
+		2FCA43272150D66800529C74 /* CPDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDatePickerView.h; sourceTree = "<group>"; };
+		2FCA43282150D66800529C74 /* CPDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDatePickerView.m; sourceTree = "<group>"; };
+		2FCA432B2150DDD400529C74 /* AMTCollectionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTCollectionViewModel.h; sourceTree = "<group>"; };
+		2FCA432C2150DDD400529C74 /* AMTCollectionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTCollectionViewModel.m; sourceTree = "<group>"; };
+		2FCA432F2150E03E00529C74 /* AMTCollectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTCollectionModel.h; sourceTree = "<group>"; };
+		2FCA43302150E03E00529C74 /* AMTCollectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTCollectionModel.m; sourceTree = "<group>"; };
+		2FCA43332150EE3200529C74 /* AMTFocusViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTFocusViewModel.h; sourceTree = "<group>"; };
+		2FCA43342150EE3200529C74 /* AMTFocusViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTFocusViewModel.m; sourceTree = "<group>"; };
+		2FCA43362150EE9B00529C74 /* AMTFocusModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTFocusModel.h; sourceTree = "<group>"; };
+		2FCA43372150EE9B00529C74 /* AMTFocusModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTFocusModel.m; sourceTree = "<group>"; };
+		2FCA433A2150FE7000529C74 /* AMTUserDetailsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTUserDetailsViewModel.h; sourceTree = "<group>"; };
+		2FCA433B2150FE7000529C74 /* AMTUserDetailsViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTUserDetailsViewModel.m; sourceTree = "<group>"; };
+		2FCA433D2150FF7400529C74 /* AMTUserInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTUserInfoModel.h; sourceTree = "<group>"; };
+		2FCA433E2150FF7400529C74 /* AMTUserInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTUserInfoModel.m; sourceTree = "<group>"; };
 		2FCAD0D3214F4954006EA81D /* AMTKeyBoardTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTKeyBoardTextView.h; sourceTree = "<group>"; };
 		2FCAD0D4214F4954006EA81D /* AMTKeyBoardTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTKeyBoardTextView.m; sourceTree = "<group>"; };
 		2FCAD0D6214F4CE8006EA81D /* AMTKeyBoradController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTKeyBoradController.h; sourceTree = "<group>"; };
@@ -733,6 +773,7 @@
 		2F597CCF21426D6F00C5B4A0 /* KKPersonalController */ = {
 			isa = PBXGroup;
 			children = (
+				2FCA43222150CF1700529C74 /* viewModel */,
 				2F597CE721426E2200C5B4A0 /* AMTPersonalViewController.h */,
 				2F597CE821426E2200C5B4A0 /* AMTPersonalViewController.m */,
 				2F597CEE2142712900C5B4A0 /* View */,
@@ -1020,6 +1061,8 @@
 		2FC013E82148F98F0007BA3B /* 商家详情 */ = {
 			isa = PBXGroup;
 			children = (
+				2FCA43402150FF7800529C74 /* model */,
+				2FCA43392150FE4A00529C74 /* viewModel */,
 				2FC013E92148F9BD0007BA3B /* AMTMerchantDetalisController.h */,
 				2FC013EA2148F9BD0007BA3B /* AMTMerchantDetalisController.m */,
 				2FC013EC2148FA870007BA3B /* View */,
@@ -1059,6 +1102,97 @@
 				2FC013F92148FDBA0007BA3B /* LTVCExtension.swift */,
 			);
 			path = Lib;
+			sourceTree = "<group>";
+		};
+		2FCA43102150C99700529C74 /* CPBottomPromitView(底部弹框) */ = {
+			isa = PBXGroup;
+			children = (
+				2FCA43112150C99700529C74 /* CPBottomPromit.h */,
+				2FCA43122150C99700529C74 /* CPBottomPromitOption.h */,
+				2FCA43132150C99700529C74 /* CPBottomPromitOption.m */,
+				2FCA43142150C99700529C74 /* CPBottomPromitView.h */,
+				2FCA43152150C99700529C74 /* CPBottomPromitView.m */,
+				2FCA43162150C99700529C74 /* CPSubViews */,
+			);
+			path = "CPBottomPromitView(底部弹框)";
+			sourceTree = "<group>";
+		};
+		2FCA43162150C99700529C74 /* CPSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				2FCA43172150C99700529C74 /* CPBottomPromitCell.h */,
+				2FCA43182150C99700529C74 /* CPBottomPromitCell.m */,
+				2FCA43192150C99700529C74 /* CPBottomPromitHeadView.h */,
+				2FCA431A2150C99700529C74 /* CPBottomPromitHeadView.m */,
+				2FCA431B2150C99700529C74 /* CPBottomPromitManager.h */,
+				2FCA431C2150C99700529C74 /* CPBottomPromitManager.m */,
+			);
+			path = CPSubViews;
+			sourceTree = "<group>";
+		};
+		2FCA43222150CF1700529C74 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2FCA43232150CF3200529C74 /* AMTPersonalVIewModel.h */,
+				2FCA43242150CF3200529C74 /* AMTPersonalVIewModel.m */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		2FCA43262150D66800529C74 /* CPDatePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				2FCA43272150D66800529C74 /* CPDatePickerView.h */,
+				2FCA43282150D66800529C74 /* CPDatePickerView.m */,
+			);
+			path = CPDatePickerView;
+			sourceTree = "<group>";
+		};
+		2FCA432A2150DDC200529C74 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2FCA432B2150DDD400529C74 /* AMTCollectionViewModel.h */,
+				2FCA432C2150DDD400529C74 /* AMTCollectionViewModel.m */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		2FCA432E2150E02B00529C74 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				2FCA432F2150E03E00529C74 /* AMTCollectionModel.h */,
+				2FCA43302150E03E00529C74 /* AMTCollectionModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		2FCA43322150EE1E00529C74 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2FCA43332150EE3200529C74 /* AMTFocusViewModel.h */,
+				2FCA43342150EE3200529C74 /* AMTFocusViewModel.m */,
+				2FCA43362150EE9B00529C74 /* AMTFocusModel.h */,
+				2FCA43372150EE9B00529C74 /* AMTFocusModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2FCA43392150FE4A00529C74 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2FCA433A2150FE7000529C74 /* AMTUserDetailsViewModel.h */,
+				2FCA433B2150FE7000529C74 /* AMTUserDetailsViewModel.m */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		2FCA43402150FF7800529C74 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				2FCA433D2150FF7400529C74 /* AMTUserInfoModel.h */,
+				2FCA433E2150FF7400529C74 /* AMTUserInfoModel.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		2FCAD0DC214F9B7E006EA81D /* 评论cell */ = {
@@ -1198,6 +1332,8 @@
 		2FE2A5212137C7E1002AB1D8 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				2FCA43262150D66800529C74 /* CPDatePickerView */,
+				2FCA43102150C99700529C74 /* CPBottomPromitView(底部弹框) */,
 				2FC013F02148FDBA0007BA3B /* LTScrollView */,
 				2F95ED9521466AD7008EA374 /* CPAMapLocationManager */,
 				2F95ED70214602C3008EA374 /* CPBaseImageCollectionView */,
@@ -1752,6 +1888,7 @@
 		58CF9229214295B60065EF0F /* Focus */ = {
 			isa = PBXGroup;
 			children = (
+				2FCA43322150EE1E00529C74 /* ViewModel */,
 				58CF92332142A51A0065EF0F /* View */,
 				58CF922A214295EE0065EF0F /* AMTFocusViewController.h */,
 				58CF922B214295EE0065EF0F /* AMTFocusViewController.m */,
@@ -1779,6 +1916,8 @@
 			children = (
 				58CF923B2142B29D0065EF0F /* AMTMyCollectionViewController.h */,
 				58CF923C2142B29D0065EF0F /* AMTMyCollectionViewController.m */,
+				2FCA432E2150E02B00529C74 /* model */,
+				2FCA432A2150DDC200529C74 /* viewModel */,
 				58CF923E2142B2AC0065EF0F /* view */,
 			);
 			path = collection;
@@ -2066,10 +2205,14 @@
 				2FE2A5992137C810002AB1D8 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				2FE2A5552137C7FA002AB1D8 /* NSObject+KKTextSize.m in Sources */,
 				2F1C3BDA21412DB1008D3B66 /* AMTBaseInfoViewController.m in Sources */,
+				2FCA433C2150FE7000529C74 /* AMTUserDetailsViewModel.m in Sources */,
+				2FCA43292150D66800529C74 /* CPDatePickerView.m in Sources */,
 				2FC013FB2148FDBB0007BA3B /* LTDispatchQueue.swift in Sources */,
 				2F1C3A602140CB62008D3B66 /* UIView+extension.m in Sources */,
+				2FCA433F2150FF7400529C74 /* AMTUserInfoModel.m in Sources */,
 				2FC0140721490ADF0007BA3B /* AMTDetailsClassView.m in Sources */,
 				2F95ED94214657EF008EA374 /* NSMutableAttributedString+Extension.m in Sources */,
+				2FCA431E2150C99700529C74 /* CPBottomPromitView.m in Sources */,
 				2F1C3A6A2140D11B008D3B66 /* CPLinkLabView.m in Sources */,
 				2FC013E32148F1110007BA3B /* AMTZoneController.m in Sources */,
 				2F726A3F213F87810024A73F /* AMTContentView.m in Sources */,
@@ -2079,6 +2222,7 @@
 				2FE2A5012137C7B2002AB1D8 /* BaseViewController.m in Sources */,
 				2F95EDA1214753F7008EA374 /* AMTDynamicCountModel.m in Sources */,
 				2FE2A6162137D2D1002AB1D8 /* AMTMyVC.m in Sources */,
+				2FCA43252150CF3200529C74 /* AMTPersonalVIewModel.m in Sources */,
 				2F95ED9921466AD7008EA374 /* CPAMapLocationManager.m in Sources */,
 				2FE2A5D02137C846002AB1D8 /* UserHelper.m in Sources */,
 				2FE2A5E92137C988002AB1D8 /* BaseModel.m in Sources */,
@@ -2106,9 +2250,11 @@
 				2FE2A55C2137C7FA002AB1D8 /* NSString+KKTimesTamp.m in Sources */,
 				58CF922C214295EE0065EF0F /* AMTFocusViewController.m in Sources */,
 				2FE2A5612137C7FA002AB1D8 /* UINavigationBar+Awesome.m in Sources */,
+				2FCA43352150EE3200529C74 /* AMTFocusViewModel.m in Sources */,
 				2FE2A5962137C810002AB1D8 /* IQPreviousNextView.m in Sources */,
 				2FE2A5AA2137C828002AB1D8 /* KKNetWorking.m in Sources */,
 				2F95ED7C21461125008EA374 /* AMTPartitionView.m in Sources */,
+				2FCA43382150EE9B00529C74 /* AMTFocusModel.m in Sources */,
 				2F726A58213FAF010024A73F /* KKSearchGoodsViewController.m in Sources */,
 				2FC013EB2148F9BD0007BA3B /* AMTMerchantDetalisController.m in Sources */,
 				2FE2A5192137C7D2002AB1D8 /* BaseImageView.m in Sources */,
@@ -2136,10 +2282,12 @@
 				2FE2A4F32137C759002AB1D8 /* AppDelegate.m in Sources */,
 				2FE2A5182137C7D2002AB1D8 /* BaseTextField.m in Sources */,
 				2FE2A55E2137C7FA002AB1D8 /* UIColor+CZAddition.m in Sources */,
+				2FCA431F2150C99700529C74 /* CPBottomPromitCell.m in Sources */,
 				2FE2A5E02137C851002AB1D8 /* CP_AES.m in Sources */,
 				2F726A5B213FAF010024A73F /* KKTagCell.m in Sources */,
 				2FE2A55A2137C7FA002AB1D8 /* NSString+KKPhoneNumber.m in Sources */,
 				2FC013FE2148FDBB0007BA3B /* LTSimpleManager.swift in Sources */,
+				2FCA43202150C99700529C74 /* CPBottomPromitHeadView.m in Sources */,
 				2FE2A55B2137C7FA002AB1D8 /* NSString+KKStringDate.m in Sources */,
 				2F597CC5214254AC00C5B4A0 /* AMTMyHeadView.m in Sources */,
 				2FE2A6132137D2C2002AB1D8 /* AMTMessageVC.m in Sources */,
@@ -2169,8 +2317,11 @@
 				2F1C3BD421412C23008D3B66 /* AMTContactViewController.m in Sources */,
 				2FE2A5C52137C837002AB1D8 /* TADotView.m in Sources */,
 				2FE2A5AB2137C828002AB1D8 /* KKNetworkManager.m in Sources */,
+				2FCA432D2150DDD400529C74 /* AMTCollectionViewModel.m in Sources */,
 				2F597CCE21425F7F00C5B4A0 /* AMTMyModel.m in Sources */,
+				2FCA43212150C99700529C74 /* CPBottomPromitManager.m in Sources */,
 				2F95ED8721464E56008EA374 /* ReleaseDynamicCityController.m in Sources */,
+				2FCA431D2150C99700529C74 /* CPBottomPromitOption.m in Sources */,
 				2F95ED6F21460273008EA374 /* ReleaseDynamicViewModel.m in Sources */,
 				2FE2A5C32137C837002AB1D8 /* TAAbstractDotView.m in Sources */,
 				2F726A46213FA5E20024A73F /* AMTBrandItemCell.m in Sources */,
@@ -2190,6 +2341,7 @@
 				2FA1E051214B955600031511 /* AMTFindSubVIewController.m in Sources */,
 				2FC014002148FDBB0007BA3B /* LTTableViewProtocal.swift in Sources */,
 				2F95ED8921464E56008EA374 /* ReleaseDynamicTitleCell.m in Sources */,
+				2FCA43312150E03E00529C74 /* AMTCollectionModel.m in Sources */,
 				58CF92412142B2C40065EF0F /* AMTMyCollectionCell.m in Sources */,
 				2FE2A5652137C7FA002AB1D8 /* UIViewController+Seting.m in Sources */,
 				2F726A70213FC7F80024A73F /* AMTGoodsImageView.m in Sources */,

@@ -11,6 +11,7 @@
 @interface AMTMyCollectionCell ()
 @property (nonatomic, strong) BaseImageView *headImage;
 @property (nonatomic, strong) BaseLabel *titleLab;
+@property (nonatomic, strong) BaseImageView *iconImage;
 @property (nonatomic, strong) BaseLabel *nameLab;
 @property (nonatomic, strong) BaseLabel *timeLab;
 @property (nonatomic, strong) BaseButton *foucusBtn;
@@ -31,30 +32,34 @@
     
     self.nameLab = [[BaseLabel alloc]init];
     [self.nameLab setLableColor:@"FF3658" font:13 bold:0];
-    self.nameLab.text = @"鸿星尔克";
     
     self.titleLab = [[BaseLabel alloc]init];
     [self.titleLab setLableColor:@"555555" font:13 bold:0];
-    self.titleLab.text = @"skechers斯凯奇撞色运动休闲鞋动休闲鞋 低价批发，工厂直销";
     
     self.timeLab = [[BaseLabel alloc]init];
     [self.timeLab setLableColor:@"CCCCCC" font:11 bold:0];
-    self.timeLab.text = @"2018-08-27";
+    
+    self.iconImage = [[BaseImageView alloc]init];
     
     self.foucusBtn = [BaseButton buttonWithType:UIButtonTypeCustom];
-    [self.foucusBtn setLableColor:@"FF3658" font:12 bold:0];
-    [self.foucusBtn setTitleColor:BHColor(@"CCCCCC") forState:UIControlStateSelected];
-    self.foucusBtn.layer.borderColor = [UIColor cz_ToUIColorByStr:@"FF3658"].CGColor;
+    [self.foucusBtn setLableColor:@"E5E5E5" font:12 bold:0];
+    self.foucusBtn.layer.borderColor = [UIColor cz_ToUIColorByStr:@"E5E5E5"].CGColor;
     self.foucusBtn.layer.borderWidth = 1;
-    [self.foucusBtn setTitle:@"收藏" forState:UIControlStateNormal];
+    [self.foucusBtn setTitle:@"已收藏" forState:UIControlStateNormal];
     self.foucusBtn.hidden = isView;
-    [self.contentView sd_addSubviews:@[self.headImage,self.nameLab,self.timeLab,self.titleLab,self.foucusBtn]];
+    [self.contentView sd_addSubviews:@[self.headImage,self.iconImage,self.nameLab,self.timeLab,self.titleLab,self.foucusBtn]];
     
     self.headImage.sd_layout
     .centerYEqualToView(self.contentView)
     .leftSpaceToView(self.contentView, 10)
     .widthIs(isView ? 81 : 100)
     .heightEqualToWidth();
+    
+    self.iconImage.sd_layout
+    .topEqualToView(self.headImage)
+    .leftSpaceToView(self.headImage, - 23)
+    .widthIs(23)
+    .heightIs(29);
     
     self.titleLab.sd_layout
     .topSpaceToView(self.contentView, isView ? 14 : 20)
@@ -84,5 +89,14 @@
 - (void)setIsHistory:(BOOL)isHistory
 {
     self.foucusBtn.hidden = isHistory;
+}
+
+- (void)setModel:(AMTCollectionModel *)model
+{
+    self.titleLab.text= model.title;
+    self.nameLab.text = model.nickname;
+    self.timeLab.text = model.generate_time;
+    [self.headImage sd_setImageWithURL:UrlString(model.head_img)];
+    self.iconImage.image = model.type == 1 ? imageNamed(@"qiu") : imageNamed(@"gong");
 }
 @end

@@ -41,8 +41,8 @@
                                       @"goods_class_id" : input[1],
                                       @"brand_id" : input[2],
                                       @"zone_id" : input[3],
-                                      @"size" : input[4],
-                                      @"page" : input[5]
+                                      @"size" : requestSize,
+                                      @"page" : input[4]
                                       };
                 [[KKNetWorking getShard] request:GET url:getDynamic parameters:dic completion:^(id json, NSInteger code) {
                     weakSelf.listArray = [AMTDetailsModel mj_objectArrayWithKeyValuesArray:json[@"data"]];

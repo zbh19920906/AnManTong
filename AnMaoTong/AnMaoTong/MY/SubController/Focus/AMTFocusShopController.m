@@ -8,8 +8,10 @@
 
 #import "AMTFocusShopController.h"
 #import "AMTFocusShopCell.h"
+#import "AMTFocusViewModel.h"
 @interface AMTFocusShopController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) BaseTableView *tableView;
+@property (nonatomic, strong) AMTFocusViewModel *viewModel;
 @end
 
 @implementation AMTFocusShopController
@@ -18,17 +20,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view addSubview:self.tableView];
+    [self setBingding];
+}
+
+- (void)setBingding
+{
+    weakSelf(self);
+    [[self.viewModel.listCommand execute:@[@(1),@(2)]] subscribeNext:^(id x) {
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.viewModel.listArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AMTFocusShopCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTFocusShopCell class]) forIndexPath:indexPath];
-    
+    cell.model = self.viewModel.listArr[indexPath.row];
     return cell;
 }
 
@@ -59,6 +70,14 @@
         
     }
     return _tableView;
+}
+
+- (AMTFocusViewModel *)viewModel
+{
+    if (!_viewModel) {
+        _viewModel = [[AMTFocusViewModel alloc]init];
+    }
+    return _viewModel;
 }
 
 @end

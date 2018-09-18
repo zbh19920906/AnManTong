@@ -9,9 +9,7 @@
 
 #import "AMTPersonalCell.h"
 @interface AMTPersonalCell ()
-@property (nonatomic, strong) BaseImageView *headImage;
-@property (nonatomic, strong) BaseTextField *rightTF;
-@property (nonatomic, strong) BaseButton *rightBtn;
+
 @end
 @implementation AMTPersonalCell
 
@@ -53,11 +51,24 @@
     self.headImage.hidden = YES;
     self.rightTF.hidden = YES;
     self.rightBtn.hidden = YES;
+    User *user = [UserHelper shareInstance].user;
     if ([title isEqualToString:@"更换头像"]) {
+        [self.headImage sd_setImageWithURL:UrlString(user.head_img)];
         self.headImage.hidden = NO;
-    }else if ([title isEqualToString:@"性别"] || [title isEqualToString:@"出生年月"]){
+    }else if ([title isEqualToString:@"性别"]){
+        [self.rightBtn setTitle:user.sex == 1 ? @"男" : @"女" forState:UIControlStateNormal];
+        self.rightBtn.hidden = NO;
+    }else if ([title isEqualToString:@"出生年月"]){
+        [self.rightBtn setTitle:user.age forState:UIControlStateNormal];
         self.rightBtn.hidden = NO;
     }else{
+        if ([title isEqualToString:@"昵称"]) {
+            self.rightTF.text = self.isUser ? user.nickname : user.name;
+        }else if ([title isEqualToString:@"微信号"]){
+            self.rightTF.text = user.wx;
+        }else if ([title isEqualToString:@"QQ号"]){
+            self.rightTF.text = user.qq;
+        }
         self.rightTF.hidden = NO;
     }
     self.textLabel.text = title;
@@ -80,7 +91,6 @@
         _rightTF = [[BaseTextField alloc]init];
         _rightTF.hidden = YES;
         [_rightTF setLableColor:@"222222" font:14 bold:0];
-        _rightTF.text = @"输入框";
         _rightTF.textAlignment = NSTextAlignmentRight;
         _rightTF.contentVerticalAlignment = UIControlContentHorizontalAlignmentRight;
         _rightTF.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -96,6 +106,7 @@
         [_rightBtn setTitle:@"按钮" forState:UIControlStateNormal];
         _rightBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [_rightBtn setLableColor:@"222222" font:14 bold:0];
+        _rightBtn.userInteractionEnabled = NO;
     }
     return _rightBtn;
 }

@@ -49,5 +49,35 @@
     [self.focusBtn setTitle:@"关注" forState:UIControlStateNormal];
     
     [self sd_addSubviews:@[self.bgImageView,self.headIamgeView,self.nameLab,self.focusBtn]];
+    
+    self.bgImageView.sd_layout
+    .spaceToSuperView(UIEdgeInsetsZero);
+    
+    self.headIamgeView.sd_layout
+    .topSpaceToView(self, 85)
+    .leftSpaceToView(self, 16)
+    .widthIs(80)
+    .heightEqualToWidth();
+    
+    self.nameLab.sd_layout
+    .topSpaceToView(self.headIamgeView, 16)
+    .leftSpaceToView(self, 17)
+    .heightIs(20);
+    [self.nameLab setSingleLineAutoResizeWithMaxWidth:200];
+    
+    self.announcementLab.sd_layout
+    .topSpaceToView(self.nameLab, 20)
+    .leftSpaceToView(self, 16)
+    .rightSpaceToView(self, 19)
+    .autoHeightRatio(0)
+    .maxHeightIs(35);
+    
+    self.focusBtn.sd_layout
+    .centerYEqualToView(self.headIamgeView)
+    .rightSpaceToView(self, 16)
+    .widthIs(40)
+    .heightEqualToWidth();
 }
+
+
 @end

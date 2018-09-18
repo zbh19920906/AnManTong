@@ -12,6 +12,7 @@
 #import "AMTZoneCell.h"
 #import "AMTHeadView.h"
 #import "AMTDetailsVC.h"
+#import "AMTZoneController.h"
 #import "AMTMerchantDetalisController.h"
 @interface AMTMainVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) BaseTableView *tableView;
@@ -34,7 +35,7 @@
     [[self.viewModels.classCommand execute:@[(self.goods_class_id)]]subscribeNext:^(id x) {
         [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
     }];
-    [[self.viewModels.listCommand execute:@[@"1",@"0",@"0",@"0",@(10),@(1)]]subscribeNext:^(id x) {
+    [[self.viewModels.listCommand execute:@[@"1",@"0",@"0",@"0",@(1)]]subscribeNext:^(id x) {
         [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     }];
     
@@ -54,25 +55,29 @@
 
 - (void)sendComment
 {
+    weakSelf(self);
     [[self.viewModels.commentCommand execute:@[self.commentModel,self.keyBoardInputView.inputTF.text]] subscribeNext:^(id x) {
-                    [self.keyBoardInputView.inputTF resignFirstResponder];
-                    [self.tableView reloadData];
+        [weakSelf.keyBoardInputView hidden];
+            [weakSelf.keyBoardInputView.inputTF resignFirstResponder];
+            [weakSelf.tableView reloadData];
     }];
 }
 
 - (void)collection:(NSNotification *)notifi
 {
+    weakSelf(self);
     AMTDetailsModel *model = notifi.userInfo[@"model"];
     [[self.viewModels.collectionCommand execute:model] subscribeNext:^(id x) {
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
     }];
 }
 
 - (void)like:(NSNotification *)notifi
 {
+    weakSelf(self);
     AMTDetailsModel *model = notifi.userInfo[@"model"];
     [[self.viewModels.likeCommand execute:model] subscribeNext:^(id x) {
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
     }];
 }
 
@@ -102,17 +107,29 @@
         }
         
         AMTZoneCell *cell = [tableView dequeueReusableCellWithIdentifier:[AMTZoneCell identifier] forIndexPath:indexPath];
+        weakSelf(self);
+        [[cell rac_signalForSelector:@selector(goZoneVC:)]subscribeNext:^(id x) {
+            AMTZoneController *vc = [[AMTZoneController alloc]init];
+            BaseButton *button = x[0];
+            AMTZoneModel *model = weakSelf.viewModels.zoneArray[button.tag];
+            vc.navBar.titieLab.text = model.name;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
         cell.zoneArray = self.viewModels.zoneArray;
         return cell;
     }
     AMTGoodsMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTGoodsMessageCell class]) forIndexPath:indexPath];
+    cell.contentView.backgroundColor = BHColor(@"f5f5f5");
+    AMTDetailsModel *model = self.viewModels.listArray[indexPath.row];
+    cell.model = model;
+    
     weakSelf(self);
     [[cell.headTap rac_gestureSignal]subscribeNext:^(id x) {
         AMTMerchantDetalisController *vc = [[AMTMerchantDetalisController alloc]init];
+        vc.user_id = model.user_business_id;
+        vc.type = model.type;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
-    cell.contentView.backgroundColor = BHColor(@"f5f5f5");
-    cell.model = self.viewModels.listArray[indexPath.row];
     return cell;
 }
 

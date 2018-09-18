@@ -41,8 +41,20 @@
     [self.likeBtn setImage:imageNamed(@"like") forState:UIControlStateNormal];
     [self.likeBtn setImage:imageNamed(@"like_pre") forState:UIControlStateSelected];
     [self.likeBtn setLableColor:@"B9B9B9" font:12 bold:0];
+    weakSelf(self);
     [[self.likeBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
-        
+        [[KKNetWorking getShard] request:POST url:commentLike parameters:@{@"comment_id":weakSelf.model.ID} completion:^(id json, NSInteger code) {
+            if (weakSelf.model.is_comment_like_count) {
+                weakSelf.model.comment_like_count = weakSelf.model.comment_like_count - 1;
+            }else{
+                weakSelf.model.comment_like_count = weakSelf.model.comment_like_count + 1;
+            }
+            weakSelf.model.is_comment_like_count = !weakSelf.model.is_comment_like_count;
+            weakSelf.likeBtn.selected = weakSelf.model.is_comment_like_count;
+            [weakSelf.likeBtn setTitle:BHIString(weakSelf.model.comment_like_count) forState:UIControlStateNormal];
+        } fail:^(NSString *message, NSInteger code) {
+            
+        }];
     }];
     
     [self.contentView sd_addSubviews:@[self.headImage,self.nameLab,self.contentLab,self.timeLab,self.likeBtn]];
@@ -82,7 +94,8 @@
 - (void)setModel:(AMTCommentModel *)model
 {
     _model = model;
-    [self.likeBtn setTitle:model.comment_like_count forState:UIControlStateNormal];
+    [self.likeBtn setTitle:BHIString(model.comment_like_count) forState:UIControlStateNormal];
+    self.likeBtn.selected = model.is_comment_like_count;
     self.timeLab.text = model.generate_time;
     self.nameLab.text = model.reply_user_id.length == 0 ? model.nickname : model.parent_nickname;
     self.contentLab.attributedText = [self setAtt];

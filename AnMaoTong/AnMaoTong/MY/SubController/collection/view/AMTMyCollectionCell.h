@@ -7,7 +7,8 @@
 //
 
 #import "BaseTableViewCell.h"
-
+#import "AMTCollectionModel.h"
 @interface AMTMyCollectionCell : BaseTableViewCell
 @property (nonatomic, assign) BOOL isHistory;
+@property (nonatomic, strong) AMTCollectionModel *model;
 @end

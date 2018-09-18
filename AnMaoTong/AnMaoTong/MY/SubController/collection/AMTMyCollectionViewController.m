@@ -8,8 +8,10 @@
 
 #import "AMTMyCollectionViewController.h"
 #import "AMTMyCollectionCell.h"
+#import "AMTCollectionViewModel.h"
 @interface AMTMyCollectionViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) BaseTableView *tableView;
+@property (nonatomic, strong) AMTCollectionViewModel *viewModel;
 @end
 
 @implementation AMTMyCollectionViewController
@@ -19,17 +21,27 @@
     // Do any additional setup after loading the view.
     self.navBar.titieLab.text = self.isHistory ?  @"浏览历史" :  @"我的收藏";
     [self.view addSubview:self.tableView];
+    [self setBingding];
+}
+
+- (void)setBingding
+{
+    weakSelf(self);
+    [[self.viewModel.collectionCommand execute:@[@"1",@(self.isHistory)]] subscribeNext:^(id x) {
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.viewModel.listArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AMTMyCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTMyCollectionCell class]) forIndexPath:indexPath];
     cell.isHistory = self.isHistory;
+    cell.model = self.viewModel.listArr[indexPath.row];
     return cell;
 }
 
@@ -62,5 +74,11 @@
     return _tableView;
 }
 
-
+- (AMTCollectionViewModel *)viewModel
+{
+    if (!_viewModel) {
+        _viewModel = [[AMTCollectionViewModel alloc]init];
+    }
+    return _viewModel;
+}
 @end

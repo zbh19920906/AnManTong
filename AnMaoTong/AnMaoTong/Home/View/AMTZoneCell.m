@@ -25,7 +25,8 @@
     _zoneArray = zoneArray;
     for (NSInteger i = self.viewArray.count; i < zoneArray.count; i ++) {
         BaseButton *btn = [BaseButton buttonWithType:UIButtonTypeCustom];
-        
+        btn.tag = i;
+        [btn addTarget:self action:@selector(goZoneVC:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:btn];
         [self.viewArray addObject:btn];
     }
@@ -36,11 +37,18 @@
     }
     for (NSInteger i = 0; i < zoneArray.count; i ++) {
         BaseButton *btn = self.viewArray[i];
-        btn.backgroundColor = [UIColor redColor];
+//        btn.backgroundColor = [UIColor redColor];
+        AMTZoneModel *model = zoneArray[i];
+        [btn sd_setImageWithURL:UrlString(model.img_url) forState:UIControlStateNormal];
         btn.hidden = NO;
         CGFloat width = (WIDTH_SCREEN - 30) / 2;
         btn.frame = CGRectMake(i %2 * (width + 10) + 10, i/2 * (85 + 10) + 10, width, 85);
-        
+        [self sd_addSubviews:@[]];
     }
+}
+
+- (void)goZoneVC:(BaseButton *)btn
+{
+    
 }
 @end

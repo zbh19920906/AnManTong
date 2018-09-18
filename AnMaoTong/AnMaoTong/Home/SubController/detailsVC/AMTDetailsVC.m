@@ -35,7 +35,51 @@
         
             [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     }];
+    
+    [myNoti addObserver:self selector:@selector(comment:) name:commentNoti object:nil];
+    [myNoti addObserver:self selector:@selector(sendComment) name:sendCommentNoti object:nil];
+    [myNoti addObserver:self selector:@selector(collection:) name:collectionNoti object:nil];
+    [myNoti addObserver:self selector:@selector(like:) name:likeNoti object:nil];
+    [myNoti addObserver:self selector:@selector(willChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
+
+- (void)comment:(NSNotification *)notifi
+{
+    [self.keyBoardInputView.inputTF becomeFirstResponder];
+}
+
+- (void)sendComment
+{
+    weakSelf(self);
+    [[self.viewModels.commentCommand execute:@[self.keyBoardInputView.inputTF.text]] subscribeNext:^(id x) {
+        [weakSelf.keyBoardInputView hidden];
+        [weakSelf.keyBoardInputView.inputTF resignFirstResponder];
+        [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    }];
+}
+
+- (void)collection:(NSNotification *)notifi
+{
+     weakSelf(self);
+    [[self.viewModels.collectionCommand execute:nil] subscribeNext:^(id x) {
+         [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    }];
+}
+
+- (void)like:(NSNotification *)notifi
+{
+     weakSelf(self);
+    [[self.viewModels.likeCommand execute:nil] subscribeNext:^(id x) {
+         [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    }];
+}
+
+- (void)willChange:(NSNotification *)notifi
+{
+    NSValue *value = [notifi.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    [self.keyBoardInputView show:[value CGRectValue].size.height];
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

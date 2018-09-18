@@ -81,4 +81,13 @@
     .widthIs(57);
 }
 
+- (void)setModel:(AMTFocusModel *)model
+{
+    [self.headImage sd_setImageWithURL:UrlString(model.head_img)];
+    self.nameLab.text = model.name;
+//    self.ageLab.text =
+    
+    self.foucusBtn.selected = model.is_attention;
+}
+
 @end

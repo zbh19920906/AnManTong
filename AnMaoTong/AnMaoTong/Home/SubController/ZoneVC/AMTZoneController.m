@@ -10,6 +10,7 @@
 #import "AMTZoneMainController.h"
 #import "AMTScreenVC.h"
 #import "AMTDetailsVC.h"
+#import "AMTAddButtonVC.h"
 #import "KKSearchGoodsViewController.h"
 @interface AMTZoneController ()
 
@@ -23,9 +24,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navBar.titieLab.text = @"安贸通";
-    [self.navBar.rightButton setImage:imageNamed(@"search") forState:UIControlStateNormal];
+    [self.navBar.rightButton setImage:imageNamed(@"添加") forState:UIControlStateNormal];
+    BaseButton *button = [BaseButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:imageNamed(@"筛选 (1)") forState:UIControlStateNormal];
+    button.backgroundColor = BHColor(@"F5F5F5");
     weakSelf(self);
+    [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        AMTScreenVC *vc = [[AMTScreenVC alloc]init];
+        vc.titles = weakSelf.titleArr;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
+    [self.view addSubview:button];
+    button.sd_layout
+    .topSpaceToView(self.view, NavHFit)
+    .rightEqualToView(self.view)
+    .widthIs(34)
+    .heightIs(38);
+    
     [[KKNetWorking getShard]request:GET url:getGoodsClass parameters:nil completion:^(id json, NSInteger code) {
         weakSelf.titleArr = [AMTGoodsClassModel mj_objectArrayWithKeyValuesArray:json[@"data"]];
         [weakSelf.view addSubview:weakSelf.managerView];
@@ -37,8 +52,9 @@
 
 - (void)clickRightButtonAction:(id)sender
 {
-    KKSearchGoodsViewController *search  =[[KKSearchGoodsViewController alloc]init];
-    [self.navigationController pushViewController:search animated:YES];
+    AMTAddButtonVC *addVC = [[AMTAddButtonVC alloc]init];
+    BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:addVC];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark - 懒加载
@@ -46,7 +62,7 @@
 {
     if (!_managerView) {
         weakSelf(self);
-        _managerView = [[KKClassificationView alloc]initWithFrame:CGRectMake(0, NavHFit, self.view.bounds.size.width, HEIGHT_SCREEN - NavHFit) viewController:self layout:self.layout clickBlock:^(NSInteger index) {
+        _managerView = [[KKClassificationView alloc]initWithFrame:CGRectMake(0, NavHFit, WIDTH_SCREEN - 34, HEIGHT_SCREEN - NavHFit) viewController:self layout:self.layout clickBlock:^(NSInteger index) {
             //            AMTScreenVC *vc =[[AMTScreenVC alloc]init];
             //            vc.titles = weakSelf.titleArr;
             AMTDetailsVC *vc = [[AMTDetailsVC alloc]init];

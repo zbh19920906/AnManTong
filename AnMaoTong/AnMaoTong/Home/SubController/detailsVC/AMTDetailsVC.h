@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AMTDetailsVC : BaseViewController
+@interface AMTDetailsVC : AMTKeyBoradController
 @property (nonatomic, copy) NSString *dynamic_id;
 @end

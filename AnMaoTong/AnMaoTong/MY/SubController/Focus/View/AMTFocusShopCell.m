@@ -30,11 +30,9 @@
     
     self.nameLab = [[BaseLabel alloc]init];
     [self.nameLab setLableColor:@"FF3658" font:13 bold:0];
-    self.nameLab.text = @"鸿星尔克";
     
     self.weChatLab = [[BaseLabel alloc]init];
     [self.weChatLab setLableColor:@"CCCCCC" font:11 bold:0];
-    self.weChatLab.text = @"微信号：MKQD99999  QQ：35625645";
     
     self.foucusBtn = [BaseButton buttonWithType:UIButtonTypeCustom];
     [self.foucusBtn setLableColor:@"FF3658" font:12 bold:0];
@@ -71,4 +69,11 @@
     .widthIs(57);
 }
 
+- (void)setModel:(AMTFocusModel *)model
+{
+    [self.headImage sd_setImageWithURL:UrlString(model.head_img)];
+    self.nameLab.text = model.name;
+    self.weChatLab.text = [NSString stringWithFormat:@"微信号：%@  QQ：%@",model.wx,model.qq];
+    self.foucusBtn.selected = model.is_attention;
+}
 @end

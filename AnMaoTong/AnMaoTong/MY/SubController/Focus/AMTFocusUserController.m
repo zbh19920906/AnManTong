@@ -8,8 +8,10 @@
 
 #import "AMTFocusUserController.h"
 #import "AMTFocusUserCell.h"
+#import "AMTFocusViewModel.h"
 @interface AMTFocusUserController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) BaseTableView *tableView;
+@property (nonatomic, strong) AMTFocusViewModel *viewModel;
 @end
 
 @implementation AMTFocusUserController
@@ -18,17 +20,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view addSubview:self.tableView];
+    [self setBingding];
+}
+
+- (void)setBingding
+{
+    weakSelf(self);
+    [[self.viewModel.listCommand execute:@[@(1),@(2)]] subscribeNext:^(id x) {
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.viewModel.listArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AMTFocusUserCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTFocusUserCell class]) forIndexPath:indexPath];
-    
+    cell.model = self.viewModel.listArr[indexPath.row];
     return cell;
 }
 
@@ -61,5 +72,11 @@
     return _tableView;
 }
 
-
+- (AMTFocusViewModel *)viewModel
+{
+    if (!_viewModel) {
+        _viewModel = [[AMTFocusViewModel alloc]init];
+    }
+    return _viewModel;
+}
 @end

@@ -12,6 +12,9 @@
 @interface AMTDetailsViewModel : NSObject
 @property (nonatomic, strong) RACCommand *detailsCommand;
 @property (nonatomic, strong) RACCommand *listCommand;
+@property (nonatomic, strong) RACCommand *commentCommand;
+@property (nonatomic, strong) RACCommand *likeCommand;
+@property (nonatomic, strong) RACCommand *collectionCommand;
 @property (nonatomic, strong) AMTDetailsModel *model;
 @property (nonatomic, strong) NSMutableArray <AMTCommentModel *>*listArray;
 @end

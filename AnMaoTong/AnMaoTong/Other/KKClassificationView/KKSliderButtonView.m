@@ -28,7 +28,7 @@
 - (void)setSubView
 {
     BaseButton *leftBtn;
-    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, self.layout.sliderHeight)];
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.size.width, self.layout.sliderHeight)];
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     [self addSubview:self.scrollView];
@@ -49,11 +49,11 @@
         btn.adjustsImageWhenHighlighted = NO;
         btn.tag = i + 100;
         if (!self.layout.isAverage) {
-            CGSize size = [NSObject sizeWithFont:self.layout.titleFont Text:title MaxSize:CGSizeMake(WIDTH_SCREEN, self.layout.sliderHeight)];
+            CGSize size = [NSObject sizeWithFont:self.layout.titleFont Text:title MaxSize:CGSizeMake(self.size.width, self.layout.sliderHeight)];
             CGFloat margin = i == 0 ? self.layout.lrMargin : self.layout.titleMargin;
             btn.frame = CGRectMake(leftBtn.width + leftBtn.mj_x + margin, 0, size.width, self.layout.sliderHeight);
         }else{
-            CGFloat width = (WIDTH_SCREEN - self.layout.lrMargin * 2) / self.layout.titles.count;
+            CGFloat width = (self.size.width - self.layout.lrMargin * 2) / self.layout.titles.count;
             btn.frame = CGRectMake(width * i + self.layout.lrMargin, 0, width, self.layout.sliderHeight);
         }
         [self.scrollView addSubview:btn];

@@ -45,5 +45,17 @@
 #define dynamicLike   [NSString stringWithFormat:@"%@api/method/dynamicLike", AMTURL]
 //动态评论
 #define InsertComment   [NSString stringWithFormat:@"%@api/method/InsertComment", AMTURL]
+//评论点赞
+#define commentLike   [NSString stringWithFormat:@"%@api/method/commentLike", AMTURL]
+//头像上传
+#define modifyHeadImg   [NSString stringWithFormat:@"%@api/method/modifyHeadImg", AMTURL]
+//我的收藏
+#define myCollection   [NSString stringWithFormat:@"%@api/method/myCollection", AMTURL]
+//浏览记录
+#define browseRecord   [NSString stringWithFormat:@"%@api/method/browseRecord", AMTURL]
+//我的关注
+#define myAttention   [NSString stringWithFormat:@"%@api/method/myAttention", AMTURL]
+//获取用户详情
+#define getUserDetails   [NSString stringWithFormat:@"%@api/method/getUserDetails", AMTURL]
 #endif /* Request_pch */
 

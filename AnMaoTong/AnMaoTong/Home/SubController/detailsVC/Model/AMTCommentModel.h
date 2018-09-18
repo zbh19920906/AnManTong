@@ -32,7 +32,7 @@
 /**
  是否点赞过
  */
-@property (nonatomic, assign) BOOL is_comment_like;
+@property (nonatomic, assign) BOOL is_comment_like_count;
 /**
  回复内容
  */
@@ -56,7 +56,7 @@
 /**
  评论点赞数
  */
-@property (nonatomic, copy) NSString *comment_like_count;
+@property (nonatomic, assign) NSInteger comment_like_count;
 /**
  回复人昵称
  */

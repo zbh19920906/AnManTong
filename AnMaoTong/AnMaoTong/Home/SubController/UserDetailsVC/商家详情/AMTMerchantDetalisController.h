@@ -9,5 +9,6 @@
 #import "BaseViewController.h"
 
 @interface AMTMerchantDetalisController : BaseViewController
-
+@property (nonatomic, copy) NSString *user_id;
+@property (nonatomic, assign) NSInteger type;
 @end

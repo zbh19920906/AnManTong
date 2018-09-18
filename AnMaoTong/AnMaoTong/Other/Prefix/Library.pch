@@ -53,6 +53,7 @@
 #import "AMTBannerModel.h"
 #import "AMTZoneModel.h"
 #import "AMTKeyBoradController.h"
+#import "CPBottomPromit.h"
 //枚举
 
 #endif /* Library_pch */

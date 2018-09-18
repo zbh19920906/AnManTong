@@ -9,5 +9,6 @@
 #import "BaseTableViewCell.h"
 
 @interface AMTZoneCell : BaseTableViewCell
-@property (nonatomic, copy) NSArray *zoneArray;
+@property (nonatomic, copy) NSArray <AMTZoneModel *>*zoneArray;
+- (void)goZoneVC:(BaseButton *)btn;
 @end
