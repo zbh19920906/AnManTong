@@ -132,6 +132,10 @@ CPBaseImageCollectionViewDelegate,PersonalRadioViewDelegate>
     
     [[self.titleView.tap rac_gestureSignal]subscribeNext:^(id x) {
         AMTAddTitleController *vc = [[AMTAddTitleController alloc]init];
+        vc.saveBlock = ^(NSString *titles) {
+            weakSelf.viewController.viewModels.customize_label_name = titles;
+            weakSelf.titleView.customize_label_name = titles;
+        };
         [weakSelf.viewController.navigationController pushViewController:vc animated:YES];
     }];
 }

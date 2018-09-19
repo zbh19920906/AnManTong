@@ -13,4 +13,5 @@
 
 @property (nonatomic, strong) BaseLabel *contentLab;
 @property (nonatomic, strong) UITapGestureRecognizer *tap;
+@property (nonatomic, copy) NSString *customize_label_name;
 @end

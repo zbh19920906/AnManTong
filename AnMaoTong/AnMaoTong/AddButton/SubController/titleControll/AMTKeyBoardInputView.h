@@ -10,6 +10,7 @@
 
 @interface AMTKeyBoardInputView : BaseView
 @property (nonatomic, strong) BaseTextField *inputTF;
+@property (nonatomic, strong) BaseButton *determineBtn;
 - (void)show:(CGFloat)height;
 - (void)hidden;
 @end

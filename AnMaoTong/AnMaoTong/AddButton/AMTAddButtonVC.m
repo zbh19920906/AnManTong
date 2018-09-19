@@ -66,7 +66,7 @@
 - (void)clickRightButtonAction:(id)sender
 {
     weakSelf(self);
-    [[self.viewModels.releaseCommand execute:@[self.viewModel.textView.text,self.viewModels.position,self.viewModels.zoneID,self.viewModels.brandID,@"1",@"",self.dataModel.imageDataSource]]subscribeNext:^(id x) {
+    [[self.viewModels.releaseCommand execute:@[self.viewModel.textView.text,self.viewModels.position,self.viewModels.zoneID,self.viewModels.brandID,@"1",self.viewModels.customize_label_name,self.dataModel.imageDataSource]]subscribeNext:^(id x) {
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }];
 }

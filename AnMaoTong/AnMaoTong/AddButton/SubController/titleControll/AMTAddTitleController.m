@@ -8,10 +8,13 @@
 
 #import "AMTAddTitleController.h"
 #import "AMTKeyBoardInputView.h"
+#import "AMTTitleView.h"
 @interface AMTAddTitleController ()
 @property (nonatomic, strong) BaseLabel *placeholderLab;
 @property (nonatomic, strong) BaseLabel *countLab;
 @property (nonatomic, strong) AMTKeyBoardInputView *keyBoardInput;
+@property (nonatomic, strong) NSMutableArray *titleArr;
+@property (nonatomic, strong) NSMutableArray *buttonArray;
 @end
 
 @implementation AMTAddTitleController
@@ -19,10 +22,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setSubView];
+    [self.navBar.rightButton setTitle:@"保存" forState:UIControlStateNormal];
+    [self.navBar.rightButton setLableColor:@"222222" font:14 bold:0];
+    [self.navBar.rightButton setTitleColor:BHColor(@"0185FE") forState:UIControlStateSelected];
+    self.navBar.rightButton.userInteractionEnabled = NO;
+    [self setBindding];
+}
+
+- (void)clickRightButtonAction:(id)sender
+{
+    NSString *str = [[NSString alloc]init];
+    for (NSInteger i = 0 ; i < self.titleArr.count ; i++) {
+        NSString *title = self.titleArr[i];
+        if (i == 0) {
+            str = title;
+        }else{
+            str = [str stringByAppendingFormat:@"|%@",title];
+        }
+    }
+    self.saveBlock ? self.saveBlock(str) : nil;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)setBindding
+{
     weakSelf(self);
+    [[weakSelf.keyBoardInput.determineBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        weakSelf.placeholderLab.hidden = YES;
+        [weakSelf.titleArr addObject:weakSelf.keyBoardInput.inputTF.text];
+        [weakSelf.keyBoardInput.inputTF resignFirstResponder];
+        [weakSelf changeButton];
+    }];
     [[myNoti rac_addObserverForName:UIKeyboardWillChangeFrameNotification object:nil]subscribeNext:^(id x) {
-       NSNotification *notif = x;
-         NSValue *value = [notif.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+        NSNotification *notif = x;
+        NSValue *value = [notif.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+        weakSelf.keyBoardInput.inputTF.text = @"";
         [weakSelf.keyBoardInput show:[value CGRectValue].size.height];
     }];
     
@@ -34,7 +68,8 @@
 - (void)setSubView
 {
     self.keyBoardInput = [[AMTKeyBoardInputView alloc]init];
-    
+    self.titleArr = [[NSMutableArray alloc]init];
+     self.buttonArray = [[NSMutableArray alloc]init];
     self.view.backgroundColor = BHColor(@"F4F3F2");
     BaseView *bgView = [[BaseView alloc]init];
     bgView.backgroundColor = [UIColor cz_ToUIColorByStr:@"ffffff"];
@@ -57,6 +92,10 @@
     addBtn.sd_cornerRadius = @(3);
     weakSelf(self);
     [[addBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        if (weakSelf.titleArr.count >= 3) {
+            [SVProgressHUD showErrorWithStatus:@"标签个数达到上限"];
+            return ;
+        }
         [weakSelf.keyBoardInput.inputTF becomeFirstResponder];
     }];
     
@@ -68,6 +107,9 @@
     [self.countLab setLableColor:@"B8B8B8" font:10 bold:0];
     self.countLab.text = @"0/3";
     self.countLab.textAlignment = NSTextAlignmentRight;
+    
+    
+    
     
     [bgView sd_addSubviews:@[titleLab,addBtn,self.placeholderLab, self.countLab]];
     
@@ -95,5 +137,41 @@
     .widthIs(20)
     .heightIs(10);
     
+    for (NSInteger i = 0; i < 3; i ++) {
+        AMTTitleView *titleView = [[AMTTitleView alloc]init];
+        titleView.hidden = YES;
+        titleView.tag = i;
+        [bgView addSubview:titleView];
+    
+        [[titleView.button rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+            [weakSelf.titleArr removeObjectAtIndex:titleView.tag];
+            [weakSelf changeButton];
+        }];
+        
+        titleView.sd_layout
+        .leftSpaceToView(bgView, 25 + 110 * i)
+        .topSpaceToView(titleLab, 30)
+        .widthIs(100)
+        .heightIs(40);
+        
+        [self.buttonArray addObject:titleView];
+    }
+    
+}
+
+- (void)changeButton
+{
+    self.navBar.rightButton.selected = self.titleArr.count;
+    self.navBar.rightButton.userInteractionEnabled = self.titleArr.count;
+    for (NSInteger i = self.titleArr.count; i < self.buttonArray.count; i ++) {
+        AMTTitleView *titleView = self.buttonArray[i];
+        titleView.hidden = YES;
+    }
+    
+    for (NSInteger i = 0; i < self.titleArr.count; i ++) {
+        AMTTitleView *titleView = self.buttonArray[i];
+        titleView.hidden = NO;
+        titleView.titleLab.text = self.titleArr[i];
+    }
 }
 @end

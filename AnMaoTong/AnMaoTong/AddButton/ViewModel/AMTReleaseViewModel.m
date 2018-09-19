@@ -14,6 +14,7 @@
     if (self = [super init]) {
         self.zoneID = @"";
         self.brandID = @"";
+        self.customize_label_name = @"";
     }
     return self;
 }
