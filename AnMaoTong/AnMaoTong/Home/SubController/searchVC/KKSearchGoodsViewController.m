@@ -9,7 +9,8 @@
 #import "KKSearchGoodsViewController.h"
 #import "KKHistorySearchView.h"
 #import "KKHistorySearchModel.h"
-
+#import "AMTSearchViewModel.h"
+#import "AMTFocusShopCell.h"
 @interface KKSearchGoodsViewController ()
 <UITableViewDelegate,
 UITableViewDataSource,
@@ -21,17 +22,18 @@ KKSearchCollectinViewDelegate>
 @property (nonatomic, strong) BaseTextField *searchTF;
 @property (nonatomic, strong) BaseTableView *searchTableView;
 
-//点击搜索按钮的搜索结果
-@property (nonatomic, strong) NSMutableArray *searchRusltModels;
+
 
 //搜索关键字
 @property (nonatomic, copy) NSString *searchKeyword;
-
+@property (nonatomic, strong) AMTHeadView *headView;
 //历史搜索视图
 @property (nonatomic, strong) KKHistorySearchView *historySearchView;
 
 @property (nonatomic ,strong) NSIndexPath *selectIndexPath;
-
+@property (nonatomic, strong) AMTSearchViewModel *viewModel;
+@property (nonatomic, assign) NSInteger searchType;
+@property (nonatomic, assign) NSInteger dynamicPage;
 @end
 
 @implementation KKSearchGoodsViewController
@@ -40,14 +42,13 @@ KKSearchCollectinViewDelegate>
 {
     [super viewDidLoad];
     
-    _page = 0;
-    self.searchRusltModels = [[NSMutableArray alloc] init];
+    _searchType = 1;
+    _dynamicPage = 1;
     self.selectIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     self.view.backgroundColor = [UIColor cz_ToUIColorByStr:@"f2f2f2"];
     
     [self.view sd_addSubviews:@[self.searchTableView,  self.historySearchView]];
     [self setupNavigationBar];
-    [self addRefreshView];
     
     if ([self.placeholdStr isEqualToString:kSearchPlacehold]) {
         //如果是默认占位文字，则判断搜索按钮状态
@@ -97,58 +98,74 @@ KKSearchCollectinViewDelegate>
     }];
 }
 
-#pragma mark - 上拉、下拉刷新
-- (void)addRefreshView
+- (void)loadMoreToData
 {
-    weakSelf(self);
-    MJRefreshBackNormalFooter * foot = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        
-    }];
-    [foot setTitle:@"没有更多数据了" forState:MJRefreshStateNoMoreData];
-    self.searchTableView.mj_footer = foot;
-}
-
-- (void)endRefresh
-{
-    [self.searchTableView.mj_footer endRefreshing];
+    [self.searchTF.delegate textFieldShouldReturn:self.searchTF];
 }
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    self.searchTableView.mj_footer.hidden = NO;
+    //隐藏历史搜索页面
+    self.historySearchView.hidden = YES;
+    [self.historySearchView saveSearchRecordsWithTitle:textField.text];
     
+    weakSelf(self);
+    [[self.viewModel.searchCommand execute:@[@(self.searchType == 1 ? self.dynamicPage : self.page),@(self.searchType),textField.text]] subscribeNext:^(id x) {
+        weakSelf.searchTableView.hidden = NO;
+        if (weakSelf.searchType ==1) {
+            weakSelf.dynamicPage += 1;
+        }else{
+            weakSelf.page += 1;
+        }
+        [weakSelf endRefresh];
+        [weakSelf.searchTableView reloadData];
+    }];
     return YES;
 }
 
+#pragma mark - KKSearchCollectinViewDelegate
+- (void)getCollectionViewContentSizeOfHeight:(CGFloat)height
+{
+    //修改collection的高度
+    self.historySearchView.mj_h = height;
+}
+
+//点击历史搜索记录
+- (void)collectionDidSelectItemWithModel:(KKHistorySearchModel *)model
+{
+    self.searchTF.text = model.title;
+    [self.searchTF.delegate textFieldShouldReturn:self.searchTF];
+}
 #pragma mark - 显示、隐藏界面的各个视图
 - (void)showOrHideCurrentView
 {
     
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    return self.searchRusltModels.count;
+    return self.searchType == 1 ? self.viewModel.dynamicModels.count : self.viewModel.searchRusltModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[BaseTableViewCell identifier] forIndexPath:indexPath];
-    
+    if (self.searchType == 1) {
+        AMTGoodsMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:[AMTGoodsMessageCell identifier] forIndexPath:indexPath];
+        cell.model = self.viewModel.dynamicModels[indexPath.row];
         return cell;
+    }
+    AMTFocusShopCell *cell = [tableView dequeueReusableCellWithIdentifier:[AMTFocusShopCell identifier] forIndexPath:indexPath];
+    cell.model = self.viewModel.searchRusltModels[indexPath.row];
+    return cell;
 }
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 0.1;
+    return self.searchType == 1 ? [tableView cellHeightForIndexPath:indexPath model:self.viewModel.dynamicModels[indexPath.row] keyPath:@"model" cellClass:[AMTGoodsMessageCell class] contentViewWidth:WIDTH_SCREEN] +10 :76;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -163,21 +180,7 @@ KKSearchCollectinViewDelegate>
     [_searchTF resignFirstResponder];
 }
 
-#pragma mark - KKSearchCollectinViewDelegate
-- (void)getCollectionViewContentSizeOfHeight:(CGFloat)height
-{
-    //修改collection的高度
-    self.historySearchView.mj_h = height;
-}
 
-//点击历史搜索记录
-- (void)collectionDidSelectItemWithModel:(KKHistorySearchModel *)model
-{
-    _searchTF.text = model.title;
-    
-    //根据关键字搜索相关数据
-    [self clickRightButtonAction:nil];
-}
 
 #pragma mark - 懒加载
 - (BaseTableView *)searchTableView
@@ -189,12 +192,13 @@ KKSearchCollectinViewDelegate>
         _searchTableView.dataSource = self;
         _searchTableView.tableFooterView = [UIView new];
         _searchTableView.separatorInset = UIEdgeInsetsZero;
+        _searchTableView.tableHeaderView = self.headView;
         _searchTableView.separatorColor = [UIColor cz_ToUIColorByStr:@"ffffff"];
         _searchTableView.backgroundColor = [UIColor cz_ToUIColorByStr:@"F2F2F2"];
         _searchTableView.hidden = YES;
-        
-        [_searchTableView registerClass:[BaseTableViewCell class] forCellReuseIdentifier:[BaseTableViewCell identifier]];
-//        [_searchTableView registerClass:[YDYGGoodsTableCell class] forCellReuseIdentifier:[YDYGGoodsTableCell identifier]];
+        _searchTableView.mj_footer = self.footer;
+        [_searchTableView registerClass:[AMTGoodsMessageCell class] forCellReuseIdentifier:[AMTGoodsMessageCell identifier]];
+        [_searchTableView registerClass:[AMTFocusShopCell class] forCellReuseIdentifier:[AMTFocusShopCell identifier]];
     }
     return _searchTableView;
 }
@@ -220,5 +224,24 @@ KKSearchCollectinViewDelegate>
     return _historySearchView;
 }
 
+- (AMTHeadView *)headView
+{
+    if (!_headView) {
+        weakSelf(self);
+        _headView = [[AMTHeadView alloc]initWithFrame:CGRectMake(0, 15, WIDTH_SCREEN, 44) titleArray:@[@"安贸圈",@"商家"] click:^(NSInteger tag) {
+            weakSelf.searchType = tag + 1;
+            [weakSelf.searchTF.delegate textFieldShouldReturn:weakSelf.searchTF];
+        }];
+    }
+    return _headView;
+}
+
+- (AMTSearchViewModel *)viewModel
+{
+    if (!_viewModel) {
+        _viewModel = [[AMTSearchViewModel alloc]init];
+    }
+    return _viewModel;
+}
 @end
 

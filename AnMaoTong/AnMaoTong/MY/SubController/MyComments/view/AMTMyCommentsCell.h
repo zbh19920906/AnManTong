@@ -7,7 +7,7 @@
 //
 
 #import "BaseTableViewCell.h"
-
+#import "AMTMyCommentModel.h"
 @interface AMTMyCommentsCell : BaseTableViewCell
-
+@property (nonatomic, strong) AMTMyCommentModel *model;
 @end

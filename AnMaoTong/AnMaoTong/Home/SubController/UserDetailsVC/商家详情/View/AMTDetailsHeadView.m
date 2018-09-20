@@ -27,31 +27,46 @@
 - (void)setSubView
 {
     self.bgImageView = [[BaseImageView alloc]init];
-    self.bgImageView.backgroundColor = [UIColor greenColor];
+    self.bgImageView.image = imageNamed(@"bgImage");
+    
     
     self.headIamgeView = [[BaseImageView alloc]init];
     self.headIamgeView.sd_cornerRadius = @(40);
-    self.headIamgeView.backgroundColor = [UIColor redColor];
     
     self.nameLab = [[BaseLabel alloc]init];
     [self.nameLab setLableColor:@"FFFFFF" font:20 bold:1];
-    self.nameLab.text = @"阿迪达斯三叶草";
     
     self.announcementLab = [[BaseLabel alloc]init];
     [self.announcementLab setLableColor:@"FFFFFF" font:13 bold:0];
-    self.announcementLab.text = @"公告：轻奢品牌天猫品质保证+厂家直供购物无忧+已质检精选好货 出门3分钟搞定造型 超随性百搭美到醉人";
     
     
     self.focusBtn = [BaseButton buttonWithType:UIButtonTypeCustom];
     self.focusBtn.sd_cornerRadius = @(3);
     [self.focusBtn setLableColor:@"FFFFFF" font:13 bold:0];
-    [self.focusBtn setBackgroundColor:BHColor(@"000000")];
+    [self.focusBtn setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.3]];
     [self.focusBtn setTitle:@"关注" forState:UIControlStateNormal];
+    [self.focusBtn setTitle:@"已关注" forState:UIControlStateSelected];
+    weakSelf(self);
+    [[self.focusBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [[KKNetWorking getShard] request:POST url:attention parameters:@{@"user_id_from_id":weakSelf.userInfoModel.ID,@"user_id_from_type":@(weakSelf.userInfoModel.type)} completion:^(id json, NSInteger code) {
+            weakSelf.userInfoModel.is_attention = !weakSelf.userInfoModel.is_attention;
+            weakSelf.focusBtn.selected = !weakSelf.focusBtn.selected;
+            weakSelf.focusBtn.sd_layout
+            .widthIs(weakSelf.focusBtn.selected ? 60 : 40);
+            [weakSelf.focusBtn setBackgroundColor:[UIColor colorWithWhite:weakSelf.focusBtn.selected ? 1 : 0 alpha:0.3]];
+        } fail:^(NSString *message, NSInteger code) {
+            
+        }];
+    }];
     
     [self sd_addSubviews:@[self.bgImageView,self.headIamgeView,self.nameLab,self.focusBtn]];
     
     self.bgImageView.sd_layout
     .spaceToSuperView(UIEdgeInsetsZero);
+//    .leftEqualToView(self)
+//    .rightEqualToView(self)
+//    .topEqualToView(self)
+//    .heightIs(325);
     
     self.headIamgeView.sd_layout
     .topSpaceToView(self, 85)
@@ -76,8 +91,18 @@
     .centerYEqualToView(self.headIamgeView)
     .rightSpaceToView(self, 16)
     .widthIs(40)
-    .heightEqualToWidth();
+    .heightIs(40);
 }
 
-
+- (void)setUserInfoModel:(AMTUserInfoModel *)userInfoModel
+{
+    _userInfoModel = userInfoModel;
+    [self.headIamgeView sd_setImageWithURL:UrlString(userInfoModel.head_img)];
+    self.nameLab.text = userInfoModel.type == 1 ? userInfoModel.nickname : userInfoModel.name;
+    self.announcementLab.text = userInfoModel.announcement;
+    self.focusBtn.selected = userInfoModel.is_attention;
+    self.focusBtn.sd_layout
+    .widthIs(self.focusBtn.selected ? 60 : 40);
+    [self.focusBtn setBackgroundColor:[UIColor colorWithWhite:self.focusBtn.selected ? 1 : 0 alpha:0.3]];
+}
 @end

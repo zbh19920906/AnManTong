@@ -27,9 +27,22 @@
 - (void)setBingding
 {
     weakSelf(self);
-    [[self.viewModel.collectionCommand execute:@[@"1",@(self.isHistory)]] subscribeNext:^(id x) {
+    [[self.viewModel.collectionCommand execute:@[@(self.page),@(self.isHistory)]] subscribeNext:^(id x) {
+        weakSelf.page += 1;
+        [weakSelf endRefresh];
         [weakSelf.tableView reloadData];
     }];
+}
+
+- (void)loadMoreToData
+{
+    [self setBingding];
+}
+
+- (void)loadNewData
+{
+    self.page = 1;
+    [self setBingding];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -67,7 +80,8 @@
         _tableView.backgroundColor = BHColor(@"ffffff");
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        
+        _tableView.mj_footer = self.footer;
+        _tableView.mj_header = self.header;
         [_tableView registerClass:[AMTMyCollectionCell class] forCellReuseIdentifier:NSStringFromClass([AMTMyCollectionCell class])];
         
     }

@@ -75,7 +75,7 @@ static KKNetWorking * shard;
         if ([json[@"code"] integerValue] == 1) {
             resultConpletion(json,[json[@"code"] integerValue]);
         }else{
-            
+            [SVProgressHUD showErrorWithStatus:json[@"message"]];
             fail(json[@"message"],[json[@"code"] integerValue]);
         }
         
@@ -84,6 +84,7 @@ static KKNetWorking * shard;
     //失败回调
     void(^failureBolck)(NSURLSessionDataTask * task,NSError * error) = ^(NSURLSessionDataTask * task,NSError * error){
         KKLog(@"%@",error);
+        [SVProgressHUD showErrorWithStatus:kServerErrMsg];
         fail(kServerErrMsg,0);
         //        shard.isUse==YES ? NSLog(@""):LFLog(@"请求失败%@",error);
     };

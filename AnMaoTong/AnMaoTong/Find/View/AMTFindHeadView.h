@@ -9,5 +9,6 @@
 #import "BaseView.h"
 
 @interface AMTFindHeadView : BaseView
-
+@property (nonatomic, copy) NSArray *images;
+@property (nonatomic, copy) NSArray *brands;
 @end

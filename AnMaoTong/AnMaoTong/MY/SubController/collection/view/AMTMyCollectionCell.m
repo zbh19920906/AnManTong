@@ -96,7 +96,7 @@
     self.titleLab.text= model.title;
     self.nameLab.text = model.nickname;
     self.timeLab.text = model.generate_time;
-    [self.headImage sd_setImageWithURL:UrlString(model.head_img)];
+    [self.headImage sd_setImageWithURL:UrlString(model.photo)];
     self.iconImage.image = model.type == 1 ? imageNamed(@"qiu") : imageNamed(@"gong");
 }
 @end

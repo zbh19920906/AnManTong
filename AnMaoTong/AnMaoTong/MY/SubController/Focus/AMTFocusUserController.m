@@ -26,9 +26,22 @@
 - (void)setBingding
 {
     weakSelf(self);
-    [[self.viewModel.listCommand execute:@[@(1),@(2)]] subscribeNext:^(id x) {
+    [[self.viewModel.listCommand execute:@[@(self.page),@(1)]] subscribeNext:^(id x) {
+        weakSelf.page += 1;
+        [weakSelf endRefresh];
         [weakSelf.tableView reloadData];
     }];
+}
+
+- (void)loadMoreToData
+{
+    [self setBingding];
+}
+
+- (void)loadNewData
+{
+    self.page = 1;
+    [self setBingding];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -65,7 +78,8 @@
         _tableView.backgroundColor = BHColor(@"ffffff");
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        
+        _tableView.mj_footer = self.footer;
+        _tableView.mj_header = self.header;
         [_tableView registerClass:[AMTFocusUserCell class] forCellReuseIdentifier:NSStringFromClass([AMTFocusUserCell class])];
         
     }

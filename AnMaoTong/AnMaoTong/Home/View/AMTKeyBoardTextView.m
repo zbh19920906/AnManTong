@@ -114,6 +114,7 @@
 {
     self.hidden = NO;
     self.emojiBtn.selected = NO;
+    self.inputTF.text = @"";
     [UIView animateWithDuration:0.25 animations:^{
         self.inputView.frame = CGRectMake(0, HEIGHT_SCREEN - height - 60, WIDTH_SCREEN, 280);
     }];

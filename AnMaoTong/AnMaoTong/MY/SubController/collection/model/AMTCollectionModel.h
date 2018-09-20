@@ -7,7 +7,6 @@
 //
 
 #import "BaseModel.h"
-
 @interface AMTCollectionModel : BaseModel
 /**
  id
@@ -45,4 +44,5 @@
  是否vip
  */
 @property (nonatomic, assign) BOOL vip;
+
 @end

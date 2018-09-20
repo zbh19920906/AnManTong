@@ -57,5 +57,20 @@
 #define myAttention   [NSString stringWithFormat:@"%@api/method/myAttention", AMTURL]
 //获取用户详情
 #define getUserDetails   [NSString stringWithFormat:@"%@api/method/getUserDetails", AMTURL]
+//获取指定商家的所有动态
+#define getBusinessDynamic   [NSString stringWithFormat:@"%@api/method/getBusinessDynamic", AMTURL]
+//关注
+#define attention   [NSString stringWithFormat:@"%@api/method/attention", AMTURL]
+//我的点赞
+#define myLike   [NSString stringWithFormat:@"%@api/method/myLike", AMTURL]
+//我的评论
+#define myComment   [NSString stringWithFormat:@"%@api/method/myComment", AMTURL]
+//指定分类下入驻品牌的商家
+#define getBrandBusiness   [NSString stringWithFormat:@"%@api/method/getBrandBusiness", AMTURL]
+//发现产品下的动态发布
+#define getDynamicBrandBusiness   [NSString stringWithFormat:@"%@api/method/getDynamicBrandBusiness", AMTURL]
+//搜索
+#define Search   [NSString stringWithFormat:@"%@api/method/search", AMTURL]
+
 #endif /* Request_pch */
 

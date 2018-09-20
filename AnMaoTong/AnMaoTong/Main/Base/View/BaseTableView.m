@@ -24,6 +24,8 @@
         } else {
             // Fallback on earlier versions
         }
+        self.showsHorizontalScrollIndicator = NO;
+        self.showsVerticalScrollIndicator = NO;
     }
     return self;
 }

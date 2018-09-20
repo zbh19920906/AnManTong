@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AMTFindHeadCell : UICollectionViewCell
-
+@property (nonatomic, strong) AMTBrandModel *model;
 @end

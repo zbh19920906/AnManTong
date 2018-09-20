@@ -37,4 +37,19 @@ UIKIT_STATIC_INLINE NSString * BHLFString(CGFloat f)
 {
     return [NSString stringWithFormat:@"%lf",f];
 }
+
+typedef NS_OPTIONS(NSInteger, AMTBannerType)
+
+{
+    
+    AMTBannerTypeHome = 1,
+    
+    AMTBannerTypeFindMerchants = 2,
+    
+    AMTBannerTypeFindUser = 3,
+    
+    AMTBannerTypeZone = 4,
+};
+
+
 #endif /* static_h */

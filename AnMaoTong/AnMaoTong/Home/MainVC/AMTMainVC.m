@@ -18,15 +18,30 @@
 @property (nonatomic, strong) BaseTableView *tableView;
 @property (nonatomic, strong) AMTHomeViewModel *viewModels;
 @property (nonatomic, strong) AMTDetailsModel *commentModel;
+@property (nonatomic, strong) AMTHeadView *headView;
 @end
 
 @implementation AMTMainVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self.view addSubview:self.tableView];
-    
+    [self setBingding];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setNotifi];
+}
+
+- (void)setNotifi
+{
+    [myNoti addObserver:self selector:@selector(comment:) name:commentNoti object:nil];
+    [myNoti addObserver:self selector:@selector(sendComment) name:sendCommentNoti object:nil];
+    [myNoti addObserver:self selector:@selector(collection:) name:collectionNoti object:nil];
+    [myNoti addObserver:self selector:@selector(like:) name:likeNoti object:nil];
+    [myNoti addObserver:self selector:@selector(willChange:) name:UIKeyboardDidShowNotification object:nil];
 }
 
 - (void)setBingding
@@ -36,15 +51,12 @@
         [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
     }];
     [[self.viewModels.listCommand execute:@[@"1",@"0",@"0",@"0",@(1)]]subscribeNext:^(id x) {
+        weakSelf.headView.hidden = NO;
         [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     }];
-    
-    [myNoti addObserver:self selector:@selector(comment:) name:commentNoti object:nil];
-    [myNoti addObserver:self selector:@selector(sendComment) name:sendCommentNoti object:nil];
-    [myNoti addObserver:self selector:@selector(collection:) name:collectionNoti object:nil];
-    [myNoti addObserver:self selector:@selector(like:) name:likeNoti object:nil];
-    [myNoti addObserver:self selector:@selector(willChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    
+    [[self.viewModels.bannerCommand execute:@[self.goods_class_id,@(AMTBannerTypeHome)]] subscribeNext:^(id x) {
+        [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    }];
 }
 
 - (void)comment:(NSNotification *)notifi
@@ -58,8 +70,8 @@
     weakSelf(self);
     [[self.viewModels.commentCommand execute:@[self.commentModel,self.keyBoardInputView.inputTF.text]] subscribeNext:^(id x) {
         [weakSelf.keyBoardInputView hidden];
-            [weakSelf.keyBoardInputView.inputTF resignFirstResponder];
-            [weakSelf.tableView reloadData];
+        [weakSelf.keyBoardInputView.inputTF resignFirstResponder];
+        [weakSelf.tableView reloadData];
     }];
 }
 
@@ -102,7 +114,7 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             AMTBannerCell *cell = [tableView dequeueReusableCellWithIdentifier:[AMTBannerCell identifier] forIndexPath:indexPath];
-            cell.images =  @[@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1536638317&di=145bdb0984d3a7d778624b5f4545101e&src=http://static.oeofo.com/201610/27/131242571000812.png",@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1536638317&di=145bdb0984d3a7d778624b5f4545101e&src=http://static.oeofo.com/201610/27/131242571000812.png",@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1536638317&di=145bdb0984d3a7d778624b5f4545101e&src=http://static.oeofo.com/201610/27/131242571000812.png"];
+            cell.images =  self.viewModels.images;
             return cell;
         }
         
@@ -124,7 +136,7 @@
     cell.model = model;
     
     weakSelf(self);
-    [[cell.headTap rac_gestureSignal]subscribeNext:^(id x) {
+    [[[cell.headTap rac_gestureSignal] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
         AMTMerchantDetalisController *vc = [[AMTMerchantDetalisController alloc]init];
         vc.user_id = model.user_business_id;
         vc.type = model.type;
@@ -135,11 +147,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    
-    AMTHeadView *headView = [[AMTHeadView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 40) titleArray:@[@"全部",@"供货",@"求购"] click:^(NSInteger tag) {
-        
-    }];
-    return section == 0 ? nil : headView;
+    return section == 0 ? nil : self.headView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -158,7 +166,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        
         AMTDetailsVC *vc = [[AMTDetailsVC alloc]init];
         vc.dynamic_id = self.viewModels.listArray[indexPath.row].ID;
         [self.navigationController pushViewController:vc animated:YES];
@@ -184,5 +191,16 @@
         _viewModels = [[AMTHomeViewModel alloc]init];
     }
     return _viewModels;
+}
+
+- (AMTHeadView *)headView
+{
+    if (!_headView) {
+        _headView = [[AMTHeadView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 40) titleArray:@[@"全部",@"供货",@"求购"] click:^(NSInteger tag) {
+            
+        }];
+        _headView.hidden = YES;
+    }
+    return _headView;
 }
 @end

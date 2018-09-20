@@ -23,12 +23,10 @@
 - (void)setSubView
 {
     self.iconImage = [[BaseImageView alloc]init];
-    self.iconImage.backgroundColor = [UIColor redColor];
     self.iconImage.sd_cornerRadius = @(21.5);
     
     self.titleLab  = [[BaseLabel alloc]init];
     [self.titleLab setLableColor:@"666666" font:11 bold:0];
-    self.titleLab.text = @"新威";
     
     [self.contentView sd_addSubviews:@[self.iconImage,self.titleLab]];
     self.iconImage.sd_layout
@@ -43,5 +41,11 @@
     .heightIs(11);
     [self.titleLab setSingleLineAutoResizeWithMaxWidth:200];
     
+}
+
+- (void)setModel:(AMTBrandModel *)model
+{
+    [self.iconImage sd_setImageWithURL:UrlString(model.icon_img)];
+    self.titleLab.text = model.name;
 }
 @end

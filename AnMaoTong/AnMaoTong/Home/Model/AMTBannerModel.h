@@ -11,6 +11,6 @@
 @interface AMTBannerModel : NSObject
 @property (nonatomic, copy) NSString *ID;
 @property (nonatomic, copy) NSString *goods_class_id;
-@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *img_url;
 @property (nonatomic, copy) NSString *business_id;
 @end

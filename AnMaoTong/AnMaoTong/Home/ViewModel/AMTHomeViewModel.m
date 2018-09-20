@@ -49,6 +49,7 @@
                     [subscriber sendNext:RACTuplePack(@(YES))];
                     [subscriber sendCompleted];
                 } fail:^(NSString *message, NSInteger code) {
+                    [SVProgressHUD showErrorWithStatus:message];
                     [subscriber sendNext:RACTuplePack(@(NO))];
                     [subscriber sendCompleted];
                 }];
@@ -143,12 +144,41 @@
     return _collectionCommand;
 }
 
+- (RACCommand *)bannerCommand
+{
+    if (!_bannerCommand) {
+        
+        weakSelf(self);
+        _bannerCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
+            return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                [[KKNetWorking getShard]request:GET url:getCarouselMap parameters:@{@"goods_class_id":input[0],@"carousel_type":input[1]} completion:^(id json, NSInteger code) {
+                    weakSelf.images = [AMTBannerModel mj_objectArrayWithKeyValuesArray:json[@"data"]];
+                    [subscriber sendNext:@(YES)];
+                    [subscriber sendCompleted];
+                } fail:^(NSString *message, NSInteger code) {
+                    
+                }];
+                return nil;
+            }];
+        }];
+    }
+    return _bannerCommand;
+}
+
 - (NSMutableArray *)zoneArray
 {
     if (!_zoneArray) {
         _zoneArray = [[NSMutableArray alloc]init];
     }
     return _zoneArray;
+}
+
+- (NSMutableArray<AMTBannerModel *> *)images
+{
+    if (!_images) {
+        _images = [[NSMutableArray alloc]init];
+    }
+    return _images;
 }
 
 - (NSMutableArray<AMTDetailsModel *> *)listArray

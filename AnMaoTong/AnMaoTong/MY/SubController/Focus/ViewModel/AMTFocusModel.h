@@ -37,4 +37,13 @@
  关注的类型 1:用户 2:商户
  */
 @property (nonatomic, copy) NSString *type;
+
+/**
+ 年龄
+ */
+@property (nonatomic, assign) NSInteger age;
+/**
+ 性别
+ */
+@property (nonatomic, assign) NSInteger sex;
 @end

@@ -52,6 +52,11 @@
 		2F726A69213FAF540024A73F /* WSLWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F726A65213FAF540024A73F /* WSLWaterFlowLayout.m */; };
 		2F726A6D213FBDF70024A73F /* AMTGoodsMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F726A6C213FBDF70024A73F /* AMTGoodsMessageCell.m */; };
 		2F726A70213FC7F80024A73F /* AMTGoodsImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F726A6F213FC7F80024A73F /* AMTGoodsImageView.m */; };
+		2F78645C2151F849000FF967 /* AMTMyLikeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F78645B2151F849000FF967 /* AMTMyLikeViewModel.m */; };
+		2F7864622151FE24000FF967 /* AMTMyCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7864612151FE24000FF967 /* AMTMyCommentModel.m */; };
+		2F78646821521E06000FF967 /* YDYRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F78646521521E06000FF967 /* YDYRefreshFooter.m */; };
+		2F78646921521E06000FF967 /* YDYRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F78646721521E06000FF967 /* YDYRefreshHeader.m */; };
+		2F78646D21523B8E000FF967 /* AMTSearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F78646C21523B8E000FF967 /* AMTSearchViewModel.m */; };
 		2F893C8E2143656C00D441B2 /* AMTMyLikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F893C8D2143656C00D441B2 /* AMTMyLikeViewController.m */; };
 		2F893C92214365BA00D441B2 /* AMTMyLikeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F893C91214365BA00D441B2 /* AMTMyLikeCell.m */; };
 		2F893C982143AB6A00D441B2 /* AMTMessageHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F893C972143AB6A00D441B2 /* AMTMessageHeadView.m */; };
@@ -318,6 +323,16 @@
 		2F726A6C213FBDF70024A73F /* AMTGoodsMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTGoodsMessageCell.m; sourceTree = "<group>"; };
 		2F726A6E213FC7F80024A73F /* AMTGoodsImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTGoodsImageView.h; sourceTree = "<group>"; };
 		2F726A6F213FC7F80024A73F /* AMTGoodsImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTGoodsImageView.m; sourceTree = "<group>"; };
+		2F78645A2151F849000FF967 /* AMTMyLikeViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMyLikeViewModel.h; sourceTree = "<group>"; };
+		2F78645B2151F849000FF967 /* AMTMyLikeViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMyLikeViewModel.m; sourceTree = "<group>"; };
+		2F7864602151FE24000FF967 /* AMTMyCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMyCommentModel.h; sourceTree = "<group>"; };
+		2F7864612151FE24000FF967 /* AMTMyCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMyCommentModel.m; sourceTree = "<group>"; };
+		2F78646421521E06000FF967 /* YDYRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDYRefreshFooter.h; sourceTree = "<group>"; };
+		2F78646521521E06000FF967 /* YDYRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDYRefreshFooter.m; sourceTree = "<group>"; };
+		2F78646621521E06000FF967 /* YDYRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDYRefreshHeader.h; sourceTree = "<group>"; };
+		2F78646721521E06000FF967 /* YDYRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDYRefreshHeader.m; sourceTree = "<group>"; };
+		2F78646B21523B8E000FF967 /* AMTSearchViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTSearchViewModel.h; sourceTree = "<group>"; };
+		2F78646C21523B8E000FF967 /* AMTSearchViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTSearchViewModel.m; sourceTree = "<group>"; };
 		2F893C8C2143656C00D441B2 /* AMTMyLikeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMyLikeViewController.h; sourceTree = "<group>"; };
 		2F893C8D2143656C00D441B2 /* AMTMyLikeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMyLikeViewController.m; sourceTree = "<group>"; };
 		2F893C90214365BA00D441B2 /* AMTMyLikeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMyLikeCell.h; sourceTree = "<group>"; };
@@ -881,6 +896,7 @@
 		2F726A48213FAD780024A73F /* searchVC */ = {
 			isa = PBXGroup;
 			children = (
+				2F78646A21523B7D000FF967 /* viewModel */,
 				2F726A4C213FAF000024A73F /* KKSearchGoodsViewController.h */,
 				2F726A4D213FAF000024A73F /* KKSearchGoodsViewController.m */,
 				2F726A55213FAF010024A73F /* Model */,
@@ -942,9 +958,41 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		2F7864592151F829000FF967 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2F78645A2151F849000FF967 /* AMTMyLikeViewModel.h */,
+				2F78645B2151F849000FF967 /* AMTMyLikeViewModel.m */,
+				2F7864602151FE24000FF967 /* AMTMyCommentModel.h */,
+				2F7864612151FE24000FF967 /* AMTMyCommentModel.m */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		2F78646321521E06000FF967 /* Refesh */ = {
+			isa = PBXGroup;
+			children = (
+				2F78646421521E06000FF967 /* YDYRefreshFooter.h */,
+				2F78646521521E06000FF967 /* YDYRefreshFooter.m */,
+				2F78646621521E06000FF967 /* YDYRefreshHeader.h */,
+				2F78646721521E06000FF967 /* YDYRefreshHeader.m */,
+			);
+			path = Refesh;
+			sourceTree = "<group>";
+		};
+		2F78646A21523B7D000FF967 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2F78646B21523B8E000FF967 /* AMTSearchViewModel.h */,
+				2F78646C21523B8E000FF967 /* AMTSearchViewModel.m */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
 		2F893C8B2143653000D441B2 /* MyLike */ = {
 			isa = PBXGroup;
 			children = (
+				2F7864592151F829000FF967 /* viewModel */,
 				2F893C8C2143656C00D441B2 /* AMTMyLikeViewController.h */,
 				2F893C8D2143656C00D441B2 /* AMTMyLikeViewController.m */,
 				2F893C8F2143658900D441B2 /* view */,
@@ -1332,6 +1380,7 @@
 		2FE2A5212137C7E1002AB1D8 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				2F78646321521E06000FF967 /* Refesh */,
 				2FCA43262150D66800529C74 /* CPDatePickerView */,
 				2FCA43102150C99700529C74 /* CPBottomPromitView(底部弹框) */,
 				2FC013F02148FDBA0007BA3B /* LTScrollView */,
@@ -2165,6 +2214,7 @@
 				2FE2A5CF2137C846002AB1D8 /* User.m in Sources */,
 				2F1C3A542140C9E4008D3B66 /* RegisterViewController.m in Sources */,
 				2FE2A5922137C810002AB1D8 /* IQKeyboardManager.m in Sources */,
+				2F78646921521E06000FF967 /* YDYRefreshHeader.m in Sources */,
 				2FE2A5572137C7FA002AB1D8 /* NSObject+Permissions.m in Sources */,
 				2FE2A6102137D2B8002AB1D8 /* AMTAddButtonVC.m in Sources */,
 				2F1C3A482140B93C008D3B66 /* AMTLoginView.m in Sources */,
@@ -2189,6 +2239,7 @@
 				2F597CBE214212B400C5B4A0 /* AMTGoodsClassViewController.m in Sources */,
 				2FE2A5642137C7FA002AB1D8 /* UIView+TL.m in Sources */,
 				2F726A30213F6E3C0024A73F /* AMTScreenVC.m in Sources */,
+				2F78646821521E06000FF967 /* YDYRefreshFooter.m in Sources */,
 				2F726A6D213FBDF70024A73F /* AMTGoodsMessageCell.m in Sources */,
 				2FA1E05D214BB2B800031511 /* AMTFindHeadCell.m in Sources */,
 				2F726A5C213FAF010024A73F /* KKHistorySearchModel.m in Sources */,
@@ -2200,6 +2251,7 @@
 				2FE2A60D2137D2A6002AB1D8 /* AMTFindVC.m in Sources */,
 				58CF92492142BAB30065EF0F /* AMTMyCommentsCell.m in Sources */,
 				2FC013FA2148FDBB0007BA3B /* LTAdvancedManager.swift in Sources */,
+				2F78645C2151F849000FF967 /* AMTMyLikeViewModel.m in Sources */,
 				58CF92452142BA2F0065EF0F /* AMTMyCommentsViewController.m in Sources */,
 				2F95EDB32147BDEF008EA374 /* AMTDynamicCountView.m in Sources */,
 				2FE2A5992137C810002AB1D8 /* IQUIView+IQKeyboardToolbar.m in Sources */,
@@ -2244,6 +2296,7 @@
 				2F726A43213FA3130024A73F /* AMTBrandModel.m in Sources */,
 				2F1C3BD721412D8D008D3B66 /* AMTSexViewController.m in Sources */,
 				2FE2A5202137C7D2002AB1D8 /* BaseNavgationBar.m in Sources */,
+				2F7864622151FE24000FF967 /* AMTMyCommentModel.m in Sources */,
 				2F726A5A213FAF010024A73F /* KKSearchReusableView.m in Sources */,
 				2FE2A5172137C7D2002AB1D8 /* BaseTextView.m in Sources */,
 				2FE2A5C72137C837002AB1D8 /* SDCollectionViewCell.m in Sources */,
@@ -2263,6 +2316,7 @@
 				2FE2A5942137C810002AB1D8 /* IQTextView.m in Sources */,
 				2FC013FC2148FDBB0007BA3B /* LTPageView.swift in Sources */,
 				58CF92362142A5430065EF0F /* AMTFocusShopCell.m in Sources */,
+				2F78646D21523B8E000FF967 /* AMTSearchViewModel.m in Sources */,
 				2FA1E054214B965E00031511 /* AMTFindHeadView.m in Sources */,
 				2FC013E62148F1530007BA3B /* AMTZoneMainController.m in Sources */,
 				2FCAD0DB214F9792006EA81D /* AMTCommentModel.m in Sources */,

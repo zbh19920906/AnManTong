@@ -9,5 +9,5 @@
 #import "BaseView.h"
 
 @interface AMTDetailsClassView : BaseView
-
+- (void) requsetData:(NSInteger)tag;
 @end

@@ -27,6 +27,7 @@
     if (self.navigationController) {
         [self setCustomNavigationBar];
     }
+    self.page = 1;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -98,6 +99,48 @@
 - (void)clickRightButtonAction:(id)sender
 {
     
+}
+
+/**
+ 下拉控件
+ 
+ @return  MJRefreshNormalHeader
+ */
+-(YDYRefreshHeader*)header
+{
+    if (_header==nil) {
+        _header = [YDYRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+        
+    }
+    return _header;
+}
+
+/**
+ 上拉加载
+ 
+ @return MJRefreshBackNormalFooter
+ */
+-(YDYRefreshFooter*)footer{
+    
+    if (_footer==nil) {
+        _footer = [YDYRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreToData)];
+    }
+    return _footer;
+    
+}
+
+-(void)loadNewData
+{
+}
+
+-(void)loadMoreToData
+{
+}
+
+- (void)endRefresh
+{
+    [self.footer endRefreshing];
+    [self.header endRefreshing];
 }
 
 - (void)removeLeftButtonTarget

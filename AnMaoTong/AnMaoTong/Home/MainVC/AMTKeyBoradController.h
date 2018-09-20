@@ -10,5 +10,4 @@
 #import "AMTKeyBoardTextView.h"
 @interface AMTKeyBoradController : BaseViewController
 @property (nonatomic, strong) AMTKeyBoardTextView *keyBoardInputView;
-- (void)setBingding;
 @end

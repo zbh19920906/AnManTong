@@ -12,5 +12,4 @@
 @implementation AMTCollectionModel
 
 
-
 @end

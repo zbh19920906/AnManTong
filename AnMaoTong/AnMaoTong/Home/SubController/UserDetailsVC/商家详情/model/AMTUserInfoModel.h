@@ -25,7 +25,7 @@
 /**
  是否关注
  */
-@property (nonatomic, copy) NSString *is_attention;
+@property (nonatomic, assign) BOOL is_attention;
 
 /**
  头像
@@ -98,5 +98,5 @@
 /**
  用户类型
  */
-@property (nonatomic, copy) NSString *type;
+@property (nonatomic, assign) NSInteger type;
 @end

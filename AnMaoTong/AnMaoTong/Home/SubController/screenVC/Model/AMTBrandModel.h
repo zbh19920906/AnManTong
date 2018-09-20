@@ -13,4 +13,6 @@
 @property (nonatomic, copy) NSString * ID;
 @property (nonatomic, copy) NSString * icon_img;
 @property (nonatomic, copy) NSString * goods_class_id;
+@property (nonatomic, copy) NSString * sort;
+@property (nonatomic, copy) NSString * status;
 @end

@@ -30,14 +30,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setBingding];
     self.keyBoardInputView.inputView.hidden = NO;
 }
 
-- (void)setBingding
-{
-    
-}
 
 - (AMTKeyBoardTextView *)keyBoardInputView
 {

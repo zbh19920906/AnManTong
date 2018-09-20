@@ -10,5 +10,7 @@
 #import "AMTUserInfoModel.h"
 @interface AMTUserDetailsViewModel : NSObject
 @property (nonatomic, strong) RACCommand *userInfoCommand;
+@property (nonatomic, strong) RACCommand *dynamicCommand;
 @property (nonatomic, strong) AMTUserInfoModel *userInfoModel;
+@property (nonatomic, strong) NSMutableArray <AMTDetailsModel *>*listArray;
 @end

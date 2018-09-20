@@ -33,8 +33,9 @@
         [button setTitleColor:BHColor(@"222222") forState:UIControlStateSelected];
         [button setTitle:_titleArr[i] forState:UIControlStateNormal];
         button.tag = i + 10;
+        CGSize size = [NSObject sizeWithFont:BHFont(14) Text:_titleArr[i] MaxSize:CGSizeMake(self.size.width, MAXFLOAT)];
         CGFloat X = (WIDTH_SCREEN - (35 *_titleArr.count + 27 *(_titleArr.count-1)))/2;
-        button.frame = CGRectMake(X + (27 +32)*i, 12, 35, 15);
+        button.frame = CGRectMake(X + (27 +32)*i, 12, size.width, 15);
         [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
         if (i == 0) {

@@ -31,26 +31,23 @@
 {
     self.headImage = [[BaseImageView alloc]init];
     self.headImage.sd_cornerRadius = @(20);
-    self.headImage.backgroundColor = [UIColor redColor];
+    [self.headImage sd_setImageWithURL:UrlString([UserHelper shareInstance].user.head_img)];
     
     self.nameLab = [[BaseLabel alloc]init];
     [self.nameLab setLableColor:@"FF3658" font:13 bold:0];
-    self.nameLab.text = @"鸿星尔克";
     
     self.sexImage = [[BaseImageView alloc]init];
     self.sexImage.image = imageNamed(@"女性");
     
     self.ageLab = [[BaseLabel alloc]init];
     [self.ageLab setLableColor:@"CCCCCC" font:11 bold:0];
-    self.ageLab.text = @"28岁";
+//    self.ageLab.text = @"28岁";
     
     self.timeLab = [[BaseLabel alloc]init];
     [self.timeLab setLableColor:@"CCCCCC" font:10 bold:0];
-    self.timeLab.text = @"2018-08-29 16:20";
     
     self.commentLab = [[BaseLabel alloc]init];
     [self.commentLab setLableColor:@"555555" font:13 bold:0];
-    self.commentLab.text = @"特别的好，很喜欢";
     
     self.goodsView = [[AMTMyCollectionCell alloc]init];
     self.goodsView.backgroundColor = BHColor(@"F7F7F7");
@@ -99,5 +96,14 @@
     .rightSpaceToView(self.contentView, 10)
     .heightIs(105);
     
+}
+
+- (void)setModel:(AMTMyCommentModel *)model
+{
+    _model = model;
+    self.timeLab.text = model.generate_time;
+    self.nameLab.text = model.nickname;
+    self.commentLab.text = model.content;
+    self.goodsView.model = (AMTCollectionModel *)model;
 }
 @end

@@ -20,7 +20,11 @@
 }
 - (void)setImages:(NSArray *)images
 {
-    self.cycleScrollView.imageURLStringsGroup = images;
+    NSMutableArray *imgs = [[NSMutableArray alloc]init];
+    for (AMTBannerModel *model in images) {
+        [imgs addObject:model.img_url];
+    }
+    self.cycleScrollView.imageURLStringsGroup = imgs;
 }
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index

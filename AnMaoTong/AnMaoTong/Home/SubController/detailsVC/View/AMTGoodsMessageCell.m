@@ -47,6 +47,7 @@
     self.headImageView.backgroundColor = [UIColor redColor];
     
     _headTap = [UITapGestureRecognizer new];
+    
     self.headImageView.userInteractionEnabled = YES;
     [self.headImageView addGestureRecognizer:_headTap];
     
@@ -93,7 +94,7 @@
     [self.timeLab setSingleLineAutoResizeWithMaxWidth:200];
     
     self.contentLab.sd_layout
-    .topSpaceToView(self.timeLab, 22)
+    .topSpaceToView(self.headImageView, 18)
     .leftSpaceToView(self.contentView, 11)
     .rightSpaceToView(self.contentView, 11)
     .autoHeightRatio(0);

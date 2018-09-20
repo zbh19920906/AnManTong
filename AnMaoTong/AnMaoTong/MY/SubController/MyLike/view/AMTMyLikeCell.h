@@ -7,7 +7,6 @@
 //
 
 #import "BaseTableViewCell.h"
-
 @interface AMTMyLikeCell : BaseTableViewCell
-
+@property (nonatomic, strong) AMTCollectionModel *model;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "BaseView.h"
-
+#import "AMTUserInfoModel.h"
 @interface AMTDetailsHeadView : BaseView
-
+@property (nonatomic, strong) AMTUserInfoModel *userInfoModel;
 @end

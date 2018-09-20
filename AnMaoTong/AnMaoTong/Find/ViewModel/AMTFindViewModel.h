@@ -11,4 +11,8 @@
 @interface AMTFindViewModel : NSObject
 @property (nonatomic, strong) RACCommand *brandCommand;
 @property (nonatomic, strong) RACCommand *bannerCommand;
+@property (nonatomic, strong) RACCommand *businessCommand;
+@property (nonatomic, strong) RACCommand *dynamicCommand;
+@property (nonatomic, strong) NSMutableArray *businessArray;
+@property (nonatomic, strong) NSMutableArray *dynamicArray;
 @end

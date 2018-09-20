@@ -27,24 +27,39 @@
 - (void)setSubView
 {
     [self addSubview:self.cycleScrollView];
-    self.cycleScrollView.imageURLStringsGroup = @[@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1536638317&di=145bdb0984d3a7d778624b5f4545101e&src=http://static.oeofo.com/201610/27/131242571000812.png",@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1536638317&di=145bdb0984d3a7d778624b5f4545101e&src=http://static.oeofo.com/201610/27/131242571000812.png",@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1536638317&di=145bdb0984d3a7d778624b5f4545101e&src=http://static.oeofo.com/201610/27/131242571000812.png"];
+    
     [self addSubview:self.collectionView];
     [self addSubview:self.pageControl];
-    self.pageControl.numberOfPages = 2;
     [[self.pageControl rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(id x) {
         
     }];
 }
 
+- (void)setImages:(NSArray *)images
+{
+    NSMutableArray *imgs = [[NSMutableArray alloc]init];
+    for (AMTBannerModel *model in images) {
+        [imgs addObject:model.img_url];
+    }
+    self.cycleScrollView.imageURLStringsGroup = imgs;
+}
+
+- (void)setBrands:(NSArray *)brands
+{
+    _brands = brands;
+    self.pageControl.numberOfPages = brands.count / 10;
+    [self.collectionView reloadData];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 20;
+    return _brands.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     AMTFindHeadCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    
+    cell.model = _brands[indexPath.row];
     return cell;
 }
 
@@ -56,7 +71,6 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     int page = scrollView.contentOffset.x / WIDTH_SCREEN;
-    KKLog(@"%f",scrollView.contentOffset.x);
     self.pageControl.currentPage = page;
 }
 

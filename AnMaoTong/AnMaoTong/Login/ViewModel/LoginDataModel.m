@@ -114,6 +114,7 @@ const NSInteger codeMaxTime = 60;
                                       };
                 [SVProgressHUD show];
                 [[KKNetWorking getShard]request:POST url:login parameters:dic completion:^(id json, NSInteger code) {
+                    [SVProgressHUD dismiss];
                     [UserHelper savePersonalInfoToCacheWith:json[@"data"]];
                     [subscriber sendNext:RACTuplePack(@(YES))];
                     [subscriber sendCompleted];

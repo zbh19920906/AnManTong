@@ -17,14 +17,14 @@
 @property (nonatomic, copy) NSArray <AMTBannerModel *> *bannerArray;
 @property (nonatomic, strong) BaseTableView *tableView;
 @property (nonatomic, strong) AMTFindHeadView *headView;
-
+@property (nonatomic, assign) NSInteger dynamicPage;
 @end
 
 @implementation AMTFindSubVIewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _dynamicPage = 1;
     [self setBingding];
 }
 
@@ -39,15 +39,57 @@
     weakSelf(self);
     [[self.viewModels.brandCommand execute:@[self.goods_class_id]] subscribeNext:^(id x) {
         weakSelf.brandArray = x[0];
+        weakSelf.headView.brands = weakSelf.brandArray;
     }];
-    [[self.viewModels.bannerCommand execute:@[self.goods_class_id]] subscribeNext:^(id x) {
+    [[self.viewModels.bannerCommand execute:@[self.goods_class_id,@(self.isGoods ? AMTBannerTypeFindUser : AMTBannerTypeFindMerchants)]] subscribeNext:^(id x) {
         weakSelf.bannerArray = x[0];
+        weakSelf.headView.images = weakSelf.bannerArray;
     }];
+    [[self.viewModels.businessCommand execute:@[@(self.page),self.goods_class_id,@""]] subscribeNext:^(id x) {
+        weakSelf.page += 1;
+        [weakSelf.tableView reloadData];
+    }];
+    [[self.viewModels.dynamicCommand execute:@[@(self.dynamicPage),self.goods_class_id,@""]] subscribeNext:^(id x) {
+        weakSelf.dynamicPage += 1;
+    }];
+}
+
+- (void)requestData
+{
+    weakSelf(self);
+    if (self.isGoods) {
+        [[self.viewModels.dynamicCommand execute:@[@(self.dynamicPage),self.goods_class_id,@""]] subscribeNext:^(id x) {
+            weakSelf.dynamicPage += 1;
+            [weakSelf endRefresh];
+            [weakSelf.tableView reloadData];
+        }];
+    }else{
+        [[self.viewModels.businessCommand execute:@[@(self.page),self.goods_class_id,@""]] subscribeNext:^(id x) {
+            weakSelf.page += 1;
+            [weakSelf endRefresh];
+            [weakSelf.tableView reloadData];
+        }];
+    }
+}
+
+- (void)loadNewData
+{
+    if (self.isGoods) {
+        self.dynamicPage = 1;
+    }else{
+        self.page = 1;
+    }
+    [self requestData];
+}
+
+- (void)loadMoreToData
+{
+    [self requestData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.isGoods ? self.viewModels.dynamicArray.count : self.viewModels.businessArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -55,9 +97,11 @@
     if(self.isGoods){
         AMTMyCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTMyCollectionCell class]) forIndexPath:indexPath];
         cell.isHistory = NO;
+        cell.model = self.viewModels.dynamicArray[indexPath.row];
         return cell;
     }else{
         AMTFocusShopCell*cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTFocusShopCell class]) forIndexPath:indexPath];
+        cell.model = self.viewModels.businessArray[indexPath.row];
         return cell;
     }
     
@@ -65,7 +109,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 136;
+    return self.isGoods ? 136 : 76;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -79,12 +123,19 @@
     return 369;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01;
+}
+
 - (BaseTableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[BaseTableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN - NavHFit - TabBarHFit - 38) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource =self;
+        _tableView.mj_header = self.header;
+        _tableView.mj_footer = self.footer;
         [_tableView registerClass:[AMTMyCollectionCell class] forCellReuseIdentifier:[AMTMyCollectionCell identifier]];
         [_tableView registerClass:[AMTFocusShopCell class] forCellReuseIdentifier:[AMTFocusShopCell identifier]];
         [self.view addSubview:_tableView];
