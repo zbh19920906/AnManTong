@@ -17,4 +17,5 @@
 @property (nonatomic, copy) NSString *zoneID;
 @property (nonatomic, copy) NSString *brandID;
 @property (nonatomic, copy) NSString *position;
+@property (nonatomic, copy) NSString *customize_label_name;
 @end

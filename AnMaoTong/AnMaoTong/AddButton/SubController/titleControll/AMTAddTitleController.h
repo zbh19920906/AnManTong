@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+typedef void (^saveBlock)(NSString *titles);
 @interface AMTAddTitleController : BaseViewController
-
+@property (nonatomic, copy) saveBlock saveBlock;
 @end

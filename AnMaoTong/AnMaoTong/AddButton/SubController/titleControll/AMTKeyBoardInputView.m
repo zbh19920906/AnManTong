@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) BaseLabel *countLab;
 
-@property (nonatomic, strong) BaseButton *determineBtn;
+
 @end
 @implementation AMTKeyBoardInputView
 
@@ -52,12 +52,14 @@
     self.inputTF = [[BaseTextField alloc]init];
     self.inputTF.placeholder = @"添加自定义标签";
     self.inputTF.sd_cornerRadius = @(3);
+    self.inputTF.kMaxNumber = 4;
     self.inputTF.rightView = self.countLab;
     self.inputTF.rightViewMode = UITextFieldViewModeAlways;
 
     self.determineBtn = [BaseButton buttonWithType:UIButtonTypeCustom];
     [self.determineBtn setLableColor:@"0085FF" font:12 bold:0];
     [self.determineBtn setTitle:@"确定" forState:UIControlStateNormal];
+    
     
     [self addSubview:self.inputView];
     [self.inputView sd_addSubviews:@[self.inputTF,self.determineBtn]];
