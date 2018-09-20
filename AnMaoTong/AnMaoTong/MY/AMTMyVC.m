@@ -13,10 +13,12 @@
 #import "AMTMyCollectionViewController.h"
 #import "AMTMyCommentsViewController.h"
 #import "AMTMyLikeViewController.h"
+#import "AMTSettingController.h"
+#import "AMTMyVIewModel.h"
 @interface AMTMyVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) AMTMyHeadView *headView;
 @property (nonatomic, strong) BaseTableView *tableView;
-@property (nonatomic, strong) AMTMyModel *model;
+@property (nonatomic, strong) AMTMyVIewModel *viewModel;
 @end
 
 @implementation AMTMyVC
@@ -24,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navBar.hidden = YES;
-    self.headView.model = self.model;
+    
     [self.view addSubview:self.tableView];
     [self event];
 }
@@ -38,6 +40,10 @@
 - (void)event
 {
     weakSelf(self);
+    [[self.viewModel.setCountCommand execute:nil] subscribeNext:^(id x) {
+       weakSelf.headView.model = weakSelf.viewModel.model;
+    }];
+    
     [[myNoti rac_addObserverForName:goMyItemNoti object:nil]subscribeNext:^(id x) {
         NSNotification *notifi = x;
         NSInteger tag = [notifi.userInfo[@"tag"] integerValue];
@@ -67,20 +73,20 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.model.iconArr.count;
+    return self.viewModel.model.iconArr.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *arr = self.model.iconArr[section];
+    NSArray *arr = self.viewModel.model.iconArr[section];
     return arr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.imageView.image = imageNamed(self.model.iconArr[indexPath.section][indexPath.row]);
-    cell.textLabel.text = self.model.titleArr[indexPath.section][indexPath.row];
+    cell.imageView.image = imageNamed(self.viewModel.model.iconArr[indexPath.section][indexPath.row]);
+    cell.textLabel.text = self.viewModel.model.titleArr[indexPath.section][indexPath.row];
     [cell.textLabel setLableColor:@"222222" font:14 bold:0];
     return cell;
 }
@@ -130,8 +136,50 @@
             default:
                 break;
         }
-    }else{
-        
+    }else if(indexPath.section == 1){
+        switch (indexPath.row) {
+            case 0:
+            {
+                UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                pasteboard.string = @"A15160454910";
+                ZLAlertView *alertView = [[ZLAlertView alloc]initWithTitle:@"复制成功\n请前往微信添加对方" message:@""];
+                [alertView addBtnTitle:@"前往" action:^{
+                    NSURL *url = [NSURL URLWithString:@"weixin://"];
+                    [[UIApplication sharedApplication] openURL:url];
+                }];
+                [alertView showAlertWithSender:self];
+            }
+                break;
+            case 1:
+            {
+                UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                pasteboard.string = @"2751588294";
+                ZLAlertView *alertView = [[ZLAlertView alloc]initWithTitle:@"复制成功\n请前往QQ添加对方" message:@""];
+                [alertView addBtnTitle:@"前往" action:^{
+                    
+                    NSURL * url=[NSURL URLWithString:[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"2751588294"]];
+                     [[UIApplication sharedApplication] openURL:url];
+                    
+                }];
+                [alertView showAlertWithSender:self];
+            }
+                break;
+            case 2:
+            {
+               
+            }
+                break;
+                
+            case 3:
+            {
+                //设置
+                AMTSettingController *vc = [[AMTSettingController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            default:
+                break;
+        }
     }
 }
 
@@ -162,11 +210,11 @@
     return _headView;
 }
 
-- (AMTMyModel *)model
+- (AMTMyVIewModel *)viewModel
 {
-    if (!_model) {
-        _model = [[AMTMyModel alloc]init];
+    if (!_viewModel) {
+        _viewModel = [[AMTMyVIewModel alloc]init];
     }
-    return _model;
+    return _viewModel;
 }
 @end

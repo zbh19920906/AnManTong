@@ -27,7 +27,10 @@
     [self.commentBtn setImage:imageNamed(@"comment") forState:UIControlStateNormal];
     [self.commentBtn setLableColor:@"B9B9B9" font:12 bold:0];
     [[self.commentBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
-        [myNoti postNotificationName:commentNoti object:nil userInfo:@{@"model" : weakSelf.model}];
+//        [myNoti postNotificationName:commentNoti object:nil userInfo:@{@"model" : weakSelf.model}];
+        if (weakSelf.delegete && [weakSelf.delegete respondsToSelector:@selector(comment:)]) {
+            [weakSelf.delegete comment:weakSelf.model];
+        }
     }];
     
     self.collectionBtn = [BaseButton buttonWithType:UIButtonTypeCustom];
@@ -35,7 +38,10 @@
     [self.collectionBtn setImage:imageNamed(@"collection_pre") forState:UIControlStateSelected];
     [self.collectionBtn setLableColor:@"B9B9B9" font:12 bold:0];
     [[self.collectionBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
-        [myNoti postNotificationName:collectionNoti object:nil userInfo:@{@"model" : weakSelf.model}];
+//        [myNoti postNotificationName:collectionNoti object:nil userInfo:@{@"model" : weakSelf.model}];
+        if (weakSelf.delegete && [weakSelf.delegete respondsToSelector:@selector(collection:)]) {
+            [weakSelf.delegete collection:weakSelf.model];
+        }
     }];
     
     self.likeBtn = [BaseButton buttonWithType:UIButtonTypeCustom];
@@ -43,7 +49,10 @@
     [self.likeBtn setImage:imageNamed(@"like_pre") forState:UIControlStateSelected];
     [self.likeBtn setLableColor:@"B9B9B9" font:12 bold:0];
     [[self.likeBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
-        [myNoti postNotificationName:likeNoti object:nil userInfo:@{@"model" : weakSelf.model}];
+//        [myNoti postNotificationName:likeNoti object:nil userInfo:@{@"model" : weakSelf.model}];
+        if (weakSelf.delegete && [weakSelf.delegete respondsToSelector:@selector(like:)]) {
+            [weakSelf.delegete like:weakSelf.model];
+        }
     }];
     
     self.browseBtn = [BaseButton buttonWithType:UIButtonTypeCustom];

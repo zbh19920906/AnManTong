@@ -16,6 +16,8 @@
 @property(strong, nonatomic) KKClassiflcationLayout *layout;
 @property(strong, nonatomic) KKClassificationView *managerView;
 @property(copy, nonatomic) NSMutableArray *viewControllers;
+
+@property (nonatomic, strong) AMTMainVC *oldVC;
 @end
 
 @implementation AMTHomeVC
@@ -50,8 +52,10 @@
     if (!_managerView) {
         weakSelf(self);
         _managerView = [[KKClassificationView alloc]initWithFrame:CGRectMake(0, NavHFit, self.view.bounds.size.width, HEIGHT_SCREEN - TabBarHFit - NavHFit) viewController:self layout:self.layout clickBlock:^(NSInteger index) {
-//            AMTScreenVC *vc =[[AMTScreenVC alloc]init];
-//            vc.titles = weakSelf.titleArr;
+            [weakSelf.oldVC removeNotifi];
+            AMTMainVC *vc = weakSelf.viewControllers[index];
+            [vc setNotifi];
+            weakSelf.oldVC = vc;
             
         }];
     }
@@ -95,6 +99,10 @@
             AMTGoodsClassModel *model = self.titleArr[i];
             vc.goods_class_id = model.ID;
             [_viewControllers addObject:vc];
+            if (i == 0) {
+                [vc setNotifi];
+                self.oldVC = vc;
+            }
         }
     }
     return _viewControllers;

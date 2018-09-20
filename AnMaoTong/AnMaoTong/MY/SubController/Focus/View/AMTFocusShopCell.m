@@ -75,5 +75,6 @@
     self.nameLab.text = model.name;
     self.weChatLab.text = [NSString stringWithFormat:@"微信号：%@  QQ：%@",model.wx,model.qq];
     self.foucusBtn.selected = model.is_attention;
+    self.foucusBtn.layer.borderColor = [UIColor cz_ToUIColorByStr:self.foucusBtn.selected ? @"CCCCCC":@"FF3658"].CGColor;
 }
 @end

@@ -23,6 +23,14 @@
 #define modifInfoOne   [NSString stringWithFormat:@"%@api/method/modifInfoOne", AMTURL]
 //获取验证码
 #define getCode   [NSString stringWithFormat:@"%@api/method/getCode", AMTURL]
+//修改密码时验证验证码
+#define checkCode   [NSString stringWithFormat:@"%@api/method/checkCode", AMTURL]
+//修改密码
+#define changePassword   [NSString stringWithFormat:@"%@api/method/changePassword", AMTURL]
+//退出登录
+#define outLogin   [NSString stringWithFormat:@"%@api/method/logout", AMTURL]
+//获取我的页面统计的数据
+#define getCountData   [NSString stringWithFormat:@"%@api/method/getCountData", AMTURL]
 //获取产品分类
 #define getGoodsClass   [NSString stringWithFormat:@"%@api/method/getGoodsClass", AMTURL]
 //商品类型下的所有品牌
@@ -71,6 +79,7 @@
 #define getDynamicBrandBusiness   [NSString stringWithFormat:@"%@api/method/getDynamicBrandBusiness", AMTURL]
 //搜索
 #define Search   [NSString stringWithFormat:@"%@api/method/search", AMTURL]
-
+//保存用户数据
+#define modifyData   [NSString stringWithFormat:@"%@api/method/modifyData", AMTURL]
 #endif /* Request_pch */
 

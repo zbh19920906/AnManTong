@@ -7,7 +7,7 @@
 //
 
 #import "BaseView.h"
-
+#import "AMTMyModel.h"
 @interface AMTHeadInfoView : BaseView
-
+@property (nonatomic, strong) AMTMyModel *model;
 @end

@@ -20,8 +20,7 @@
                     [subscriber sendNext:RACTuplePack(@(YES))];
                     [subscriber sendCompleted];
                 } fail:^(NSString *message, NSInteger code) {
-                    [subscriber sendNext:RACTuplePack(@(NO))];
-                    [subscriber sendCompleted];
+                    
                 }];
                 return nil;
             }];
@@ -49,9 +48,7 @@
                     [subscriber sendNext:RACTuplePack(@(YES))];
                     [subscriber sendCompleted];
                 } fail:^(NSString *message, NSInteger code) {
-                    [SVProgressHUD showErrorWithStatus:message];
-                    [subscriber sendNext:RACTuplePack(@(NO))];
-                    [subscriber sendCompleted];
+                    
                 }];
                 return nil;
             }];
@@ -130,8 +127,9 @@
                     model.dynamic_num.my_collection = !model.dynamic_num.my_collection;
                     
                     NSInteger index =  [weakSelf.listArray indexOfObject:model];
-                    [weakSelf.listArray replaceObjectAtIndex:index withObject:model];
-                    
+                    if (index != 0x7FFFFFFFFFFFFFFF) {
+                        [weakSelf.listArray replaceObjectAtIndex:index withObject:model];
+                    }
                     [subscriber sendNext:@[@(YES)]];
                     [subscriber sendCompleted];
                 } fail:^(NSString *message, NSInteger code) {
@@ -151,7 +149,8 @@
         weakSelf(self);
         _bannerCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
             return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-                [[KKNetWorking getShard]request:GET url:getCarouselMap parameters:@{@"goods_class_id":input[0],@"carousel_type":input[1]} completion:^(id json, NSInteger code) {
+                NSArray *inputs = input;
+                [[KKNetWorking getShard]request:GET url:getCarouselMap parameters:@{@"goods_class_id":input[0],@"carousel_type":input[1],@"zone_id":inputs.count > 2 ? input[2] : @""} completion:^(id json, NSInteger code) {
                     weakSelf.images = [AMTBannerModel mj_objectArrayWithKeyValuesArray:json[@"data"]];
                     [subscriber sendNext:@(YES)];
                     [subscriber sendCompleted];

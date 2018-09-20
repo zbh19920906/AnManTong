@@ -38,6 +38,11 @@ UIKIT_STATIC_INLINE NSString * BHLFString(CGFloat f)
     return [NSString stringWithFormat:@"%lf",f];
 }
 
+UIKIT_STATIC_INLINE UIColor *BHLineColor()
+{
+    return [UIColor cz_ToUIColorByStr:@"eeeeee"];
+}
+
 typedef NS_OPTIONS(NSInteger, AMTBannerType)
 
 {

@@ -18,12 +18,15 @@
 @property(strong, nonatomic) KKClassiflcationLayout *layout;
 @property(strong, nonatomic) KKClassificationView *managerView;
 @property(copy, nonatomic) NSMutableArray *viewControllers;
+@property (nonatomic, strong) AMTZoneMainController *oldVC;
+@property (nonatomic, copy) NSString *brandID;
 @end
 
 @implementation AMTZoneController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.brandID = @"0";
     [self.navBar.rightButton setImage:imageNamed(@"添加") forState:UIControlStateNormal];
     BaseButton *button = [BaseButton buttonWithType:UIButtonTypeCustom];
     [button setImage:imageNamed(@"筛选 (1)") forState:UIControlStateNormal];
@@ -32,6 +35,18 @@
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         AMTScreenVC *vc = [[AMTScreenVC alloc]init];
         vc.titles = weakSelf.titleArr;
+        vc.screenBlock = ^(AMTBrandModel *model) {
+            weakSelf.brandID = model.ID;
+            for (NSInteger i = 0; i < weakSelf.titleArr.count ; i++) {
+                AMTGoodsClassModel *classModel = weakSelf.titleArr[i];
+                if ([classModel.ID isEqualToString:model.goods_class_id]) {
+                    [weakSelf.managerView scrollToIndexWithIndex:i];
+                    AMTZoneMainController *vc = weakSelf.viewControllers[i];
+                    vc.brand_id = weakSelf.brandID;
+                    break;
+                }
+            }
+        };
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     [self.view addSubview:button];
@@ -63,10 +78,10 @@
     if (!_managerView) {
         weakSelf(self);
         _managerView = [[KKClassificationView alloc]initWithFrame:CGRectMake(0, NavHFit, WIDTH_SCREEN - 34, HEIGHT_SCREEN - NavHFit) viewController:self layout:self.layout clickBlock:^(NSInteger index) {
-            //            AMTScreenVC *vc =[[AMTScreenVC alloc]init];
-            //            vc.titles = weakSelf.titleArr;
-            AMTDetailsVC *vc = [[AMTDetailsVC alloc]init];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
+            [weakSelf.oldVC removeNotifi];
+            AMTZoneMainController *vc = weakSelf.viewControllers[index];
+            [vc setNotifi];
+            weakSelf.oldVC = vc;
         }];
     }
     return _managerView;
@@ -108,19 +123,16 @@
             AMTZoneMainController *vc = [[AMTZoneMainController alloc]init];
             AMTGoodsClassModel *model = self.titleArr[i];
             vc.goods_class_id = model.ID;
+            vc.zone_id = self.zone_id;
+            vc.brand_id = @"0";
             [_viewControllers addObject:vc];
+            if (i == 0) {
+                [vc setNotifi];
+                self.oldVC = vc;
+            }
         }
     }
     return _viewControllers;
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

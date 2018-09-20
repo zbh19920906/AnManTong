@@ -10,7 +10,7 @@
 #define OtherPrefix_pch
 //生产and开发环境
 #define kIsProduction     NO
-#define APPScheme @"kkjyymd"
+#define APPScheme @"anmaotong"
 
 #define WBColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:a]
 
@@ -55,6 +55,10 @@
 
 #define MyLocation      @"myLocation"
 #define weakSelf(x)      typeof(x) __weak weakSelf = x
+//弱引用
+#define kWeakObject(x)          __weak typeof(x) weakObject = (x);
+//强引用
+#define kStrongObject           __strong typeof(weakObject) weakSelf = weakObject;
 #define ServicePhone    @"servicePhone"
 #define ErrandInfo      @"errandInfo"
 #define checkOrderInfo      @"checkOrderInfo"

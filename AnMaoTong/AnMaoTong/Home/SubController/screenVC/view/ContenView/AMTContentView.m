@@ -10,6 +10,7 @@
 #import "AMTBrandItemCell.h"
 @interface AMTContentView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) BaseCollectionView *collection;
+
 @end
 @implementation AMTContentView
 
@@ -43,7 +44,21 @@
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake((self.width - 46) / 3, 32);
-    
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    AMTBrandItemCell *oldcell = (AMTBrandItemCell *)[collectionView cellForItemAtIndexPath:self.oldIndexPath];
+    oldcell.isSeleted = NO;
+    AMTBrandItemCell *cell = (AMTBrandItemCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    cell.isSeleted = YES;
+    self.oldIndexPath = indexPath;
+}
+
+- (void)reset
+{
+    AMTBrandItemCell *oldcell = (AMTBrandItemCell *)[self.collection cellForItemAtIndexPath:self.oldIndexPath];
+    oldcell.isSeleted = NO;
 }
 
 - (BaseCollectionView *)collection

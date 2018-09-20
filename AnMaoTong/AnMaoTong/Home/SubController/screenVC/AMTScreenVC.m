@@ -55,7 +55,7 @@
     [resetBtn setLableColor:@"FFFFFF" font:15 bold:0];
     resetBtn.backgroundColor = [UIColor cz_ToUIColorByStr:@"434343"];
     [[resetBtn rac_signalForControlEvents:(UIControlEventTouchUpInside)]subscribeNext:^(id x) {
-        KKLog(@"重置");
+        [weakSelf.itemView reset];
     }];
     [self.view addSubview:resetBtn];
     resetBtn.sd_layout
@@ -69,7 +69,8 @@
     [determineBtn setLableColor:@"FFFFFF" font:15 bold:0];
     determineBtn.backgroundColor = [UIColor cz_ToUIColorByStr:@"FF3658"];
     [[determineBtn rac_signalForControlEvents:(UIControlEventTouchUpInside)]subscribeNext:^(id x) {
-        KKLog(@"确定");
+        weakSelf.screenBlock ? weakSelf.screenBlock(weakSelf.itemArr[weakSelf.itemView.oldIndexPath.row]) : nil;
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     [self.view addSubview:determineBtn];
     determineBtn.sd_layout

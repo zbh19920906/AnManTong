@@ -32,6 +32,18 @@
 		2F597CED21426FD000C5B4A0 /* AMTPersonalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F597CEC21426FD000C5B4A0 /* AMTPersonalModel.m */; };
 		2F597CF12142713F00C5B4A0 /* AMTPersonalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F597CF02142713F00C5B4A0 /* AMTPersonalCell.m */; };
 		2F597CF4214278E100C5B4A0 /* AMTAnnouncementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F597CF3214278E100C5B4A0 /* AMTAnnouncementCell.m */; };
+		2F71C14821536F8F00082867 /* AMTSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71C14721536F8F00082867 /* AMTSettingController.m */; };
+		2F71C164215373BC00082867 /* ForgetPwdOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71C14D215373BB00082867 /* ForgetPwdOneController.m */; };
+		2F71C165215373BC00082867 /* ForgetPwdOneDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71C151215373BB00082867 /* ForgetPwdOneDataModel.m */; };
+		2F71C166215373BC00082867 /* ForgetPwdOneViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71C153215373BB00082867 /* ForgetPwdOneViewModel.m */; };
+		2F71C167215373BC00082867 /* ForgetPwdThreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71C156215373BB00082867 /* ForgetPwdThreeController.m */; };
+		2F71C168215373BC00082867 /* ForgetPwdThreeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71C159215373BB00082867 /* ForgetPwdThreeDataModel.m */; };
+		2F71C169215373BC00082867 /* ForgetPwdThreeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71C15B215373BB00082867 /* ForgetPwdThreeViewModel.m */; };
+		2F71C16A215373BC00082867 /* ForgetPwdTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71C15E215373BB00082867 /* ForgetPwdTwoController.m */; };
+		2F71C16B215373BC00082867 /* ForgetPwdTwoDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71C161215373BB00082867 /* ForgetPwdTwoDataModel.m */; };
+		2F71C16C215373BC00082867 /* ForgetPwdTwoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71C163215373BB00082867 /* ForgetPwdTwoViewModel.m */; };
+		2F71C1702153854500082867 /* AMTSettingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71C16F2153854500082867 /* AMTSettingViewModel.m */; };
+		2F71C1742153885600082867 /* AMTMyVIewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71C1732153885600082867 /* AMTMyVIewModel.m */; };
 		2F726A27213F6AC30024A73F /* AMTDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F726A26213F6AC30024A73F /* AMTDetailsVC.m */; };
 		2F726A2B213F6B130024A73F /* AMTDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F726A2A213F6B130024A73F /* AMTDetailsModel.m */; };
 		2F726A30213F6E3C0024A73F /* AMTScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F726A2F213F6E3C0024A73F /* AMTScreenVC.m */; };
@@ -284,6 +296,30 @@
 		2F597CF02142713F00C5B4A0 /* AMTPersonalCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTPersonalCell.m; sourceTree = "<group>"; };
 		2F597CF2214278E100C5B4A0 /* AMTAnnouncementCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTAnnouncementCell.h; sourceTree = "<group>"; };
 		2F597CF3214278E100C5B4A0 /* AMTAnnouncementCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTAnnouncementCell.m; sourceTree = "<group>"; };
+		2F71C14621536F8F00082867 /* AMTSettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTSettingController.h; sourceTree = "<group>"; };
+		2F71C14721536F8F00082867 /* AMTSettingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTSettingController.m; sourceTree = "<group>"; };
+		2F71C14C215373BB00082867 /* ForgetPwdOneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdOneController.h; sourceTree = "<group>"; };
+		2F71C14D215373BB00082867 /* ForgetPwdOneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdOneController.m; sourceTree = "<group>"; };
+		2F71C150215373BB00082867 /* ForgetPwdOneDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdOneDataModel.h; sourceTree = "<group>"; };
+		2F71C151215373BB00082867 /* ForgetPwdOneDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdOneDataModel.m; sourceTree = "<group>"; };
+		2F71C152215373BB00082867 /* ForgetPwdOneViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdOneViewModel.h; sourceTree = "<group>"; };
+		2F71C153215373BB00082867 /* ForgetPwdOneViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdOneViewModel.m; sourceTree = "<group>"; };
+		2F71C155215373BB00082867 /* ForgetPwdThreeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdThreeController.h; sourceTree = "<group>"; };
+		2F71C156215373BB00082867 /* ForgetPwdThreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdThreeController.m; sourceTree = "<group>"; };
+		2F71C158215373BB00082867 /* ForgetPwdThreeDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdThreeDataModel.h; sourceTree = "<group>"; };
+		2F71C159215373BB00082867 /* ForgetPwdThreeDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdThreeDataModel.m; sourceTree = "<group>"; };
+		2F71C15A215373BB00082867 /* ForgetPwdThreeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdThreeViewModel.h; sourceTree = "<group>"; };
+		2F71C15B215373BB00082867 /* ForgetPwdThreeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdThreeViewModel.m; sourceTree = "<group>"; };
+		2F71C15D215373BB00082867 /* ForgetPwdTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdTwoController.h; sourceTree = "<group>"; };
+		2F71C15E215373BB00082867 /* ForgetPwdTwoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdTwoController.m; sourceTree = "<group>"; };
+		2F71C160215373BB00082867 /* ForgetPwdTwoDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdTwoDataModel.h; sourceTree = "<group>"; };
+		2F71C161215373BB00082867 /* ForgetPwdTwoDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdTwoDataModel.m; sourceTree = "<group>"; };
+		2F71C162215373BB00082867 /* ForgetPwdTwoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdTwoViewModel.h; sourceTree = "<group>"; };
+		2F71C163215373BB00082867 /* ForgetPwdTwoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdTwoViewModel.m; sourceTree = "<group>"; };
+		2F71C16E2153854500082867 /* AMTSettingViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTSettingViewModel.h; sourceTree = "<group>"; };
+		2F71C16F2153854500082867 /* AMTSettingViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTSettingViewModel.m; sourceTree = "<group>"; };
+		2F71C1722153885600082867 /* AMTMyVIewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTMyVIewModel.h; sourceTree = "<group>"; };
+		2F71C1732153885600082867 /* AMTMyVIewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTMyVIewModel.m; sourceTree = "<group>"; };
 		2F726A25213F6AC30024A73F /* AMTDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTDetailsVC.h; sourceTree = "<group>"; };
 		2F726A26213F6AC30024A73F /* AMTDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTDetailsVC.m; sourceTree = "<group>"; };
 		2F726A29213F6B130024A73F /* AMTDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTDetailsModel.h; sourceTree = "<group>"; };
@@ -818,6 +854,125 @@
 				2F597CF3214278E100C5B4A0 /* AMTAnnouncementCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2F71C14521536F6700082867 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				2F71C14621536F8F00082867 /* AMTSettingController.h */,
+				2F71C14721536F8F00082867 /* AMTSettingController.m */,
+				2F71C16D2153852800082867 /* ViewModel */,
+				2F71C149215372D300082867 /* subController */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		2F71C149215372D300082867 /* subController */ = {
+			isa = PBXGroup;
+			children = (
+				2F71C14A215373BB00082867 /* ForgetPwdViewController */,
+			);
+			path = subController;
+			sourceTree = "<group>";
+		};
+		2F71C14A215373BB00082867 /* ForgetPwdViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2F71C14B215373BB00082867 /* ForgetPwdOneController */,
+				2F71C154215373BB00082867 /* ForgetPwdThreeController */,
+				2F71C15C215373BB00082867 /* ForgetPwdTwoController */,
+			);
+			path = ForgetPwdViewController;
+			sourceTree = "<group>";
+		};
+		2F71C14B215373BB00082867 /* ForgetPwdOneController */ = {
+			isa = PBXGroup;
+			children = (
+				2F71C14C215373BB00082867 /* ForgetPwdOneController.h */,
+				2F71C14D215373BB00082867 /* ForgetPwdOneController.m */,
+				2F71C14E215373BB00082867 /* View */,
+				2F71C14F215373BB00082867 /* ViewModel */,
+			);
+			path = ForgetPwdOneController;
+			sourceTree = "<group>";
+		};
+		2F71C14E215373BB00082867 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2F71C14F215373BB00082867 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2F71C150215373BB00082867 /* ForgetPwdOneDataModel.h */,
+				2F71C151215373BB00082867 /* ForgetPwdOneDataModel.m */,
+				2F71C152215373BB00082867 /* ForgetPwdOneViewModel.h */,
+				2F71C153215373BB00082867 /* ForgetPwdOneViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2F71C154215373BB00082867 /* ForgetPwdThreeController */ = {
+			isa = PBXGroup;
+			children = (
+				2F71C155215373BB00082867 /* ForgetPwdThreeController.h */,
+				2F71C156215373BB00082867 /* ForgetPwdThreeController.m */,
+				2F71C157215373BB00082867 /* ViewModel */,
+			);
+			path = ForgetPwdThreeController;
+			sourceTree = "<group>";
+		};
+		2F71C157215373BB00082867 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2F71C158215373BB00082867 /* ForgetPwdThreeDataModel.h */,
+				2F71C159215373BB00082867 /* ForgetPwdThreeDataModel.m */,
+				2F71C15A215373BB00082867 /* ForgetPwdThreeViewModel.h */,
+				2F71C15B215373BB00082867 /* ForgetPwdThreeViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2F71C15C215373BB00082867 /* ForgetPwdTwoController */ = {
+			isa = PBXGroup;
+			children = (
+				2F71C15D215373BB00082867 /* ForgetPwdTwoController.h */,
+				2F71C15E215373BB00082867 /* ForgetPwdTwoController.m */,
+				2F71C15F215373BB00082867 /* ViewModel */,
+			);
+			path = ForgetPwdTwoController;
+			sourceTree = "<group>";
+		};
+		2F71C15F215373BB00082867 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2F71C160215373BB00082867 /* ForgetPwdTwoDataModel.h */,
+				2F71C161215373BB00082867 /* ForgetPwdTwoDataModel.m */,
+				2F71C162215373BB00082867 /* ForgetPwdTwoViewModel.h */,
+				2F71C163215373BB00082867 /* ForgetPwdTwoViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2F71C16D2153852800082867 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2F71C16E2153854500082867 /* AMTSettingViewModel.h */,
+				2F71C16F2153854500082867 /* AMTSettingViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2F71C1712153884300082867 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2F71C1722153885600082867 /* AMTMyVIewModel.h */,
+				2F71C1732153885600082867 /* AMTMyVIewModel.m */,
+			);
+			name = ViewModel;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		2F726A28213F6AFC0024A73F /* Model */ = {
@@ -1675,6 +1830,7 @@
 		2FE2A5EF2137D25E002AB1D8 /* MY */ = {
 			isa = PBXGroup;
 			children = (
+				2F71C1712153884300082867 /* ViewModel */,
 				2FE2A5F02137D25E002AB1D8 /* Model */,
 				2FE2A5F12137D25E002AB1D8 /* SubController */,
 				2FE2A5F22137D25E002AB1D8 /* View */,
@@ -1696,6 +1852,7 @@
 		2FE2A5F12137D25E002AB1D8 /* SubController */ = {
 			isa = PBXGroup;
 			children = (
+				2F71C14521536F6700082867 /* Setting */,
 				2F893C8B2143653000D441B2 /* MyLike */,
 				58CF92422142BA060065EF0F /* MyComments */,
 				58CF923A2142B20C0065EF0F /* collection */,
@@ -2227,6 +2384,7 @@
 				2FE2A5912137C810002AB1D8 /* IQUIViewController+Additions.m in Sources */,
 				2FE2A5622137C7FA002AB1D8 /* UIView+FontAndColor.m in Sources */,
 				2FE2A5932137C810002AB1D8 /* IQKeyboardReturnKeyHandler.m in Sources */,
+				2F71C166215373BC00082867 /* ForgetPwdOneViewModel.m in Sources */,
 				2F726A66213FAF540024A73F /* KKHorizontalPageableLayout.m in Sources */,
 				2F597CE921426E2200C5B4A0 /* AMTPersonalViewController.m in Sources */,
 				2F597CF12142713F00C5B4A0 /* AMTPersonalCell.m in Sources */,
@@ -2259,6 +2417,7 @@
 				2F78645C2151F849000FF967 /* AMTMyLikeViewModel.m in Sources */,
 				58CF92452142BA2F0065EF0F /* AMTMyCommentsViewController.m in Sources */,
 				2F95EDB32147BDEF008EA374 /* AMTDynamicCountView.m in Sources */,
+				2F71C169215373BC00082867 /* ForgetPwdThreeViewModel.m in Sources */,
 				2FE2A5992137C810002AB1D8 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				2FE2A5552137C7FA002AB1D8 /* NSObject+KKTextSize.m in Sources */,
 				2F1C3BDA21412DB1008D3B66 /* AMTBaseInfoViewController.m in Sources */,
@@ -2267,8 +2426,12 @@
 				2FC013FB2148FDBB0007BA3B /* LTDispatchQueue.swift in Sources */,
 				2F1C3A602140CB62008D3B66 /* UIView+extension.m in Sources */,
 				2FCA433F2150FF7400529C74 /* AMTUserInfoModel.m in Sources */,
+				2F71C16B215373BC00082867 /* ForgetPwdTwoDataModel.m in Sources */,
+				2F71C14821536F8F00082867 /* AMTSettingController.m in Sources */,
 				2FC0140721490ADF0007BA3B /* AMTDetailsClassView.m in Sources */,
 				2F95ED94214657EF008EA374 /* NSMutableAttributedString+Extension.m in Sources */,
+				2F71C1742153885600082867 /* AMTMyVIewModel.m in Sources */,
+				2F71C16A215373BC00082867 /* ForgetPwdTwoController.m in Sources */,
 				2FCA431E2150C99700529C74 /* CPBottomPromitView.m in Sources */,
 				2F1C3A6A2140D11B008D3B66 /* CPLinkLabView.m in Sources */,
 				2FC013E32148F1110007BA3B /* AMTZoneController.m in Sources */,
@@ -2282,6 +2445,7 @@
 				2FCA43252150CF3200529C74 /* AMTPersonalVIewModel.m in Sources */,
 				2F95ED9921466AD7008EA374 /* CPAMapLocationManager.m in Sources */,
 				2FE2A5D02137C846002AB1D8 /* UserHelper.m in Sources */,
+				2F71C168215373BC00082867 /* ForgetPwdThreeDataModel.m in Sources */,
 				2FE2A5E92137C988002AB1D8 /* BaseModel.m in Sources */,
 				2F726A36213F79750024A73F /* AMTScreenTitleView.m in Sources */,
 				2FE2A5532137C7FA002AB1D8 /* NSMutableAttributedString+FindOutNumber.m in Sources */,
@@ -2289,6 +2453,7 @@
 				58CF92392142ABE70065EF0F /* AMTFocusUserCell.m in Sources */,
 				2FE2A4FE2137C7B2002AB1D8 /* BaseCollectionView.m in Sources */,
 				2FE2A5972137C810002AB1D8 /* IQTitleBarButtonItem.m in Sources */,
+				2F71C164215373BC00082867 /* ForgetPwdOneController.m in Sources */,
 				2FE2A5602137C7FA002AB1D8 /* UIImage+Extension.m in Sources */,
 				2FE2A5582137C7FA002AB1D8 /* NSString+CZBase64.m in Sources */,
 				2FE2A5C42137C837002AB1D8 /* TAAnimatedDotView.m in Sources */,
@@ -2314,6 +2479,8 @@
 				2F95ED7C21461125008EA374 /* AMTPartitionView.m in Sources */,
 				2FCA43382150EE9B00529C74 /* AMTFocusModel.m in Sources */,
 				2F726A58213FAF010024A73F /* KKSearchGoodsViewController.m in Sources */,
+				2F71C167215373BC00082867 /* ForgetPwdThreeController.m in Sources */,
+				2F71C1702153854500082867 /* AMTSettingViewModel.m in Sources */,
 				2FC013EB2148F9BD0007BA3B /* AMTMerchantDetalisController.m in Sources */,
 				2FE2A5192137C7D2002AB1D8 /* BaseImageView.m in Sources */,
 				2F1C3A552140C9E4008D3B66 /* RegisterOneDataModel.m in Sources */,
@@ -2325,6 +2492,7 @@
 				2FA1E054214B965E00031511 /* AMTFindHeadView.m in Sources */,
 				2FC013E62148F1530007BA3B /* AMTZoneMainController.m in Sources */,
 				2FCAD0DB214F9792006EA81D /* AMTCommentModel.m in Sources */,
+				2F71C165215373BC00082867 /* ForgetPwdOneDataModel.m in Sources */,
 				2FE2A4CB21378B06002AB1D8 /* main.m in Sources */,
 				2F1C3A712140FFA2008D3B66 /* AMTUserNameViewController.m in Sources */,
 				2F95EDA721477032008EA374 /* AMTZoneModel.m in Sources */,
@@ -2367,6 +2535,7 @@
 				2FE2A5902137C810002AB1D8 /* IQUIView+Hierarchy.m in Sources */,
 				2F726A33213F723B0024A73F /* AMTGoodsClassModel.m in Sources */,
 				2F726A59213FAF010024A73F /* KKHistorySearchView.m in Sources */,
+				2F71C16C215373BC00082867 /* ForgetPwdTwoViewModel.m in Sources */,
 				580D24D3214D37E500144D5D /* AMTAddTitleController.m in Sources */,
 				2F893C982143AB6A00D441B2 /* AMTMessageHeadView.m in Sources */,
 				2F95ED75214602C3008EA374 /* CPBaseImageCollectionCell.m in Sources */,

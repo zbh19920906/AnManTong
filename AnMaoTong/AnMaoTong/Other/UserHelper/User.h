@@ -100,4 +100,9 @@
  用户类型
  */
 @property (nonatomic, copy) NSString *type;
+
+/**
+ 出生年月
+ */
+@property (nonatomic, copy) NSString *date_birth;
 @end

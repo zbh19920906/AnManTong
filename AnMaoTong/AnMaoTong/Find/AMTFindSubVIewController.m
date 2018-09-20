@@ -31,6 +31,11 @@
 - (void)setIsGoods:(BOOL)isGoods
 {
     _isGoods = isGoods;
+    weakSelf(self);
+    [[self.viewModels.bannerCommand execute:@[self.goods_class_id,@(self.isGoods ? AMTBannerTypeFindUser : AMTBannerTypeFindMerchants)]] subscribeNext:^(id x) {
+        weakSelf.bannerArray = x[0];
+        weakSelf.headView.images = weakSelf.bannerArray;
+    }];
     [self.tableView reloadData];
 }
 

@@ -87,14 +87,12 @@ const NSInteger codeMaxTime = 60;
         _getCodeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input){
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber){
                 [SVProgressHUD show];
-                [[KKNetWorking getShard] request:GET url:getCode parameters:@{@"phone":KKString(input)} completion:^(id json, NSInteger code) {
+                [[KKNetWorking getShard] request:GET url:getCode parameters:@{@"phone":KKString(input),@"type":@"1"} completion:^(id json, NSInteger code) {
                     [SVProgressHUD dismiss];
                     [subscriber sendNext:RACTuplePack(@(YES))];
                     [subscriber sendCompleted];
                 } fail:^(NSString *message, NSInteger code) {
-                    [SVProgressHUD showErrorHUD:message completeBlock:nil];
-                    [subscriber sendNext:RACTuplePack(@(NO))];
-                    [subscriber sendCompleted];
+                    
                 }];
                 return nil;
             }];
@@ -119,9 +117,7 @@ const NSInteger codeMaxTime = 60;
                     [subscriber sendNext:RACTuplePack(@(YES))];
                     [subscriber sendCompleted];
                 } fail:^(NSString *message, NSInteger code) {
-                    [SVProgressHUD showErrorHUD:message completeBlock:nil];
-                    [subscriber sendNext:RACTuplePack(@(YES))];
-                    [subscriber sendCompleted];
+                    
                 }];
 
                 return nil;
@@ -149,8 +145,7 @@ const NSInteger codeMaxTime = 60;
                     [subscriber sendNext:RACTuplePack(@(code))];
                     [subscriber sendCompleted];
                 } fail:^(NSString *message, NSInteger code) {
-                    [subscriber sendNext:RACTuplePack(@(code))];
-                    [subscriber sendCompleted];
+                    
                 }];
                 return nil;
             }];

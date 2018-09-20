@@ -10,4 +10,5 @@
 
 @interface AMTBrandItemCell : UICollectionViewCell
 @property (nonatomic, strong) AMTBrandModel *model;
+@property (nonatomic, assign) BOOL isSeleted;
 @end

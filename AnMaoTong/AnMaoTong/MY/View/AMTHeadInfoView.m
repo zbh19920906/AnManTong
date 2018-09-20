@@ -29,17 +29,14 @@
     
     
     self.sendCount = [[AMTHeadItemView alloc]init];
-    self.sendCount.titleLab.text = @"0";
     self.sendCount.contentLab.text = @"发布";
     self.sendCount.tag = 1;
     
     self.focusCount = [[AMTHeadItemView alloc]init];
-    self.focusCount.titleLab.text = @"0";
     self.focusCount.contentLab.text = @"关注";
     self.focusCount.tag = 2;
     
     self.collectionCount = [[AMTHeadItemView alloc]init];
-    self.collectionCount.titleLab.text = @"0";
     self.collectionCount.contentLab.text = @"收藏";
     self.collectionCount.tag = 3;
     [self sd_addSubviews:@[self.sendCount,self.focusCount,self.collectionCount]];
@@ -61,6 +58,13 @@
     .centerXEqualToView(self)
     .widthIs(40)
     .heightEqualToWidth();
+}
+
+- (void)setModel:(AMTMyModel *)model
+{
+    self.sendCount.titleLab.text = BHIString(model.release_count);
+    self.collectionCount.titleLab.text = BHIString(model.collection_count);
+    self.focusCount.titleLab.text = BHIString(model.attention_count);
 }
 
 - (void)drawRect:(CGRect)rect

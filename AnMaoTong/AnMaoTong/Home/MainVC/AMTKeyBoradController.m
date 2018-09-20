@@ -23,7 +23,6 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [myNoti removeObserver:self];
     self.keyBoardInputView.inputView.hidden = YES;
 }
 
@@ -33,11 +32,24 @@
     self.keyBoardInputView.inputView.hidden = NO;
 }
 
+- (void)sendComment
+{
+    
+}
+
+- (void)setNotifi
+{
+    
+}
 
 - (AMTKeyBoardTextView *)keyBoardInputView
 {
     if (!_keyBoardInputView) {
         _keyBoardInputView = [[AMTKeyBoardTextView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
+        weakSelf(self);
+        [[_keyBoardInputView.determineBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            [weakSelf sendComment];
+        }];
     }
     return _keyBoardInputView;
 }

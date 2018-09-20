@@ -12,7 +12,7 @@
 @interface AMTKeyBoardTextView ()<RCEmojiViewDelegate>
 @property (nonatomic, strong) BaseView *bgView;
 @property (nonatomic, strong) BaseButton *emojiBtn;
-@property (nonatomic, strong) BaseButton *determineBtn;
+
 @property (nonatomic , strong) RCEmojiBoardView *emojiBoardView;
 @end
 @implementation AMTKeyBoardTextView
@@ -72,9 +72,6 @@
     [self.determineBtn setBackgroundColor: BHColor(@"008AFF")];
     [self.determineBtn setLableColor:@"FFFFFF" font:15 bold:0];
     [self.determineBtn setTitle:@"确定" forState:UIControlStateNormal];
-    [[self.determineBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [myNoti postNotificationName:sendCommentNoti object:nil];
-    }];
     
     self.inputTF = [[BaseTextField alloc]init];
     self.inputTF.placeholder = @"请输入评论";

@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface KKSearchGoodsViewController : BaseViewController
+@interface KKSearchGoodsViewController : AMTKeyBoradController
 
 @property (nonatomic, copy) NSString *placeholdStr;
 

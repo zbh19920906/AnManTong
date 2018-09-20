@@ -10,7 +10,7 @@
 #import "AMTGoodsImageView.h"
 #import "AMTGoodsTitleView.h"
 #import "AMTDynamicCountView.h"
-@interface AMTGoodsMessageCell ()
+@interface AMTGoodsMessageCell ()<AMTDynamicCountViewDelegete>
 @property (nonatomic, strong) BaseView *bgView;
 @property (nonatomic, strong) BaseImageView *headImageView;
 @property (nonatomic, strong) BaseLabel *nameLab;
@@ -44,7 +44,6 @@
     
     self.headImageView = [[BaseImageView alloc]init];
     self.headImageView.sd_cornerRadius = @(20);
-    self.headImageView.backgroundColor = [UIColor redColor];
     
     _headTap = [UITapGestureRecognizer new];
     
@@ -72,7 +71,7 @@
     self.titleView = [[AMTGoodsTitleView alloc]init];
     
     self.countView = [[AMTDynamicCountView alloc]init];
-    
+    self.countView.delegete = self;
     [self.contentView sd_addSubviews:@[self.headImageView,self.nameLab,self.timeLab,self.contentLab,self.goodsImageView,self.addressImageView,self.addressLab,self.iconImage,self.titleView,self.countView]];
     
     self.headImageView.sd_layout
@@ -138,7 +137,7 @@
     .topSpaceToView(self.titleView, 15)
     .leftSpaceToView(self.contentView, 10)
     .widthIs(9)
-    .heightIs(11);
+    .heightIs(self.model.position.length > 0 ? 11 : 0);
     
     self.addressLab.sd_layout
     .leftSpaceToView(self.addressImageView, 5)
@@ -157,4 +156,33 @@
     [self setupAutoHeightWithBottomView:self.countView bottomMargin:0];
     
 }
+
+- (void)comment:(AMTDetailsModel *)model
+{
+    [self changeComment:model];
+}
+
+- (void)collection:(AMTDetailsModel *)model
+{
+    [self changeCollection:model];
+}
+
+- (void)like:(AMTDetailsModel *)model
+{
+    [self changeLike:model];
+}
+
+- (void)changeComment:(AMTDetailsModel *)model
+{
+    
+}
+- (void)changeCollection:(AMTDetailsModel *)model
+{
+    
+}
+- (void)changeLike:(AMTDetailsModel *)model
+{
+    
+}
+
 @end

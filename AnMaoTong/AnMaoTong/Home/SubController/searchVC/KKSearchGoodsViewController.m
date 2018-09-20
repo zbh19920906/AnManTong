@@ -11,6 +11,7 @@
 #import "KKHistorySearchModel.h"
 #import "AMTSearchViewModel.h"
 #import "AMTFocusShopCell.h"
+#import "AMTMerchantDetalisController.h"
 @interface KKSearchGoodsViewController ()
 <UITableViewDelegate,
 UITableViewDataSource,
@@ -21,7 +22,7 @@ KKSearchCollectinViewDelegate>
 }
 @property (nonatomic, strong) BaseTextField *searchTF;
 @property (nonatomic, strong) BaseTableView *searchTableView;
-
+@property (nonatomic, strong) AMTDetailsModel *commentModel;
 
 
 //搜索关键字
@@ -49,7 +50,7 @@ KKSearchCollectinViewDelegate>
     
     [self.view sd_addSubviews:@[self.searchTableView,  self.historySearchView]];
     [self setupNavigationBar];
-    
+    [myNoti addObserver:self selector:@selector(willChange:) name:UIKeyboardDidShowNotification object:nil];
     if ([self.placeholdStr isEqualToString:kSearchPlacehold]) {
         //如果是默认占位文字，则判断搜索按钮状态
         [self listenTextFeild];
@@ -103,6 +104,22 @@ KKSearchCollectinViewDelegate>
     [self.searchTF.delegate textFieldShouldReturn:self.searchTF];
 }
 
+- (void)sendComment
+{
+    weakSelf(self);
+    [[self.viewModel.commentCommand execute:@[self.commentModel,self.keyBoardInputView.inputTF.text]] subscribeNext:^(id x) {
+        [weakSelf.keyBoardInputView hidden];
+        [weakSelf.keyBoardInputView.inputTF resignFirstResponder];
+        [weakSelf.searchTableView reloadData];
+    }];
+}
+
+- (void)willChange:(NSNotification *)notifi
+{
+    NSValue *value = [notifi.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    [self.keyBoardInputView show:[value CGRectValue].size.height];
+}
+
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -154,7 +171,32 @@ KKSearchCollectinViewDelegate>
 {
     if (self.searchType == 1) {
         AMTGoodsMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:[AMTGoodsMessageCell identifier] forIndexPath:indexPath];
-        cell.model = self.viewModel.dynamicModels[indexPath.row];
+        AMTDetailsModel *model = self.viewModel.dynamicModels[indexPath.row];
+        cell.model = model;
+        weakSelf(self);
+        [[[cell.headTap rac_gestureSignal] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+            AMTMerchantDetalisController *vc = [[AMTMerchantDetalisController alloc]init];
+            vc.user_id = model.user_business_id;
+            vc.type = model.type;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
+        
+        [[[cell rac_signalForSelector:@selector(changeComment:)] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+            weakSelf.commentModel = x[0];
+            [weakSelf.keyBoardInputView.inputTF becomeFirstResponder];
+        }];
+        [[[cell rac_signalForSelector:@selector(changeCollection:)] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+            AMTDetailsModel *model = x[0];
+            [[weakSelf.viewModel.collectionCommand execute:model] subscribeNext:^(id x) {
+                [weakSelf.searchTableView reloadData];
+            }];
+        }];
+        [[[cell rac_signalForSelector:@selector(changeLike:)] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+            AMTDetailsModel *model = x[0];
+            [[weakSelf.viewModel.likeCommand execute:model] subscribeNext:^(id x) {
+                [weakSelf.searchTableView reloadData];
+            }];
+        }];
         return cell;
     }
     AMTFocusShopCell *cell = [tableView dequeueReusableCellWithIdentifier:[AMTFocusShopCell identifier] forIndexPath:indexPath];

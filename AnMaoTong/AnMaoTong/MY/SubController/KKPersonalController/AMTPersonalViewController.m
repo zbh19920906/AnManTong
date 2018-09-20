@@ -11,7 +11,7 @@
 #import "AMTAnnouncementCell.h"
 #import "AMTPersonalVIewModel.h"
 #import "CPDatePickerView.h"
-@interface AMTPersonalViewController ()<UITableViewDelegate,UITableViewDataSource,CPBottomPromitViewDelegate,PersonalRadioViewDelegate>
+@interface AMTPersonalViewController ()<UITableViewDelegate,UITableViewDataSource,CPBottomPromitViewDelegate,PersonalRadioViewDelegate,CPDatePickerViewDelegate>
 @property (nonatomic, copy) NSArray *titleArr;
 @property (nonatomic, strong) BaseTableView *tableView;
 @property (nonatomic, strong) AMTPersonalVIewModel *viewModel;
@@ -25,8 +25,11 @@
     [self.view addSubview:self.tableView];
     [self.navBar.rightButton setTitle:@"保存" forState:UIControlStateNormal];
     [self.navBar.rightButton setLableColor:@"555555" font:14 bold:0];
+    weakSelf(self);
     [[self.navBar.rightButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        
+        [[weakSelf.viewModel.saveCommand execute:nil] subscribeNext:^(id x) {
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }];
     }];
 }
 
@@ -49,7 +52,22 @@
     }
     AMTPersonalCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTPersonalCell class]) forIndexPath:indexPath];
     cell.isUser = self.isUser;
-    cell.title = self.titleArr[indexPath.section][indexPath.row];
+    NSString *title = self.titleArr[indexPath.section][indexPath.row];
+    cell.title = title;
+    weakSelf(self);
+    [[cell.rightTF rac_textSignal] subscribeNext:^(id x) {
+        if ([title isEqualToString:@"昵称"]) {
+            if (weakSelf.isUser) {
+                weakSelf.viewModel.model.nickname = cell.rightTF.text;
+            }else{
+                weakSelf.viewModel.model.name = cell.rightTF.text;
+            }
+        }else if ([title isEqualToString:@"微信号"]){
+            weakSelf.viewModel.model.wx = cell.rightTF.text;
+        }else{
+            weakSelf.viewModel.model.qq = cell.rightTF.text;
+        }
+    }];
     return cell;
 }
 
@@ -113,12 +131,15 @@
 {
     AMTPersonalCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
     [cell.rightBtn setTitle:valueStr forState:UIControlStateNormal];
+    self.viewModel.model.sex = [valueStr isEqualToString:@"男"] ? 1 : 2;
+    
 }
 
 - (void)pickerViewForClick:(NSString *)timeStr
 {
     AMTPersonalCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
     [cell.rightBtn setTitle:timeStr forState:UIControlStateNormal];
+    self.viewModel.model.date_birth = timeStr;
 }
 
 -(void)bottomPromitView:(CPBottomPromitView *)bottomPromitView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

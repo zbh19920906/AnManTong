@@ -36,16 +36,7 @@
             [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     }];
     
-    [myNoti addObserver:self selector:@selector(comment:) name:commentNoti object:nil];
-    [myNoti addObserver:self selector:@selector(sendComment) name:sendCommentNoti object:nil];
-    [myNoti addObserver:self selector:@selector(collection:) name:collectionNoti object:nil];
-    [myNoti addObserver:self selector:@selector(like:) name:likeNoti object:nil];
-    [myNoti addObserver:self selector:@selector(willChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
-}
-
-- (void)comment:(NSNotification *)notifi
-{
-    [self.keyBoardInputView.inputTF becomeFirstResponder];
+    [myNoti addObserver:self selector:@selector(willChange:) name:UIKeyboardDidShowNotification object:nil];
 }
 
 - (void)sendComment
@@ -55,22 +46,6 @@
         [weakSelf.keyBoardInputView hidden];
         [weakSelf.keyBoardInputView.inputTF resignFirstResponder];
         [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
-    }];
-}
-
-- (void)collection:(NSNotification *)notifi
-{
-     weakSelf(self);
-    [[self.viewModels.collectionCommand execute:nil] subscribeNext:^(id x) {
-         [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
-    }];
-}
-
-- (void)like:(NSNotification *)notifi
-{
-     weakSelf(self);
-    [[self.viewModels.likeCommand execute:nil] subscribeNext:^(id x) {
-         [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
 
@@ -96,10 +71,25 @@
     if (indexPath.section == 0) {
         AMTGoodsMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTGoodsMessageCell class]) forIndexPath:indexPath];
         cell.model = self.viewModels.model;
+        weakSelf(self);
+        [[[cell rac_signalForSelector:@selector(changeComment:)] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+            [weakSelf.keyBoardInputView.inputTF becomeFirstResponder];
+        }];
+        [[[cell rac_signalForSelector:@selector(changeCollection:)] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+            [[weakSelf.viewModels.collectionCommand execute:nil] subscribeNext:^(id x) {
+                [weakSelf.tableView reloadData];
+            }];
+        }];
+        [[[cell rac_signalForSelector:@selector(changeLike:)] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+            [[weakSelf.viewModels.likeCommand execute:nil] subscribeNext:^(id x) {
+                [weakSelf.tableView reloadData];
+            }];
+        }];
         return cell;
     }
     AMTCommentListCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AMTCommentListCell class]) forIndexPath:indexPath];
     cell.model = self.viewModels.listArray[indexPath.row];
+    
     return cell;
 }
 

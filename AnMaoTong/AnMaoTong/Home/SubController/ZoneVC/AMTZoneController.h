@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface AMTZoneController : BaseViewController
-
+@property (nonatomic, copy) NSString *zone_id;
 @end

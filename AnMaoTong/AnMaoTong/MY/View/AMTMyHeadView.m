@@ -90,6 +90,7 @@
 - (void)setModel:(AMTMyModel *)model
 {
     [self.headInfoView layoutIfNeeded];
+    self.headInfoView.model = model;
 }
 
 - (void)changeUI
@@ -99,7 +100,7 @@
     
     if ([user.type isEqualToString:@"1"]) {
         self.nameLab.text = user.nickname;
-        self.contentLab.attributedText = [NSMutableAttributedString cpGetAttributedStringWithlocation:CPAttributedImageLocation_left rect:CGRectMake(0, -3, 13, 13) imageName:user.sex == 1 ? @"男性" : @"女性" title:[NSString stringWithFormat:@"  %@岁",@"22"]];
+        self.contentLab.attributedText = [NSMutableAttributedString cpGetAttributedStringWithlocation:CPAttributedImageLocation_left rect:CGRectMake(0, -3, 13, 13) imageName:user.sex == 1 ? @"男性" : @"女性" title:[NSString stringWithFormat:@"  %@岁",user.age]];
     }else{
         self.nameLab.text = user.name;
     }

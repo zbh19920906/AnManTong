@@ -10,4 +10,7 @@
 #import "AMTKeyBoardTextView.h"
 @interface AMTKeyBoradController : BaseViewController
 @property (nonatomic, strong) AMTKeyBoardTextView *keyBoardInputView;
+- (void)removeNotifi;
+- (void)setNotifi;
+- (void)sendComment;
 @end

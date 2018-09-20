@@ -11,4 +11,5 @@
 @interface AMTPersonalVIewModel : NSObject
 @property (nonatomic, strong) AMTPersonalModel *model;
 @property (nonatomic, strong) RACCommand *headImageCommand;
+@property (nonatomic, strong) RACCommand *saveCommand;
 @end

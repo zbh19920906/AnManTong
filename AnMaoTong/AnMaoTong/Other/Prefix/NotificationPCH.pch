@@ -12,8 +12,8 @@
 //通知名称
 #define goMyItemNoti @"goMyItemNoti"
 
-#define commentNoti @"commentNoti"
-#define sendCommentNoti @"sendCommentNoti"
-#define likeNoti @"likeNoti"
-#define collectionNoti @"collectionNoti"
+//#define commentNoti @"commentNoti"
+//#define sendCommentNoti @"sendCommentNoti"
+//#define likeNoti @"likeNoti"
+//#define collectionNoti @"collectionNoti"
 #endif /* NotificationPCH_pch */

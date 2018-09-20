@@ -50,4 +50,90 @@
     }
     return _searchCommand;
 }
+
+- (RACCommand *)commentCommand
+{
+    if (!_commentCommand) {
+        weakSelf(self);
+        _commentCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
+            AMTDetailsModel *model = input[0];
+            return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                [[KKNetWorking getShard]request:POST url:InsertComment parameters:@{@"dynamic_id":model.ID,@"content":input[1]} completion:^(id json, NSInteger code) {
+                    model.dynamic_num.comment_count = model.dynamic_num.comment_count + 1;
+                    NSInteger index =  [weakSelf.dynamicModels indexOfObject:model];
+                    [weakSelf.dynamicModels replaceObjectAtIndex:index withObject:model];
+                    
+                    [subscriber sendNext:@[@(YES)]];
+                    [subscriber sendCompleted];
+                } fail:^(NSString *message, NSInteger code) {
+                    
+                }];
+                return nil;
+            }];
+        }];
+    }
+    return _commentCommand;
+}
+
+- (RACCommand *)likeCommand
+{
+    if (!_likeCommand) {
+        weakSelf(self);
+        _likeCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
+            return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                AMTDetailsModel *model = input;
+                [[KKNetWorking getShard]request:POST url:dynamicLike parameters:@{@"dynamic_id":model.ID} completion:^(id json, NSInteger code) {
+                    if (model.dynamic_num.my_like) {
+                        model.dynamic_num.like_count = model.dynamic_num.like_count - 1;
+                    }else{
+                        model.dynamic_num.like_count = model.dynamic_num.like_count + 1;
+                    }
+                    model.dynamic_num.my_like = !model.dynamic_num.my_like;
+                    
+                    NSInteger index =  [weakSelf.dynamicModels indexOfObject:model];
+                    [weakSelf.dynamicModels replaceObjectAtIndex:index withObject:model];
+                    
+                    [subscriber sendNext:@[@(YES)]];
+                    [subscriber sendCompleted];
+                } fail:^(NSString *message, NSInteger code) {
+                    
+                }];
+                return nil;
+            }];
+        }];
+    }
+    return _likeCommand;
+}
+
+- (RACCommand *)collectionCommand
+{
+    if (!_collectionCommand) {
+        weakSelf(self);
+        _collectionCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
+            return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                AMTDetailsModel *model = input;
+                [[KKNetWorking getShard]request:POST url:Collection parameters:@{@"dynamic_id":model.ID} completion:^(id json, NSInteger code) {
+                    if (model.dynamic_num.my_collection) {
+                        model.dynamic_num.collection_count = model.dynamic_num.collection_count - 1;
+                    }else{
+                        model.dynamic_num.collection_count = model.dynamic_num.collection_count + 1;
+                    }
+                    model.dynamic_num.my_collection = !model.dynamic_num.my_collection;
+                    
+                    NSInteger index =  [weakSelf.dynamicModels indexOfObject:model];
+                    if (index != 0x7FFFFFFFFFFFFFFF) {
+                        [weakSelf.dynamicModels replaceObjectAtIndex:index withObject:model];
+                    }
+                    [subscriber sendNext:@[@(YES)]];
+                    [subscriber sendCompleted];
+                } fail:^(NSString *message, NSInteger code) {
+                    
+                }];
+                return nil;
+            }];
+        }];
+    }
+    return _collectionCommand;
+}
+
 @end

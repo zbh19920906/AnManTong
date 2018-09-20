@@ -59,7 +59,7 @@
         [self.rightBtn setTitle:user.sex == 1 ? @"男" : @"女" forState:UIControlStateNormal];
         self.rightBtn.hidden = NO;
     }else if ([title isEqualToString:@"出生年月"]){
-        [self.rightBtn setTitle:user.age forState:UIControlStateNormal];
+        [self.rightBtn setTitle:user.date_birth forState:UIControlStateNormal];
         self.rightBtn.hidden = NO;
     }else{
         if ([title isEqualToString:@"昵称"]) {

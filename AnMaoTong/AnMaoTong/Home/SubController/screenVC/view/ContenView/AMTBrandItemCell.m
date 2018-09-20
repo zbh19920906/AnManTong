@@ -25,6 +25,7 @@
     _itmeBtn.sd_cornerRadius = @(4);
     [_itmeBtn setBackgroundColor:[UIColor whiteColor]];
     _itmeBtn.layer.borderWidth = 1;
+    _itmeBtn.userInteractionEnabled = NO;
     _itmeBtn.layer.borderColor = [UIColor cz_ToUIColorByStr:@"DCDCDC"].CGColor;
     [_itmeBtn setLableColor:@"BBBBBB" font:12 bold:0];
     [self.contentView addSubview:_itmeBtn];
@@ -36,5 +37,17 @@
 - (void)setModel:(AMTBrandModel *)model
 {
     [_itmeBtn setTitle:model.name forState:UIControlStateNormal];
+}
+
+- (void)setIsSeleted:(BOOL)isSeleted
+{
+    if (isSeleted) {
+        [_itmeBtn setBackgroundColor:BHColor(@"FF3658")];
+        [_itmeBtn setTitleColor:BHColor(@"FFFFFF") forState:UIControlStateNormal];
+    }else{
+       [_itmeBtn setBackgroundColor:[UIColor whiteColor]];
+         [_itmeBtn setTitleColor:BHColor(@"BBBBBB") forState:UIControlStateNormal];
+    }
+    
 }
 @end

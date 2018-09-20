@@ -10,4 +10,7 @@
 
 @interface AMTContentView : BaseView
 @property (nonatomic, strong) NSMutableArray *itemArr;
+@property (nonatomic, strong) NSIndexPath *oldIndexPath;
+
+- (void)reset;
 @end

@@ -19,6 +19,7 @@
         self.qq = user.qq;
         self.name = user.name;
         self.nickname = user.nickname;
+        self.date_birth = user.date_birth;
         self.announcement = user.announcement;
     }
     return self;

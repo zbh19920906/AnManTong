@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
-
+typedef void (^ScreenBlock)(AMTBrandModel *model);
 @interface AMTScreenVC : BaseViewController
 @property (nonatomic, copy) NSArray *titles;
+@property (nonatomic, copy) ScreenBlock screenBlock;
 @end

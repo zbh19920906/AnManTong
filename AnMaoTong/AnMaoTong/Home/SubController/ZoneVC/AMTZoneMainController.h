@@ -8,6 +8,10 @@
 
 #import "BaseViewController.h"
 
-@interface AMTZoneMainController : BaseViewController
+@interface AMTZoneMainController : AMTKeyBoradController
 @property (nonatomic, copy) NSString *goods_class_id;
+@property (nonatomic, copy) NSString *zone_id;
+@property (nonatomic, copy) NSString *brand_id;
+- (void)setNotifi;
+- (void)removeNotifi;
 @end

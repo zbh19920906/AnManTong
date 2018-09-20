@@ -9,6 +9,10 @@
 #import "BaseTableViewCell.h"
 #import "AMTDetailsModel.h"
 @interface AMTGoodsMessageCell : BaseTableViewCell
+
 @property (nonatomic, strong) AMTDetailsModel *model;
 @property (nonatomic, strong) UITapGestureRecognizer *headTap;
+- (void)changeComment:(AMTDetailsModel *)model;
+- (void)changeCollection:(AMTDetailsModel *)model;
+- (void)changeLike:(AMTDetailsModel *)model;
 @end
